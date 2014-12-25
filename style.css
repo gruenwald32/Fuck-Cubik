@@ -1,0 +1,34 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: table;
+  background-color: #202020;
+  background: -webkit-radial-gradient(#202020, #101010);
+  background: radial-gradient(#202020, #101010);
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+div {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+h1, h2 {
+  color: #eee;
+  font-family: "Audiowide";
+  margin: 0;
+}
+
+h1 {
+  font-size: 128px;
+}
+
+h2 {
+  font-size: 64px;
+}
