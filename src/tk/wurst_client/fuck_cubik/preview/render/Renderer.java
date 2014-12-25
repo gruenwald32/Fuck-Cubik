@@ -98,94 +98,11 @@ public class Renderer
 			e.printStackTrace();
 		}
 		
-		/*try
-		{
-			TextureLoader.getTexture("PNG", new FileInputStream(new File(".\\texture.png"))).bind();
-			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-		}catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-		GL11.glBegin(GL11.GL_QUADS);
-		{
-			float scale = 1F;
-			GL11.glColor3f(1F, 1F, 1F);
-			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex3f(scale, scale, -scale);
-			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex3f(-scale, scale, -scale);
-			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex3f(-scale, scale, scale);
-			GL11.glTexCoord2f(0, 0);
-			GL11.glVertex3f(scale, scale, scale);
-			
-			GL11.glColor3f(1F, 1F, 1F);
-			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex3f(scale, -scale, scale);
-			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex3f(-scale, -scale, scale);
-			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex3f(-scale, -scale, -scale);
-			GL11.glTexCoord2f(0, 0);
-			GL11.glVertex3f(scale, -scale, -scale);
-
-			GL11.glColor3f(1F, 1F, 1F);
-			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex3f(scale, scale, scale);
-			GL11.glTexCoord2f(0, 0);
-			GL11.glVertex3f(-scale, scale, scale);
-			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex3f(-scale, -scale, scale);
-			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex3f(scale, -scale, scale);
-
-			GL11.glColor3f(1F, 1F, 1F);
-			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex3f(scale, -scale, -scale);
-			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex3f(-scale, -scale, -scale);
-			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex3f(-scale, scale, -scale);
-			GL11.glTexCoord2f(0, 0);
-			GL11.glVertex3f(scale, scale, -scale);
-
-			GL11.glColor3f(1F, 1F, 1F);
-			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex3f(-scale, scale, scale);
-			GL11.glTexCoord2f(0, 0);
-			GL11.glVertex3f(-scale, scale, -scale);
-			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex3f(-scale, -scale, -scale);
-			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex3f(-scale, -scale, scale);
-
-			GL11.glColor3f(1F, 1F, 1F);
-			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex3f(scale, scale, -scale);
-			GL11.glTexCoord2f(0, 0);
-			GL11.glVertex3f(scale, scale, scale);
-			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex3f(scale, -scale, scale);
-			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex3f(scale, -scale, -scale);
-		}
-		GL11.glEnd();
-		GL11.glTranslatef(0.6F, 1.01F, 0.73F);
-		GL11.glScalef(1F / 32F, 1F / 32F, 1F / 32F);
-		GL11.glRotatef(90F, 1F, 0F, 0F);
-		GL11.glRotatef(180F, 0F, 0F, 1F);
-		new TrueTypeFont(new Font("Monospaced", Font.PLAIN, 32), false).drawString(0, 0, "UP", new Color(0F, 0F, 0F));
-		GL11.glTranslatef(-0.6F, -1.01F, -0.73F);
-		GL11.glScalef(32F, 32F, 32F);
-		GL11.glRotatef(-90F, 1F, 0F, 0F);
-		GL11.glRotatef(-180F, 0F, 0F, 1F);*/
 		GL11.glTranslatef(-(int)(posX * 16F) / 16F, -(int)(posY * 16F) / 16F, -(int)(posZ * 16F) / 16F);
 	}
 
 	public void refresh()
 	{
-		System.out.println("--- BEGIN REFRESH ---");
 		String code = "";
 		elementsList.clear();
 		try
@@ -223,6 +140,5 @@ public class Renderer
 			RenderObject renderObject = new RenderObject(from, to, faces);
 			elementsList.add(renderObject);
 		}
-		System.out.println("--- END REFRESH ---");
 	}
 }

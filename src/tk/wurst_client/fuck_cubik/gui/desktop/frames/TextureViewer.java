@@ -16,12 +16,14 @@ public class TextureViewer extends AbstractFrame
 	public TextureViewerPanel viewer;
 	private JButton changeButton;
 	public JCheckBox gridBox;
+	public JCheckBox numbersBox;
 
 	public TextureViewer()
 	{
 		super("Texture Viewer", true, false, false);
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 		viewer = new TextureViewerPanel();
+		this.add(viewer);
 		changeButton = new JButton("Change texture");
 		changeButton.addActionListener(new ActionListener()
 		{
@@ -31,6 +33,7 @@ public class TextureViewer extends AbstractFrame
 				new TextureFileChooser().showOpenDialog(Main.frame);
 			}
 		});
+		this.add(changeButton);
 		gridBox = new JCheckBox("Show grid", true);
 		gridBox.addActionListener(new ActionListener()
 		{
@@ -38,12 +41,22 @@ public class TextureViewer extends AbstractFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				viewer.showGrid = gridBox.isSelected();
+				numbersBox.setEnabled(gridBox.isSelected());
 				viewer.repaint();
 			}
 		});
-		this.add(viewer);
-		this.add(changeButton);
 		this.add(gridBox);
+		numbersBox = new JCheckBox("Show numbers", true);
+		numbersBox.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				viewer.showNumbers = numbersBox.isSelected();
+				viewer.repaint();
+			}
+		});
+		this.add(numbersBox);
 		this.setSize(600, 200);
 		this.setLocation(0, 600);
 	}

@@ -47,7 +47,6 @@ public class PreviewToolBar extends JToolBar
 							Main.renderer.refresh();
 						}catch(Exception e)
 						{
-							System.out.println("--- REFRESH FAILED ---");
 							e.printStackTrace();
 						}
 						return null;
