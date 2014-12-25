@@ -1,6 +1,8 @@
 package tk.wurst_client.fuck_cubik.preview.render;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
@@ -29,6 +31,7 @@ public class Renderer
 	public ObjectRenderer objectRenderer;
 	public GUIRenderer guiRenderer;
 	public ArrayList<RenderObject> elementsList = new ArrayList<RenderObject>();
+	public HashMap<String, File> texturesMap = new HashMap<String, File>();
 	
 	public float posX = 0F;
 	public float posY = 0F;
@@ -75,6 +78,7 @@ public class Renderer
 	public void render()
 	{
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
 		GL11.glLoadIdentity();
 
 		GL11.glTranslatef(0, 0, zoom);
@@ -105,6 +109,7 @@ public class Renderer
 	{
 		String code = "";
 		elementsList.clear();
+		texturesMap.clear();
 		try
 		{
 			code = Main.frame.desktop.editor.textarea.getDocument().getText(0, Main.frame.desktop.editor.textarea.getDocument().getLength());
@@ -115,6 +120,13 @@ public class Renderer
 		}
 		Gson gson = new Gson();
 		JsonObject mainObject = new JsonParser().parse(code).getAsJsonObject();
+		JsonObject texturesJSON = mainObject.get("textures").getAsJsonObject();
+		Iterator<Entry<String, JsonElement>> texturesItr = texturesJSON.entrySet().iterator();
+		while(texturesItr.hasNext())
+		{
+			Entry<String, JsonElement> textureEntry = (Entry<String, JsonElement>)texturesItr.next();
+			texturesMap.put(textureEntry.getKey(), new File(".\\textures\\" + textureEntry.getValue().getAsString() + ".png"));
+		}
 		JsonArray elementsJSON = mainObject.get("elements").getAsJsonArray();
 		Iterator<JsonElement> elementsItr = elementsJSON.iterator();
 		while(elementsItr.hasNext())
@@ -131,7 +143,7 @@ public class Renderer
 				JsonObject face = faceEntry.getValue().getAsJsonObject();
 				Side side = Side.valueOf(faceEntry.getKey().toUpperCase());
 				int[] uv = gson.fromJson(face.get("uv"), int[].class);
-				String textureLink = face.get("texture").getAsString();
+				String textureLink = face.get("texture").getAsString().substring(1);
 				RenderObjectFace renderFace = new RenderObjectFace(side, uv, textureLink);
 				facesList.add(renderFace);
 			}

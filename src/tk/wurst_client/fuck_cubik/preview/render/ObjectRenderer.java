@@ -7,6 +7,8 @@ import java.io.IOException;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.TextureLoader;
 
+import tk.wurst_client.fuck_cubik.Main;
+
 public class ObjectRenderer
 {
 	public void renderElement(RenderObject element)
@@ -24,151 +26,92 @@ public class ObjectRenderer
 			float u2 = 1F / 16F * face.uv[2];
 			float v1 = 1F / 16F * face.uv[1];
 			float v2 = 1F / 16F * face.uv[3];
-			if(face.side == Side.UP)
+			File texture = Main.renderer.texturesMap.get(face.textureLink);
+			try
+			{
+				TextureLoader.getTexture("PNG", new FileInputStream(texture)).bind();
+				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+				GL11.glColor3f(1F, 1F, 1F);
+			}catch(IOException e)
 			{
 				try
 				{
-					TextureLoader.getTexture("PNG", new FileInputStream(new File(".\\texture.png"))).bind();
+					TextureLoader.getTexture("PNG", this.getClass().getClassLoader().getResourceAsStream("resources/missing.png")).bind();
 					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
 					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-				}catch(IOException e)
-				{
-					e.printStackTrace();
-				}
-				GL11.glBegin(GL11.GL_QUADS);
-				{
 					GL11.glColor3f(1F, 1F, 1F);
-					GL11.glTexCoord2f(u1, v2);
-					GL11.glVertex3f(x1, y2, z2);
-					GL11.glTexCoord2f(u2, v2);
-					GL11.glVertex3f(x2, y2, z2);
-					GL11.glTexCoord2f(u2, v1);
-					GL11.glVertex3f(x2, y2, z1);
-					GL11.glTexCoord2f(u1, v1);
-					GL11.glVertex3f(x1, y2, z1);
+				}catch(IOException e1)
+				{
+					GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
+					GL11.glColor3f(1F, 0F, 0.5F);
 				}
-				GL11.glEnd();
-			}else if(face.side == Side.DOWN)
-			{
-				try
-				{
-					TextureLoader.getTexture("PNG", new FileInputStream(new File(".\\texture.png"))).bind();
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-				}catch(IOException e)
-				{
-					e.printStackTrace();
-				}
-				GL11.glBegin(GL11.GL_QUADS);
-				{
-					GL11.glColor3f(1F, 1F, 1F);
-					GL11.glTexCoord2f(u1, v2);
-					GL11.glVertex3f(x1, y1, z1);
-					GL11.glTexCoord2f(u2, v2);
-					GL11.glVertex3f(x2, y1, z1);
-					GL11.glTexCoord2f(u2, v1);
-					GL11.glVertex3f(x2, y1, z2);
-					GL11.glTexCoord2f(u1, v1);
-					GL11.glVertex3f(x1, y1, z2);
-				}
-				GL11.glEnd();
-			}else if(face.side == Side.NORTH)
-			{
-				try
-				{
-					TextureLoader.getTexture("PNG", new FileInputStream(new File(".\\texture.png"))).bind();
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-				}catch(IOException e)
-				{
-					e.printStackTrace();
-				}
-				GL11.glBegin(GL11.GL_QUADS);
-				{
-					GL11.glColor3f(1F, 1F, 1F);
-					GL11.glTexCoord2f(u2, v1);
-					GL11.glVertex3f(x1, y2, z1);
-					GL11.glTexCoord2f(u1, v1);
-					GL11.glVertex3f(x2, y2, z1);
-					GL11.glTexCoord2f(u1, v2);
-					GL11.glVertex3f(x2, y1, z1);
-					GL11.glTexCoord2f(u2, v2);
-					GL11.glVertex3f(x1, y1, z1);
-				}
-				GL11.glEnd();
-			}else if(face.side == Side.SOUTH)
-			{
-				try
-				{
-					TextureLoader.getTexture("PNG", new FileInputStream(new File(".\\texture.png"))).bind();
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-				}catch(IOException e)
-				{
-					e.printStackTrace();
-				}
-				GL11.glBegin(GL11.GL_QUADS);
-				{
-					GL11.glColor3f(1F, 1F, 1F);
-					GL11.glTexCoord2f(u1, v2);
-					GL11.glVertex3f(x1, y1, z2);
-					GL11.glTexCoord2f(u2, v2);
-					GL11.glVertex3f(x2, y1, z2);
-					GL11.glTexCoord2f(u2, v1);
-					GL11.glVertex3f(x2, y2, z2);
-					GL11.glTexCoord2f(u1, v1);
-					GL11.glVertex3f(x1, y2, z2);
-				}
-				GL11.glEnd();
-			}else if(face.side == Side.WEST)
-			{
-				try
-				{
-					TextureLoader.getTexture("PNG", new FileInputStream(new File(".\\texture.png"))).bind();
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-				}catch(IOException e)
-				{
-					e.printStackTrace();
-				}
-				GL11.glBegin(GL11.GL_QUADS);
-				{
-					GL11.glColor3f(1F, 1F, 1F);
-					GL11.glTexCoord2f(u2, v1);
-					GL11.glVertex3f(x1, y2, z2);
-					GL11.glTexCoord2f(u1, v1);
-					GL11.glVertex3f(x1, y2, z1);
-					GL11.glTexCoord2f(u1, v2);
-					GL11.glVertex3f(x1, y1, z1);
-					GL11.glTexCoord2f(u2, v2);
-					GL11.glVertex3f(x1, y1, z2);
-				}
-				GL11.glEnd();
-			}else if(face.side == Side.EAST)
-			{
-				try
-				{
-					TextureLoader.getTexture("PNG", new FileInputStream(new File(".\\texture.png"))).bind();
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-				}catch(IOException e)
-				{
-					e.printStackTrace();
-				}
-				GL11.glBegin(GL11.GL_QUADS);
-				{
-					GL11.glColor3f(1F, 1F, 1F);
-					GL11.glTexCoord2f(u2, v1);
-					GL11.glVertex3f(x2, y2, z1);
-					GL11.glTexCoord2f(u1, v1);
-					GL11.glVertex3f(x2, y2, z2);
-					GL11.glTexCoord2f(u1, v2);
-					GL11.glVertex3f(x2, y1, z2);
-					GL11.glTexCoord2f(u2, v2);
-					GL11.glVertex3f(x2, y1, z1);
-				}
-				GL11.glEnd();
 			}
+			GL11.glBegin(GL11.GL_QUADS);
+			{
+				if(face.side == Side.UP)
+				{
+					GL11.glTexCoord2f(u1, v2);
+					GL11.glVertex3f(x1, y2, z2);
+					GL11.glTexCoord2f(u2, v2);
+					GL11.glVertex3f(x2, y2, z2);
+					GL11.glTexCoord2f(u2, v1);
+					GL11.glVertex3f(x2, y2, z1);
+					GL11.glTexCoord2f(u1, v1);
+					GL11.glVertex3f(x1, y2, z1);
+				}else if(face.side == Side.DOWN)
+				{
+					GL11.glTexCoord2f(u1, v2);
+					GL11.glVertex3f(x1, y1, z1);
+					GL11.glTexCoord2f(u2, v2);
+					GL11.glVertex3f(x2, y1, z1);
+					GL11.glTexCoord2f(u2, v1);
+					GL11.glVertex3f(x2, y1, z2);
+					GL11.glTexCoord2f(u1, v1);
+					GL11.glVertex3f(x1, y1, z2);
+				}else if(face.side == Side.NORTH)
+				{
+					GL11.glTexCoord2f(u2, v1);
+					GL11.glVertex3f(x1, y2, z1);
+					GL11.glTexCoord2f(u1, v1);
+					GL11.glVertex3f(x2, y2, z1);
+					GL11.glTexCoord2f(u1, v2);
+					GL11.glVertex3f(x2, y1, z1);
+					GL11.glTexCoord2f(u2, v2);
+					GL11.glVertex3f(x1, y1, z1);
+				}else if(face.side == Side.SOUTH)
+				{
+					GL11.glTexCoord2f(u1, v2);
+					GL11.glVertex3f(x1, y1, z2);
+					GL11.glTexCoord2f(u2, v2);
+					GL11.glVertex3f(x2, y1, z2);
+					GL11.glTexCoord2f(u2, v1);
+					GL11.glVertex3f(x2, y2, z2);
+					GL11.glTexCoord2f(u1, v1);
+					GL11.glVertex3f(x1, y2, z2);
+				}else if(face.side == Side.WEST)
+				{
+					GL11.glTexCoord2f(u2, v1);
+					GL11.glVertex3f(x1, y2, z2);
+					GL11.glTexCoord2f(u1, v1);
+					GL11.glVertex3f(x1, y2, z1);
+					GL11.glTexCoord2f(u1, v2);
+					GL11.glVertex3f(x1, y1, z1);
+					GL11.glTexCoord2f(u2, v2);
+					GL11.glVertex3f(x1, y1, z2);
+				}else if(face.side == Side.EAST)
+				{
+					GL11.glTexCoord2f(u2, v1);
+					GL11.glVertex3f(x2, y2, z1);
+					GL11.glTexCoord2f(u1, v1);
+					GL11.glVertex3f(x2, y2, z2);
+					GL11.glTexCoord2f(u1, v2);
+					GL11.glVertex3f(x2, y1, z2);
+					GL11.glTexCoord2f(u2, v2);
+					GL11.glVertex3f(x2, y1, z1);
+				}
+			}
+			GL11.glEnd();
 		}
 	}
 }
