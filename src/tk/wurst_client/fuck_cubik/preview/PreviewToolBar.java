@@ -31,6 +31,7 @@ public class PreviewToolBar extends JToolBar
 		});
 		this.add(resetButton);
 		refreshButton = new JButton("Refresh");
+		refreshButton.setToolTipText("Refresh (F5)");
 		refreshButton.addActionListener(new ActionListener()
 		{
 			@Override

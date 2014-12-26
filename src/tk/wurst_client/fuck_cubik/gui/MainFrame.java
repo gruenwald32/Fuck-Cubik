@@ -5,6 +5,7 @@ import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 
+import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.gui.desktop.DesktopPane;
 import tk.wurst_client.fuck_cubik.gui.menu.MenuBar;
 
@@ -15,7 +16,7 @@ public class MainFrame extends JFrame
 
 	public MainFrame() throws HeadlessException
 	{
-		super("Fuck Cubik");
+		super("Fuck Cubik v" + Main.VERSION);
 		this.menuBar = new MenuBar();
 		this.desktop = new DesktopPane();
 		this.setLayout(new BorderLayout());

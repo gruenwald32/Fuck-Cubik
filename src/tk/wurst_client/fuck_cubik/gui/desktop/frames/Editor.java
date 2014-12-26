@@ -3,18 +3,25 @@ package tk.wurst_client.fuck_cubik.gui.desktop.frames;
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
+
+import tk.wurst_client.fuck_cubik.Main;
 
 public class Editor extends AbstractFrame
 {
 	public JTextArea textarea;
 	public JScrollPane scrollpane;
 	public UndoManager undoManager;
+	private File file;
+	public boolean fileChanged;
 	
 	public Editor()
 	{
@@ -22,6 +29,14 @@ public class Editor extends AbstractFrame
 		textarea = new JTextArea();
 		undoManager = new UndoManager();
 		textarea.getDocument().addUndoableEditListener(undoManager);
+		textarea.getDocument().addUndoableEditListener(new UndoableEditListener()
+		{
+			@Override
+			public void undoableEditHappened(UndoableEditEvent e)
+			{
+				updateTitle(true);
+			}
+		});
 		textarea.addKeyListener(new KeyListener()
 		{
 			@Override
@@ -44,9 +59,21 @@ public class Editor extends AbstractFrame
 					try
 					{
 						if(e.getKeyCode() == KeyEvent.VK_Z)
+						{
 							undoManager.undo();
-						else if(e.getKeyCode() == KeyEvent.VK_Y)
+						}else if(e.getKeyCode() == KeyEvent.VK_Y)
+						{
 							undoManager.redo();
+						}else if(e.getKeyCode() == KeyEvent.VK_S)
+						{
+							if(Main.frame.menuBar.fileMenu.save.isEnabled())
+								Main.frame.menuBar.fileMenu.save.doClick();
+							else
+								Main.frame.menuBar.fileMenu.saveAs.doClick();
+						}else if(e.getKeyCode() == KeyEvent.VK_O)
+						{
+							Main.frame.menuBar.fileMenu.open.doClick();
+						}
 					}catch(CannotUndoException | CannotRedoException e1)
 					{
 						
@@ -58,5 +85,26 @@ public class Editor extends AbstractFrame
 		this.add(scrollpane, BorderLayout.CENTER);
 		this.setSize(600, 800);
 		this.setLocation(600, 0);
+	}
+
+	public void updateTitle(boolean fileChanged)
+	{
+		if(this.fileChanged != fileChanged)
+		{
+			this.setTitle((file == null ? "Editor" : (fileChanged ? "* " : "") + "Editor - " + file.getName()));
+			this.fileChanged = fileChanged;
+		}
+	}
+
+	public File getFile()
+	{
+		return file;
+	}
+
+	public void setFile(File file)
+	{
+		this.file = file;
+		Main.frame.menuBar.fileMenu.save.setEnabled(file != null);
+		updateTitle(false);
 	}
 }
