@@ -3,6 +3,7 @@ package tk.wurst_client.fuck_cubik.gui.textureviewer;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
@@ -12,7 +13,8 @@ public class TextureViewerPanel extends JPanel
 {
 	public boolean showGrid = true;
 	public boolean showNumbers = true;
-	public File texture;
+	public File file;
+	public BufferedImage texture;
 	
 	public TextureViewerPanel()
 	{
@@ -27,9 +29,19 @@ public class TextureViewerPanel extends JPanel
 	{
 		super.paint(g);
 		g.setColor(Color.white);
+		if(texture == null)
+		{
+			try
+			{
+				texture = ImageIO.read(file);
+			}catch(Exception e1)
+			{
+				
+			}
+		}
 		try
 		{
-			g.drawImage(ImageIO.read(texture), 4, 4, 128, 128, null);
+			g.drawImage(texture, 4, 4, 128, 128, null);
 		}catch(Exception e)
 		{
 			g.fillRect(4, 4, 128, 128);

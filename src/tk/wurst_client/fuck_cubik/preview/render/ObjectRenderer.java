@@ -13,6 +13,9 @@ import tk.wurst_client.fuck_cubik.Main;
 
 public class ObjectRenderer
 {
+	public HashMap<String, Texture> textureMap = new HashMap<String, Texture>();
+	public Texture missingTexture = null;
+	
 	public void renderElement(RenderObject element)
 	{
 		float x1 = 1F / 16F * (float)element.from[0] - 0.5F;
@@ -21,28 +24,31 @@ public class ObjectRenderer
 		float x2 = 1F / 16F * (float)element.to[0] - 0.5F;
 		float y2 = 1F / 16F * (float)element.to[1];
 		float z2 = 1F / 16F * (float)element.to[2] - 0.5F;
-		HashMap<String, Texture> textureMap = new HashMap<String, Texture>();
-		for(int i = 0; i < element.textureLinks.length; i++)
+		if(textureMap.isEmpty())
 		{
-			String textureLink = element.textureLinks[i];
-			File textureFile = Main.renderer.textureLinkMap.get(textureLink);
-			Texture texture = null;
+			for(String textureLink : Main.renderer.textureLinkList)
+			{
+				File textureFile = Main.renderer.textureLinkMap.get(textureLink);
+				Texture texture = null;
+				try
+				{
+					texture = TextureLoader.getTexture("PNG", new FileInputStream(textureFile));
+				}catch(IOException e)
+				{
+					e.printStackTrace();
+				}
+				textureMap.put(textureLink, texture);
+			}
+		}
+		if(missingTexture == null)
+		{
 			try
 			{
-				texture = TextureLoader.getTexture("PNG", new FileInputStream(textureFile));
+				missingTexture = TextureLoader.getTexture("PNG", this.getClass().getClassLoader().getResourceAsStream("resources/missing.png"));
 			}catch(IOException e)
-			{
+			{	
 				
 			}
-			textureMap.put(textureLink, texture);
-		}
-		Texture missingTexture = null;
-		try
-		{
-			missingTexture = TextureLoader.getTexture("PNG", this.getClass().getClassLoader().getResourceAsStream("resources/missing.png"));
-		}catch(IOException e)
-		{
-			
 		}
 		for(int i = 0; i < element.faces.length; i++)
 		{
