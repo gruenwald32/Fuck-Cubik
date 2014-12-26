@@ -24,6 +24,7 @@ public class Main
 			renderer = new Renderer();
 			inputListener = new InputListener();
 			Display.setParent(frame.desktop.preview.canvas);
+			Display.setVSyncEnabled(true);
 			Display.setDisplayMode(new DisplayMode(600, 600));
 			Display.setInitialBackground(240, 240, 240);
 			Display.create();

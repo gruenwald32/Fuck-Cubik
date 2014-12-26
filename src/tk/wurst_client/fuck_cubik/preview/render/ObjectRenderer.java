@@ -3,8 +3,10 @@ package tk.wurst_client.fuck_cubik.preview.render;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
 import tk.wurst_client.fuck_cubik.Main;
@@ -19,6 +21,29 @@ public class ObjectRenderer
 		float x2 = 1F / 16F * (float)element.to[0] - 0.5F;
 		float y2 = 1F / 16F * (float)element.to[1];
 		float z2 = 1F / 16F * (float)element.to[2] - 0.5F;
+		HashMap<String, Texture> textureMap = new HashMap<String, Texture>();
+		for(int i = 0; i < element.textureLinks.length; i++)
+		{
+			String textureLink = element.textureLinks[i];
+			File textureFile = Main.renderer.textureLinkMap.get(textureLink);
+			Texture texture = null;
+			try
+			{
+				texture = TextureLoader.getTexture("PNG", new FileInputStream(textureFile));
+			}catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+			textureMap.put(textureLink, texture);
+		}
+		Texture missingTexture = null;
+		try
+		{
+			missingTexture = TextureLoader.getTexture("PNG", this.getClass().getClassLoader().getResourceAsStream("resources/missing.png"));
+		}catch(IOException e)
+		{
+			
+		}
 		for(int i = 0; i < element.faces.length; i++)
 		{
 			RenderObjectFace face = element.faces[i];
@@ -26,22 +51,22 @@ public class ObjectRenderer
 			float u2 = 1F / 16F * face.uv[2];
 			float v1 = 1F / 16F * face.uv[1];
 			float v2 = 1F / 16F * face.uv[3];
-			File texture = Main.renderer.texturesMap.get(face.textureLink);
-			try
+			Texture texture = textureMap.get(face.textureLink);
+			if(texture != null)
 			{
-				TextureLoader.getTexture("PNG", new FileInputStream(texture)).bind();
+				texture.bind();
 				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
 				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 				GL11.glColor3f(1F, 1F, 1F);
-			}catch(IOException e)
+			}else
 			{
-				try
+				if(missingTexture != null)
 				{
-					TextureLoader.getTexture("PNG", this.getClass().getClassLoader().getResourceAsStream("resources/missing.png")).bind();
+					missingTexture.bind();
 					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
 					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 					GL11.glColor3f(1F, 1F, 1F);
-				}catch(IOException e1)
+				}else
 				{
 					GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
 					GL11.glColor3f(1F, 0F, 0.5F);

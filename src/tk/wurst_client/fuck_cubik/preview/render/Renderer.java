@@ -31,7 +31,7 @@ public class Renderer
 	public ObjectRenderer objectRenderer;
 	public GUIRenderer guiRenderer;
 	public ArrayList<RenderObject> elementsList = new ArrayList<RenderObject>();
-	public HashMap<String, File> texturesMap = new HashMap<String, File>();
+	public HashMap<String, File> textureLinkMap = new HashMap<String, File>();
 	
 	public float posX = 0F;
 	public float posY = 0F;
@@ -109,7 +109,7 @@ public class Renderer
 	{
 		String code = "";
 		elementsList.clear();
-		texturesMap.clear();
+		textureLinkMap.clear();
 		try
 		{
 			code = Main.frame.desktop.editor.textarea.getDocument().getText(0, Main.frame.desktop.editor.textarea.getDocument().getLength());
@@ -125,7 +125,8 @@ public class Renderer
 		while(texturesItr.hasNext())
 		{
 			Entry<String, JsonElement> textureEntry = (Entry<String, JsonElement>)texturesItr.next();
-			texturesMap.put(textureEntry.getKey(), new File(".\\textures\\" + textureEntry.getValue().getAsString() + ".png"));
+			File textureFile = new File(".\\textures\\" + textureEntry.getValue().getAsString() + ".png");
+			textureLinkMap.put(textureEntry.getKey(), textureFile);
 		}
 		JsonArray elementsJSON = mainObject.get("elements").getAsJsonArray();
 		Iterator<JsonElement> elementsItr = elementsJSON.iterator();
@@ -135,6 +136,7 @@ public class Renderer
 			int[] from = gson.fromJson(element.get("from"), int[].class);
 			int[] to = gson.fromJson(element.get("to"), int[].class);
 			ArrayList<RenderObjectFace> facesList = new ArrayList<RenderObjectFace>();
+			ArrayList<String> textureLinksList = new ArrayList<String>();
 			JsonObject facesJSON = element.get("faces").getAsJsonObject();
 			Iterator<Entry<String, JsonElement>> facesItr = facesJSON.entrySet().iterator();
 			while(facesItr.hasNext())
@@ -144,12 +146,15 @@ public class Renderer
 				Side side = Side.valueOf(faceEntry.getKey().toUpperCase());
 				int[] uv = gson.fromJson(face.get("uv"), int[].class);
 				String textureLink = face.get("texture").getAsString().substring(1);
+				textureLinksList.add(textureLink);
 				RenderObjectFace renderFace = new RenderObjectFace(side, uv, textureLink);
 				facesList.add(renderFace);
 			}
 			RenderObjectFace[] faces = new RenderObjectFace[facesList.size()];
 			faces = facesList.toArray(faces);
-			RenderObject renderObject = new RenderObject(from, to, faces);
+			String[] textureLinks = new String[textureLinksList.size()];
+			textureLinks = textureLinksList.toArray(textureLinks);
+			RenderObject renderObject = new RenderObject(from, to, faces, textureLinks);
 			elementsList.add(renderObject);
 		}
 	}
