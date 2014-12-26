@@ -32,7 +32,7 @@ public class ObjectRenderer
 				texture = TextureLoader.getTexture("PNG", new FileInputStream(textureFile));
 			}catch(IOException e)
 			{
-				e.printStackTrace();
+				
 			}
 			textureMap.put(textureLink, texture);
 		}
