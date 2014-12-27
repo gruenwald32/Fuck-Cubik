@@ -26,3 +26,13 @@ body {
 	background: linear-gradient(#eee, #ddd);
 	text-align: center;
 }
+
+#content {
+	margin: 25px auto;
+	overflow: hidden;
+	width: 1000px;
+	border-radius: 1em;
+	background-color: #eee;
+	background: -webkit-linear-gradient(#eee, #ddd);
+	background: linear-gradient(#eee, #ddd);
+}
