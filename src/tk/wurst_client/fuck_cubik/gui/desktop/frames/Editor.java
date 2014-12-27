@@ -78,6 +78,9 @@ public class Editor extends AbstractFrame
 					{
 						
 					}
+				}else if(e.getKeyCode() == KeyEvent.VK_F5)
+				{
+					Main.frame.desktop.preview.toolbar.refreshButton.doClick();
 				}
 			}
 		});
