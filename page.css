@@ -4,6 +4,7 @@
 
 body {
 	margin: 0;
+	background-color: #202020;
 }
 
 #background {
@@ -17,7 +18,14 @@ body {
 	background: radial-gradient(#202020, #101010);
 }
 
-#header, #content, #footer {
+#nav a {
+	background-color: #eee;
+	background: -webkit-linear-gradient(#eee, #ccc);
+	background: linear-gradient(#eee, #ccc);
+	border-radius: 0.5em;
+}
+
+.box {
 	margin: 1em auto;
 	padding: 0 2em;
 	overflow: hidden;
@@ -28,6 +36,6 @@ body {
 	background: linear-gradient(#eee, #ccc);
 }
 
-#header, #footer {
+.center {
 	text-align: center;
 }
