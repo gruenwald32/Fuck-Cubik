@@ -17,7 +17,7 @@ ul.x li:before {
 .wrapper {
 	width: 100%;
 	overflow: hidden;
-	padding: 1em;
+	border-width: 1em;
 }
 
 .wrapper:nth-child(odd) {
@@ -70,6 +70,30 @@ ul.x li:before {
 
 .vab {
 	vertical-align: bottom;
+}
+
+.b0 {
+	border-width: 0;
+}
+
+.b1 {
+	border-width: 1em;
+}
+
+.b2 {
+	border-width: 2em;
+}
+
+.m0 {
+	margin: 0;
+}
+
+.m1 {
+	margin: 1em;
+}
+
+.m2 {
+	margin: 2em;
 }
 
 .p0 {
