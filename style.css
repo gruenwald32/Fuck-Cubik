@@ -16,9 +16,19 @@ ul.x li:before {
 
 .wrapper {
 	width: 100%;
-	background-color: #ddd;
-	background: -webkit-linear-gradient(#eee, #ccc);
-	background: linear-gradient(#eee, #ccc);
+	overflow: hidden;
+}
+
+.wrapper:nth-child(odd) {
+	width: 100%;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+.wrapper:nth-child(even) {
+	width: 100%;
+	overflow: hidden;
+	background-color: #eee;
 }
 
 .dib {
@@ -59,6 +69,14 @@ ul.x li:before {
 
 .vab {
 	vertical-align: bottom;
+}
+
+.p1 {
+	padding: 1em;
+}
+
+.p2 {
+	padding: 2em;
 }
 
 .img {
