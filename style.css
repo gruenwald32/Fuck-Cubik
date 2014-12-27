@@ -17,18 +17,19 @@ ul.x li:before {
 .wrapper {
 	width: 100%;
 	overflow: hidden;
+	padding: 1em;
 }
 
 .wrapper:nth-child(odd) {
 	width: 100%;
 	overflow: hidden;
-	background-color: #fff;
+	background-color: #eee;
 }
 
 .wrapper:nth-child(even) {
 	width: 100%;
 	overflow: hidden;
-	background-color: #eee;
+	background-color: #ddd;
 }
 
 .dib {
@@ -69,6 +70,10 @@ ul.x li:before {
 
 .vab {
 	vertical-align: bottom;
+}
+
+.p0 {
+	padding: 0;
 }
 
 .p1 {
