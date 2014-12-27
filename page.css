@@ -18,12 +18,30 @@ body {
 	background: radial-gradient(#202020, #101010);
 }
 
+#header {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	margin-bottom: 0;
+}
+
+#nav {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	margin-top: 0;
+}
+
 #nav a {
-	background-color: #eee;
+	padding: 0 1em;
+	background-color: #ddd;
 	background: -webkit-linear-gradient(#eee, #ccc);
 	background: linear-gradient(#eee, #ccc);
 	border: 1px solid;
-	border-radius: 0.5em;
+}
+
+#nav a:hover {
+	background-color: #9cf;
+	background: -webkit-linear-gradient(#bdf, #7bf);
+	background: linear-gradient(#bdf, #7bf);
 }
 
 .box {
@@ -32,7 +50,7 @@ body {
 	overflow: hidden;
 	width: 936px;
 	border-radius: 1em;
-	background-color: #eee;
+	background-color: #ddd;
 	background: -webkit-linear-gradient(#eee, #ccc);
 	background: linear-gradient(#eee, #ccc);
 }
