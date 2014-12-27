@@ -24,8 +24,8 @@ body {
 	width: 936px;
 	border-radius: 1em;
 	background-color: #eee;
-	background: -webkit-linear-gradient(#eee, #ddd);
-	background: linear-gradient(#eee, #ddd);
+	background: -webkit-linear-gradient(#eee, #ccc);
+	background: linear-gradient(#eee, #ccc);
 }
 
 #header, #footer {
