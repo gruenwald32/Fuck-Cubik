@@ -1,4 +1,8 @@
-﻿body {
+﻿html {
+	font-family: "Verdana";
+}
+
+body {
 	margin: 0;
 }
 
@@ -14,4 +18,9 @@
 
 #header {
 	margin: auto;
+	border-radius: 1em;
+	background-color: #eee;
+	background: -webkit-linear-gradient(#eee, #ddd);
+	background: linear-gradient(#eee, #ddd);
+	text-align: center;
 }
