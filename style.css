@@ -17,7 +17,6 @@ ul.x li:before {
 .wrapper {
 	width: 100%;
 	overflow: hidden;
-	border-width: 1em;
 }
 
 .wrapper:nth-child(odd) {
