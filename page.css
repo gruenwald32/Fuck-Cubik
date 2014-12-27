@@ -16,24 +16,16 @@ body {
 	background: radial-gradient(#202020, #101010);
 }
 
-#header, #footer {
-	margin: auto;
+#header, #content, #footer {
+	margin: 1em auto;
 	overflow: hidden;
-	width: 1000px;
+	width: 936px;
 	border-radius: 1em;
 	background-color: #eee;
 	background: -webkit-linear-gradient(#eee, #ddd);
 	background: linear-gradient(#eee, #ddd);
-	text-align: center;
 }
 
-#content {
-	margin: 2em auto;
-	padding: 1em;
-	overflow: hidden;
-	width: 1000px;
-	border-radius: 1em;
-	background-color: #eee;
-	background: -webkit-linear-gradient(#eee, #ddd);
-	background: linear-gradient(#eee, #ddd);
+#header, #footer {
+	text-align: center;
 }
