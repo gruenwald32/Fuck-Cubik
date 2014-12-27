@@ -19,6 +19,7 @@ body {
 
 #header, #content, #footer {
 	margin: 1em auto;
+	padding: 2em;
 	overflow: hidden;
 	width: 936px;
 	border-radius: 1em;
