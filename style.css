@@ -1,4 +1,13 @@
-﻿ul.bb {
+﻿html {
+	font-family: "Verdana";
+}
+
+body {
+	margin: 0;
+	background-color: #222;
+}
+
+ul.bb {
 	list-style-type: none;
 }
 
