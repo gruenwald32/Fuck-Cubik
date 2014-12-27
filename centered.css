@@ -13,7 +13,7 @@ body {
   margin: 0;
 }
 
-div {
+#content {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
