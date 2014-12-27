@@ -18,6 +18,8 @@ body {
 
 #header {
 	margin: auto;
+	overflow: hidden;
+	width: 1000px;
 	border-radius: 1em;
 	background-color: #eee;
 	background: -webkit-linear-gradient(#eee, #ddd);
