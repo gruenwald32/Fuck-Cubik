@@ -1,0 +1,115 @@
+﻿.dib {
+	display: inline-block;
+	float: left;
+}
+
+.dt {
+	display: table;
+	float: left;
+}
+
+.dtc {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.img {
+	background-image: url("/images/missing.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.bga {
+	background-size: auto;
+}
+
+.bgc {
+	background-size: cover;
+}
+
+.bgr {
+	background-repeat: repeat;
+	background-size: auto;
+}
+
+.w20 {
+	width: 20%;
+}
+
+.w25 {
+	width: 25%;
+}
+
+.w33 {
+	width: 33%;
+}
+
+.w40 {
+	width: 40%;
+}
+
+.w50 {
+	width: 50%;
+}
+
+.w60 {
+	width: 60%;
+}
+
+.w67 {
+	width: 67%;
+}
+
+.w75 {
+	width: 75%;
+}
+
+.w80 {
+	width: 80%;
+}
+
+.w100 {
+	width: 100%;
+}
+
+.h20 {
+	height: 20%;
+}
+
+.h25 {
+	height: 25%;
+}
+
+.h33 {
+	height: 33%;
+}
+
+.h40 {
+	height: 40%;
+}
+
+.h50 {
+	height: 50%;
+}
+
+.h60 {
+	height: 60%;
+}
+
+.h67 {
+	height: 67%;
+}
+
+.h75 {
+	height: 75%;
+}
+
+.h80 {
+	height: 80%;
+}
+
+.h100 {
+	height: 100%;
+}
