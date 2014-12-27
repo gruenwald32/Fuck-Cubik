@@ -14,6 +14,30 @@
 	text-align: center;
 }
 
+.hal {
+	text-align: left;
+}
+
+.hac {
+	text-align: center;
+}
+
+.har {
+	text-align: right;
+}
+
+.vat {
+	vertical-align: top;
+}
+
+.vam {
+	vertical-align: middle;
+}
+
+.vab {
+	vertical-align: bottom;
+}
+
 .img {
 	background-image: url("/images/missing.jpg");
 	background-position: center;
@@ -32,6 +56,14 @@
 .bgr {
 	background-repeat: repeat;
 	background-size: auto;
+}
+
+.fa {
+	font-family: "Audiowide";
+}
+
+.fv {
+	font-family: "Verdana";
 }
 
 .w20 {
