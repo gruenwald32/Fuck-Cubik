@@ -5,14 +5,13 @@ import javax.swing.UIManager;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.gui.MainFrame;
 import tk.wurst_client.fuck_cubik.preview.InputListener;
 import tk.wurst_client.fuck_cubik.preview.render.Renderer;
 
 public class Main
 {
-	public static final String VERSION = "1.0";
-	
 	public static MainFrame frame;
 	public static Renderer renderer;
 	public static InputListener inputListener;
@@ -42,7 +41,7 @@ public class Main
 			System.exit(0);
 		}catch(Exception e)
 		{
-			e.printStackTrace();
+			new ErrorMessage(e);
 			System.exit(-1);
 		}finally
 		{

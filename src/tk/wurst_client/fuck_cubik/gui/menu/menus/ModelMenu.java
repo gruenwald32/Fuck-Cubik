@@ -9,18 +9,19 @@ import javax.swing.JMenuItem;
 import javax.swing.text.BadLocationException;
 
 import tk.wurst_client.fuck_cubik.Main;
+import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.gui.filechoosers.ModelFileChooser;
 
-public class FileMenu extends JMenu
+public class ModelMenu extends JMenu
 {
 	public ModelFileChooser fileChooser;
 	public JMenuItem open;
 	public JMenuItem save;
 	public JMenuItem saveAs;
 
-	public FileMenu()
+	public ModelMenu()
 	{
-		super("File");
+		super("Model");
 		fileChooser = new ModelFileChooser();
 		open = new JMenuItem("Open");
 		open.setToolTipText("Open (CTRL + O)");
@@ -45,7 +46,7 @@ public class FileMenu extends JMenu
 					fileChooser.save(Main.frame.desktop.editor.getFile());
 				}catch(FileNotFoundException | BadLocationException e1)
 				{
-					e1.printStackTrace();
+					new ErrorMessage(e1);
 				}
 			}
 		});

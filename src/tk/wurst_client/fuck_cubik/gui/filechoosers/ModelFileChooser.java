@@ -18,12 +18,14 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 import tk.wurst_client.fuck_cubik.Main;
+import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.pack.PackManager;
 
 public class ModelFileChooser extends JFileChooser
 {
 	public ModelFileChooser()
 	{
-		super(".");
+		super(PackManager.MODELS_FOLDER);
 		this.setAcceptAllFileFilterUsed(false);
 		this.addChoosableFileFilter(new FileNameExtensionFilter("JSON 3D models", "json"));
 		this.setFileSelectionMode(FILES_ONLY);
@@ -48,7 +50,7 @@ public class ModelFileChooser extends JFileChooser
 				Main.frame.desktop.preview.toolbar.refreshButton.doClick();
 			}catch(IOException e)
 			{
-				e.printStackTrace();
+				new ErrorMessage(e);
 			}
 		}
 		return action;
@@ -66,7 +68,7 @@ public class ModelFileChooser extends JFileChooser
 				save(file);
 			}catch(IOException | BadLocationException e)
 			{
-				e.printStackTrace();
+				new ErrorMessage(e);
 			}
 		}
 		return action;

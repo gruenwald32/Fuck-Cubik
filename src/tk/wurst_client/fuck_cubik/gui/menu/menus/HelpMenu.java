@@ -14,6 +14,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import tk.wurst_client.fuck_cubik.Main;
+import tk.wurst_client.fuck_cubik.VersionManager;
+import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 
 public class HelpMenu extends JMenu
 {
@@ -37,12 +39,13 @@ public class HelpMenu extends JMenu
 					for(String line = ""; (line = reader.readLine()) != null;)
 						message  += line;
 					reader.close();
-					message = message.replace("<VERSION>", Main.VERSION);
+					message = message
+						.replace("<simple version>", VersionManager.SIMPLE_VERSION)
+						.replace("<full version>", VersionManager.FULL_VERSION);
 					JOptionPane.showMessageDialog(Main.frame, message, "About Fuck Cubik", JOptionPane.INFORMATION_MESSAGE);
 				}catch(Exception e1)
 				{
-					e1.printStackTrace();
-					JOptionPane.showMessageDialog(Main.frame, "Unable to load resource.", "Error", JOptionPane.ERROR_MESSAGE);
+					new ErrorMessage(e1);
 				}
 			}
 		});
@@ -63,8 +66,7 @@ public class HelpMenu extends JMenu
 					JOptionPane.showMessageDialog(Main.frame, message, "License", JOptionPane.INFORMATION_MESSAGE);
 				}catch(Exception e1)
 				{
-					e1.printStackTrace();
-					JOptionPane.showMessageDialog(Main.frame, "Unable to load resource.", "Error", JOptionPane.ERROR_MESSAGE);
+					new ErrorMessage(e1);
 				}
 			}
 		});
@@ -80,8 +82,7 @@ public class HelpMenu extends JMenu
 					Desktop.getDesktop().browse(new URI("http://fuck-cubik.wurst-client.tk"));
 				}catch(IOException | URISyntaxException e1)
 				{
-					JOptionPane.showMessageDialog(Main.frame, "Unable to open link.", "Error", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
+					new ErrorMessage(e1);
 				}
 			}
 		});

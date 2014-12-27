@@ -33,9 +33,9 @@ public class ObjectRenderer
 				try
 				{
 					texture = TextureLoader.getTexture("PNG", new FileInputStream(textureFile));
-				}catch(IOException e)
+				}catch(NullPointerException | IOException e)
 				{
-					e.printStackTrace();
+					
 				}
 				textureMap.put(textureLink, texture);
 			}
@@ -74,6 +74,7 @@ public class ObjectRenderer
 					GL11.glColor3f(1F, 1F, 1F);
 				}else
 				{
+					System.out.println("Test!");
 					GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
 					GL11.glColor3f(1F, 0F, 0.5F);
 				}

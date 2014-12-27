@@ -2,19 +2,23 @@ package tk.wurst_client.fuck_cubik.gui.menu;
 
 import javax.swing.JMenuBar;
 
-import tk.wurst_client.fuck_cubik.gui.menu.menus.FileMenu;
+import tk.wurst_client.fuck_cubik.gui.menu.menus.ModelMenu;
 import tk.wurst_client.fuck_cubik.gui.menu.menus.HelpMenu;
+import tk.wurst_client.fuck_cubik.gui.menu.menus.PackMenu;
 
 public class MenuBar extends JMenuBar
 {
-	public FileMenu fileMenu;
+	public PackMenu packMenu;
+	public ModelMenu modelMenu;
 	public HelpMenu helpMenu;
 
 	public MenuBar()
 	{
 		super();
-		fileMenu = new FileMenu();
-		this.add(fileMenu);
+		packMenu = new PackMenu();
+		this.add(packMenu);
+		modelMenu = new ModelMenu();
+		this.add(modelMenu);
 		helpMenu = new HelpMenu();
 		this.add(helpMenu);
 	}

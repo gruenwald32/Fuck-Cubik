@@ -7,12 +7,13 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import tk.wurst_client.fuck_cubik.Main;
+import tk.wurst_client.fuck_cubik.pack.PackManager;
 
 public class TextureFileChooser extends JFileChooser
 {
 	public TextureFileChooser()
 	{
-		super(".");
+		super(PackManager.TEXTURES_FOLDER);
 		this.setAcceptAllFileFilterUsed(false);
 		this.addChoosableFileFilter(new FileNameExtensionFilter("PNG textures", "png"));
 		this.setFileSelectionMode(FILES_ONLY);

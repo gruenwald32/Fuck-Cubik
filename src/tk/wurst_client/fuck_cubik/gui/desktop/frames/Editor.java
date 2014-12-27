@@ -66,13 +66,13 @@ public class Editor extends AbstractFrame
 							undoManager.redo();
 						}else if(e.getKeyCode() == KeyEvent.VK_S)
 						{
-							if(Main.frame.menuBar.fileMenu.save.isEnabled())
-								Main.frame.menuBar.fileMenu.save.doClick();
+							if(Main.frame.menuBar.modelMenu.save.isEnabled())
+								Main.frame.menuBar.modelMenu.save.doClick();
 							else
-								Main.frame.menuBar.fileMenu.saveAs.doClick();
+								Main.frame.menuBar.modelMenu.saveAs.doClick();
 						}else if(e.getKeyCode() == KeyEvent.VK_O)
 						{
-							Main.frame.menuBar.fileMenu.open.doClick();
+							Main.frame.menuBar.modelMenu.open.doClick();
 						}
 					}catch(CannotUndoException | CannotRedoException e1)
 					{
@@ -104,7 +104,7 @@ public class Editor extends AbstractFrame
 	public void setFile(File file)
 	{
 		this.file = file;
-		Main.frame.menuBar.fileMenu.save.setEnabled(file != null);
+		Main.frame.menuBar.modelMenu.save.setEnabled(file != null);
 		updateTitle(false);
 	}
 }
