@@ -34,7 +34,6 @@ public class Renderer
 	public GUIRenderer guiRenderer;
 	public ArrayList<RenderObject> elementsList = new ArrayList<RenderObject>();
 	public HashMap<String, File> textureLinkMap = new HashMap<String, File>();
-	public ArrayList<String> textureLinkList = new ArrayList<String>();
 	
 	public float posX = 0F;
 	public float posY = 0F;
@@ -96,10 +95,9 @@ public class Renderer
 		{
 			if(Main.frame.desktop.preview.showGrid)
 				guiRenderer.renderGrid();
+			objectRenderer.checkTextureMap();
 			for(RenderObject object : elementsList)
-			{
 				objectRenderer.renderElement(object);
-			}
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -113,7 +111,6 @@ public class Renderer
 		String code = "";
 		elementsList.clear();
 		textureLinkMap.clear();
-		textureLinkList.clear();
 		try
 		{
 			code = Main.frame.desktop.editor.textarea.getDocument().getText(0, Main.frame.desktop.editor.textarea.getDocument().getLength());
@@ -149,7 +146,6 @@ public class Renderer
 				Side side = Side.valueOf(faceEntry.getKey().toUpperCase());
 				int[] uv = gson.fromJson(face.get("uv"), int[].class);
 				String textureLink = face.get("texture").getAsString().substring(1);
-				textureLinkList.add(textureLink);
 				RenderObjectFace renderFace = new RenderObjectFace(side, uv, textureLink);
 				facesList.add(renderFace);
 			}
@@ -158,6 +154,6 @@ public class Renderer
 			RenderObject renderObject = new RenderObject(from, to, faces);
 			elementsList.add(renderObject);
 		}
-		objectRenderer.textureMap.clear();
+		objectRenderer.clearTextureMap();
 	}
 }

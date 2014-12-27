@@ -4,31 +4,36 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureImpl;
 import org.newdawn.slick.opengl.TextureLoader;
 
 import tk.wurst_client.fuck_cubik.Main;
 
 public class ObjectRenderer
 {
-	public HashMap<String, Texture> textureMap = new HashMap<String, Texture>();
-	public Texture missingTexture = null;
+	private HashMap<String, Texture> textureMap = new HashMap<String, Texture>();
 	
-	public void renderElement(RenderObject element)
+	public void checkTextureMap()
 	{
-		float x1 = 1F / 16F * (float)element.from[0] - 0.5F;
-		float y1 = 1F / 16F * (float)element.from[1];
-		float z1 = 1F / 16F * (float)element.from[2] - 0.5F;
-		float x2 = 1F / 16F * (float)element.to[0] - 0.5F;
-		float y2 = 1F / 16F * (float)element.to[1];
-		float z2 = 1F / 16F * (float)element.to[2] - 0.5F;
 		if(textureMap.isEmpty())
 		{
-			for(String textureLink : Main.renderer.textureLinkList)
+			try
 			{
-				File textureFile = Main.renderer.textureLinkMap.get(textureLink);
+				String textureLink = "__missing";
+				Texture texture = TextureLoader.getTexture("PNG", this.getClass().getClassLoader().getResourceAsStream("resources/missing.png"));
+				textureMap.put(textureLink , texture );
+			}catch(IOException e1)
+			{
+				e1.printStackTrace();
+			}
+			for(Entry<String, File> entry : Main.renderer.textureLinkMap.entrySet())
+			{
+				String textureLink = entry.getKey();
+				File textureFile = entry.getValue();
 				Texture texture = null;
 				try
 				{
@@ -40,16 +45,16 @@ public class ObjectRenderer
 				textureMap.put(textureLink, texture);
 			}
 		}
-		if(missingTexture == null)
-		{
-			try
-			{
-				missingTexture = TextureLoader.getTexture("PNG", this.getClass().getClassLoader().getResourceAsStream("resources/missing.png"));
-			}catch(IOException e)
-			{	
-				
-			}
-		}
+	}
+	
+	public void renderElement(RenderObject element)
+	{
+		float x1 = 1F / 16F * (float)element.from[0] - 0.5F;
+		float y1 = 1F / 16F * (float)element.from[1];
+		float z1 = 1F / 16F * (float)element.from[2] - 0.5F;
+		float x2 = 1F / 16F * (float)element.to[0] - 0.5F;
+		float y2 = 1F / 16F * (float)element.to[1];
+		float z2 = 1F / 16F * (float)element.to[2] - 0.5F;
 		for(int i = 0; i < element.faces.length; i++)
 		{
 			RenderObjectFace face = element.faces[i];
@@ -57,27 +62,23 @@ public class ObjectRenderer
 			float u2 = 1F / 16F * face.uv[2];
 			float v1 = 1F / 16F * face.uv[1];
 			float v2 = 1F / 16F * face.uv[3];
-			Texture texture = textureMap.get(face.textureLink);
-			if(texture != null)
+			new TextureImpl(null, 0, 0).bind();
+			if(textureMap.get(face.textureLink) != null)
 			{
-				texture.bind();
+				GL11.glColor3f(1F, 1F, 1F);
+				textureMap.get(face.textureLink).bind();
 				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
 				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+			}else if(textureMap.get("__missing") != null)
+			{
 				GL11.glColor3f(1F, 1F, 1F);
+				textureMap.get("__missing").bind();
+				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 			}else
 			{
-				if(missingTexture != null)
-				{
-					missingTexture.bind();
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-					GL11.glColor3f(1F, 1F, 1F);
-				}else
-				{
-					System.out.println("Test!");
-					GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
-					GL11.glColor3f(1F, 0F, 0.5F);
-				}
+				GL11.glColor3f(1F, 0F, 0.5F);
+				GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
 			}
 			GL11.glBegin(GL11.GL_QUADS);
 			{
@@ -145,5 +146,10 @@ public class ObjectRenderer
 			}
 			GL11.glEnd();
 		}
+	}
+
+	public void clearTextureMap()
+	{
+		this.textureMap.clear();
 	}
 }
