@@ -16,7 +16,7 @@ body {
 	background: radial-gradient(#202020, #101010);
 }
 
-#header {
+#header, #footer {
 	margin: auto;
 	overflow: hidden;
 	width: 1000px;
@@ -28,7 +28,8 @@ body {
 }
 
 #content {
-	margin: 25px auto;
+	margin: 2em auto;
+	padding: 1em;
 	overflow: hidden;
 	width: 1000px;
 	border-radius: 1em;
