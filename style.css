@@ -3,15 +3,15 @@
 }
 
 ul.e li:before {
-	content: "&#9744;";
+	content: "\2610";
 }
 
 ul.c li:before {
-	content: "&#9745;";
+	content: "\2611";
 }
 
 ul.x li:before {
-	content: "&#9746;";
+	content: "\2612";
 }
 
 .wrapper {
