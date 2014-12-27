@@ -1,4 +1,27 @@
-﻿.dib {
+﻿ul.bb {
+	list-style-type: none;
+}
+
+ul.e li:before {
+	content: "&#9744;";
+}
+
+ul.c li:before {
+	content: "&#9745;";
+}
+
+ul.x li:before {
+	content: "&#9746;";
+}
+
+.wrapper {
+	width: 100%;
+	background-color: #ddd;
+	background: -webkit-linear-gradient(#eee, #ccc);
+	background: linear-gradient(#eee, #ccc);
+}
+
+.dib {
 	display: inline-block;
 	float: left;
 }
