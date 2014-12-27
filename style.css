@@ -15,20 +15,8 @@ ul.x li:before {
 }
 
 .wrapper {
-	width: 100%;
+	padding: 1em;
 	overflow: hidden;
-}
-
-.wrapper:nth-child(odd) {
-	width: 100%;
-	overflow: hidden;
-	background-color: #eee;
-}
-
-.wrapper:nth-child(even) {
-	width: 100%;
-	overflow: hidden;
-	background-color: #ddd;
 }
 
 .dib {
@@ -127,11 +115,11 @@ ul.x li:before {
 	background-size: auto;
 }
 
-.fa {
+.faw {
 	font-family: "Audiowide";
 }
 
-.fv {
+.fvd {
 	font-family: "Verdana";
 }
 
