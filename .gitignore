@@ -41,3 +41,4 @@ hs_err_pid*
 /pack.mcmeta
 /releases
 *.bat
+*.lnk
