@@ -22,6 +22,7 @@ body {
 	background-color: #eee;
 	background: -webkit-linear-gradient(#eee, #ccc);
 	background: linear-gradient(#eee, #ccc);
+	border: 1px solid;
 	border-radius: 0.5em;
 }
 
