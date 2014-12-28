@@ -24,7 +24,7 @@ body {
 	background-color: #eee;
 	background: -webkit-linear-gradient(#fff, #ddd);
 	background: linear-gradient(#fff, #ddd);
-	border: 1px outset #eee;
+	border: 0.0625em outset #eee;
 	border-radius: 0.25em;
 }
 
