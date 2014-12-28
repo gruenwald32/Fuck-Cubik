@@ -34,8 +34,8 @@
 	display: inline-block;
 	padding: 0.25em 1em;
 	background-color: #ddd;
-	background: -webkit-linear-gradient(#eee, #ccc);
-	background: linear-gradient(#eee, #ccc);
+	background: -webkit-linear-gradient(#ccc, #eee);
+	background: linear-gradient(#ccc, #eee);
 	border-width: 0 1px;
 	border-style: inset;
 	border-color: #ddd;
@@ -46,10 +46,11 @@
 }
 
 #nav a:hover {
-	background-color: #8ac;
-	background: -webkit-linear-gradient(#79b, #9bd);
-	background: linear-gradient(#79b, #9bd);
-	border-color: #8ac;
+	background-color: #9ce;
+	background: -webkit-linear-gradient(#adf, #8bd);
+	background: linear-gradient(#adf, #8bd);
+	border-style: outset;
+	border-color: #9ce;
 }
 
 #content {
