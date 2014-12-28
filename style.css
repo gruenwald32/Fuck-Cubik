@@ -84,22 +84,22 @@ body {
 icon {
 	display: inline-block;
 	width: 1em;
-	vertical-align: -0.2em;
+	vertical-align: middle;
 }
 
 icon.arrow-down-white:before {
 	content: url("/icons/arrow_down_white.svg");
 }
 
-icon.bb-e:before {
+icon.ballot-box-e:before {
 	content: url("/icons/ballot_box_empty.svg");
 }
 
-icon.bb-c:before {
+icon.ballot-box-c:before {
 	content: url("/icons/ballot_box_check_green.svg");
 }
 
-icon.bb-x:before {
+icon.ballot-box-x:before {
 	content: url("/icons/ballot_box_x_red.svg");
 }
 
