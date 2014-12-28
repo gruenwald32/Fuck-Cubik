@@ -11,16 +11,28 @@ ul.bb {
 	list-style-type: none;
 }
 
-ul.e li:before {
-	content: url("/images/ballot_box_empty.svg");
+ul.e16 li:before {
+	content: url("/icons/ballot_box_empty16.svg");
 }
 
-ul.c li:before {
-	content: url("/images/ballot_box_check_green.svg");
+ul.e32 li:before {
+	content: url("/icons/ballot_box_empty32.svg");
 }
 
-ul.x li:before {
-	content: url("/images/ballot_box_x_red.svg");
+ul.c16 li:before {
+	content: url("/icons/ballot_box_check_green16.svg");
+}
+
+ul.c32 li:before {
+	content: url("/icons/ballot_box_check_green32.svg");
+}
+
+ul.x16 li:before {
+	content: url("/icons/ballot_box_x_red16.svg");
+}
+
+ul.x32 li:before {
+	content: url("/icons/ballot_box_x_red32.svg");
 }
 
 .wrapper {
