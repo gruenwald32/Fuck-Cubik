@@ -25,18 +25,18 @@ public class ErrorMessage
 		JOptionPane.showMessageDialog(Main.frame, message , "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
-	public ErrorMessage(Exception e, String comment)
+	public ErrorMessage(String comment, Exception e)
 	{
 		e.printStackTrace();
 		String message = "<html>"
 			+ "<body width=\"256px\">"
+			+ "<p>" + comment + "</p>"
 			+ "<p align=\"center\">"
 			+ e.getClass().getPackage().getName()
 			+ ".<u>" + e.getClass().getSimpleName()+ "</u>"
 			+ "</p>";
 		if(e.getLocalizedMessage()!= null && !e.getLocalizedMessage().isEmpty())
 			message += "<p>" + e.getLocalizedMessage().replace("\n", "<br>").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;") + "</p>";
-		message += "<p>(" + comment + ")</p>";
 		JOptionPane.showMessageDialog(Main.frame, message , "Error", JOptionPane.ERROR_MESSAGE);
 	}
 }

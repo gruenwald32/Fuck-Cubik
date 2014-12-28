@@ -16,6 +16,7 @@ public class PackMenu extends JMenu
 	public PackFileChooser fileChooser;
 	public JMenuItem importPack;
 	public JMenuItem exportPack;
+	public JMenuItem editDescription;
 	public JMenuItem clearPack;
 	
 	public PackMenu()
@@ -43,6 +44,16 @@ public class PackMenu extends JMenu
 		});
 		updateExportButton();
 		this.add(exportPack);
+		editDescription = new JMenuItem("Edit pack description");
+		editDescription.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				fileChooser.showDescriptionDialog(Main.frame);
+			}
+		});
+		this.add(editDescription);
 		this.add(new JSeparator());
 		clearPack = new JMenuItem("Clear pack");
 		clearPack.addActionListener(new ActionListener()
@@ -53,7 +64,6 @@ public class PackMenu extends JMenu
 				fileChooser.showDeleteDialog(Main.frame);
 			}
 		});
-		updateExportButton();
 		this.add(clearPack);
 	}
 	

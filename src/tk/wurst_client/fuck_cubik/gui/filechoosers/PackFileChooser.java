@@ -2,10 +2,14 @@ package tk.wurst_client.fuck_cubik.gui.filechoosers;
 
 import java.awt.Component;
 import java.awt.HeadlessException;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -19,6 +23,11 @@ import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.dialogs.UnknownProgressDialog;
 import tk.wurst_client.fuck_cubik.pack.PackManager;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class PackFileChooser extends JFileChooser
 {
@@ -112,6 +121,46 @@ public class PackFileChooser extends JFileChooser
 			}.execute();
 		}
 		return action;
+	}
+	
+	public void showDescriptionDialog(Component parent)
+	{
+		JsonObject json;
+		String oldDescription;
+		String newDescription;
+		try
+		{
+			BufferedReader load = new BufferedReader(new InputStreamReader(new FileInputStream(PackManager.METADATA_FILE)));
+			String content = load.readLine();
+			for(String line = ""; (line = load.readLine()) != null;)
+				content += "\n" + line;
+			load.close();
+			json = new JsonParser().parse(content).getAsJsonObject();
+			oldDescription = json.get("pack").getAsJsonObject().get("description").getAsString();
+		}catch(Exception e)
+		{
+			new ErrorMessage("Exception while reading metadata:", e);
+			return;
+		}
+		newDescription = (String)JOptionPane.showInputDialog(parent, "New description:", "Edit pack description", JOptionPane.QUESTION_MESSAGE, null, null, oldDescription);
+		if(newDescription != null)
+		{
+			try
+			{
+				Gson gson = new GsonBuilder().setPrettyPrinting().create();
+				
+				json.get("pack").getAsJsonObject().remove("description");
+				json.get("pack").getAsJsonObject().addProperty("description", newDescription);
+				
+				PrintWriter save = new PrintWriter(new OutputStreamWriter(new FileOutputStream(PackManager.METADATA_FILE)));
+				for(String line : gson.toJson(json).split("\n"))
+					save.println(line);
+				save.close();
+			}catch(Exception e)
+			{
+				new ErrorMessage("Exception while saving metadata:", e);
+			}
+		}
 	}
 
 	public int showDeleteDialog(Component parent)
