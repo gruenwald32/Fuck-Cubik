@@ -91,16 +91,16 @@ icon.arrow-down-white:before {
 	content: url("/icons/arrow_down_white.svg");
 }
 
-icon.bb.e16:before {
-	content: url("/icons/ballot_box_empty16.svg");
+icon.bb-e:before {
+	content: url("/icons/ballot_box_empty.svg");
 }
 
-icon.bb.c16:before {
-	content: url("/icons/ballot_box_check_green16.svg");
+icon.bb-c:before {
+	content: url("/icons/ballot_box_check_green.svg");
 }
 
-icon.bb.x16:before {
-	content: url("/icons/ballot_box_x_red16.svg");
+icon.bb-x:before {
+	content: url("/icons/ballot_box_x_red.svg");
 }
 
 ul.nl , ol.nl{
