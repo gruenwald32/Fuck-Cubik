@@ -23,7 +23,7 @@ body {
 	background-color: #eee;
 	background: -webkit-linear-gradient(#fff, #ddd);
 	background: linear-gradient(#fff, #ddd);
-	border: 1px outset #ccc;
+	border: 1px outset #eee;
 	border-radius: 0.25em;
 }
 
@@ -32,7 +32,7 @@ body {
 	background: -webkit-linear-gradient(#ccc, #eee);
 	background: linear-gradient(#ccc, #eee);
 	border-style: inset;
-	border-color: #bbb;
+	border-color: #ddd;
 }
 
 .button.primary {
@@ -41,7 +41,7 @@ body {
 	background-color: #0c0;
 	background: -webkit-linear-gradient(#0d0, #0b0);
 	background: linear-gradient(#0d0, #0b0);
-	border-color: #0a0;
+	border-color: #0c0;
 }
 
 .button.primary:hover {
@@ -49,7 +49,7 @@ body {
 	background: -webkit-linear-gradient(#0a0, #0c0);
 	background: linear-gradient(#0a0, #0c0);
 	border-style: inset;
-	border-color: #090;
+	border-color: #0b0;
 }
 
 .img {
@@ -80,6 +80,12 @@ body {
 	font-family: "Verdana";
 }
 
+icon {
+	display: inline-block;
+	width: 1em;
+	vertical-align: -0.2em;
+}
+
 icon.download:before {
 	content: url("/icons/download.svg");
 }
@@ -101,7 +107,7 @@ ul.nl , ol.nl{
 }
 
 ul.bbc16 li:before {
-	content: url("/icons/ballot_box_check_green16.svg");
+	content: url("/icons/ballot_box_check_green16.svg") " ";
 }
 
 .dib {
