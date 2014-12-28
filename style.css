@@ -46,11 +46,11 @@ body {
 }
 
 .button.primary:hover {
-	background-color: #0b0;
-	background: -webkit-linear-gradient(#0a0, #0c0);
-	background: linear-gradient(#0a0, #0c0);
+	background-color: #0c0;
+	background: -webkit-linear-gradient(#0b0, #0d0);
+	background: linear-gradient(#0b0, #0d0);
 	border-style: inset;
-	border-color: #0b0;
+	border-color: #0c0;
 }
 
 .img {
