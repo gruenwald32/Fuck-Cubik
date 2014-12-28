@@ -87,8 +87,8 @@ icon {
 	vertical-align: -0.2em;
 }
 
-icon.download:before {
-	content: url("/icons/download.svg");
+icon.arrow-down-white:before {
+	content: url("/icons/arrow_down_white.svg");
 }
 
 icon.bb.e16:before {
