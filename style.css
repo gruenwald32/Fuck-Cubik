@@ -12,15 +12,15 @@ ul.bb {
 }
 
 ul.e li:before {
-	content: "\2610";
+	content: url("/images/ballot_box_empty.svg");
 }
 
 ul.c li:before {
-	content: "\2611";
+	content: url("/images/ballot_box_check_green.svg");
 }
 
 ul.x li:before {
-	content: "\2612";
+	content: url("/images/ballot_box_x_red.svg");
 }
 
 .wrapper {
@@ -105,7 +105,7 @@ ul.x li:before {
 }
 
 .img {
-	background-image: url("/images/missing.jpg");
+	background-image: url("/images/missing.svg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
