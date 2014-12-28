@@ -53,7 +53,7 @@
 	padding: 2em;
 }
 
-.box {
+.page-box {
 	margin: 1em auto;
 	padding: 0 2em;
 	overflow: hidden;
@@ -62,8 +62,4 @@
 	background-color: #ddd;
 	background: -webkit-linear-gradient(#eee, #ccc);
 	background: linear-gradient(#eee, #ccc);
-}
-
-.center {
-	text-align: center;
 }

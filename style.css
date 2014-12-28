@@ -7,25 +7,101 @@ body {
 	background-color: #222;
 }
 
-ul.bb {
-	list-style-type: none;
-}
-
-ul.e16 li:before {
-	content: url("/icons/ballot_box_empty16.svg") " ";
-}
-
-ul.c16 li:before {
-	content: url("/icons/ballot_box_check_green16.svg") " ";
-}
-
-ul.x16 li:before {
-	content: url("/icons/ballot_box_x_red16.svg") " ";
-}
-
 .wrapper {
 	padding: 1em;
 	overflow: hidden;
+}
+
+.button {
+	display: inline-block;
+	padding: 0.5em 0.75em;
+	font-size: 1em;
+	color: #000;
+	text-shadow: 0 1px 0 #fff;
+	white-space: nowrap;
+	cursor: pointer;
+	background-color: #eee;
+	background: -webkit-linear-gradient(#fff, #ddd);
+	background: linear-gradient(#fff, #ddd);
+	border: 1px outset #ccc;
+	border-radius: 0.25em;
+}
+
+.button:hover {
+	background-color: #ddd;
+	background: -webkit-linear-gradient(#ccc, #eee);
+	background: linear-gradient(#ccc, #eee);
+	border-style: inset;
+	border-color: #bbb;
+}
+
+.button.primary {
+	color: #fff;
+	text-shadow: 0 -1px 0 #aaa;
+	background-color: #0c0;
+	background: -webkit-linear-gradient(#0d0, #0b0);
+	background: linear-gradient(#0d0, #0b0);
+	border-color: #0a0;
+}
+
+.button.primary:hover {
+	background-color: #0b0;
+	background: -webkit-linear-gradient(#0a0, #0c0);
+	background: linear-gradient(#0a0, #0c0);
+	border-style: inset;
+	border-color: #090;
+}
+
+.img {
+	background-image: url("/images/missing.svg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.img.bga {
+	background-size: auto;
+}
+
+.img.bgc {
+	background-size: cover;
+}
+
+.img.bgr {
+	background-repeat: repeat;
+	background-size: auto;
+}
+
+.faw {
+	font-family: "Audiowide";
+}
+
+.fvd {
+	font-family: "Verdana";
+}
+
+icon.download:before {
+	content: url("/icons/download.svg");
+}
+
+icon.bb.e16:before {
+	content: url("/icons/ballot_box_empty16.svg");
+}
+
+icon.bb.c16:before {
+	content: url("/icons/ballot_box_check_green16.svg");
+}
+
+icon.bb.x16:before {
+	content: url("/icons/ballot_box_x_red16.svg");
+}
+
+ul.nl , ol.nl{
+	list-style-type: none;
+}
+
+ul.bbc16 li:before {
+	content: url("/icons/ballot_box_check_green16.svg");
 }
 
 .dib {
@@ -102,34 +178,6 @@ ul.x16 li:before {
 
 .p2 {
 	padding: 2em;
-}
-
-.img {
-	background-image: url("/images/missing.svg");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-}
-
-.bga {
-	background-size: auto;
-}
-
-.bgc {
-	background-size: cover;
-}
-
-.bgr {
-	background-repeat: repeat;
-	background-size: auto;
-}
-
-.faw {
-	font-family: "Audiowide";
-}
-
-.fvd {
-	font-family: "Verdana";
 }
 
 .w20 {
