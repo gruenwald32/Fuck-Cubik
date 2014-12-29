@@ -46,7 +46,7 @@ public class ModelMenu extends JMenu
 					fileChooser.save(Main.frame.desktop.editor.getFile());
 				}catch(FileNotFoundException | BadLocationException e1)
 				{
-					new ErrorMessage(e1);
+					new ErrorMessage("saving model", e1);
 				}
 			}
 		});

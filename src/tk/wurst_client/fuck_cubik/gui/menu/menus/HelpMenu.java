@@ -45,7 +45,7 @@ public class HelpMenu extends JMenu
 					JOptionPane.showMessageDialog(Main.frame, message, "About Fuck Cubik", JOptionPane.INFORMATION_MESSAGE);
 				}catch(Exception e1)
 				{
-					new ErrorMessage(e1);
+					new ErrorMessage("loading \"about\" resource", e1);
 				}
 			}
 		});
@@ -66,7 +66,7 @@ public class HelpMenu extends JMenu
 					JOptionPane.showMessageDialog(Main.frame, message, "License", JOptionPane.INFORMATION_MESSAGE);
 				}catch(Exception e1)
 				{
-					new ErrorMessage(e1);
+					new ErrorMessage("loading license", e1);
 				}
 			}
 		});
@@ -82,7 +82,7 @@ public class HelpMenu extends JMenu
 					Desktop.getDesktop().browse(new URI("http://fuck-cubik.wurst-client.tk"));
 				}catch(IOException | URISyntaxException e1)
 				{
-					new ErrorMessage(e1);
+					new ErrorMessage("opening link", e1);
 				}
 			}
 		});

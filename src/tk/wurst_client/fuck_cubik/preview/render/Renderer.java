@@ -14,7 +14,7 @@ import org.lwjgl.util.glu.GLU;
 
 import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
-import tk.wurst_client.fuck_cubik.pack.PackManager;
+import tk.wurst_client.fuck_cubik.files.FileManager;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -116,7 +116,7 @@ public class Renderer
 			code = Main.frame.desktop.editor.textarea.getDocument().getText(0, Main.frame.desktop.editor.textarea.getDocument().getLength());
 		}catch(BadLocationException e)
 		{
-			new ErrorMessage(e);
+			new ErrorMessage("reading code from the editor", e);
 			return;
 		}
 		Gson gson = new Gson();
@@ -126,7 +126,7 @@ public class Renderer
 		while(texturesItr.hasNext())
 		{
 			Entry<String, JsonElement> textureEntry = (Entry<String, JsonElement>)texturesItr.next();
-			File textureFile = new File(PackManager.TEXTURES_FOLDER, textureEntry.getValue().getAsString() + ".png");
+			File textureFile = new File(FileManager.TEXTURES_DIRECTORY, textureEntry.getValue().getAsString() + ".png");
 			textureLinkMap.put(textureEntry.getKey(), textureFile);
 		}
 		JsonArray elementsJSON = mainObject.get("elements").getAsJsonArray();

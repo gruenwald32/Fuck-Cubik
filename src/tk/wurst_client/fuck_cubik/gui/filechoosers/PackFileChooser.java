@@ -22,7 +22,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.dialogs.UnknownProgressDialog;
-import tk.wurst_client.fuck_cubik.pack.PackManager;
+import tk.wurst_client.fuck_cubik.files.FileManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,7 +35,7 @@ public class PackFileChooser extends JFileChooser
 
 	public PackFileChooser()
 	{
-		super(".");
+		super(FileManager.CURRENT_DIRECTORY);
 		this.setAcceptAllFileFilterUsed(false);
 		this.addChoosableFileFilter(new FileNameExtensionFilter("ResourcePacks", "zip"));
 		this.setFileSelectionMode(FILES_ONLY);
@@ -59,7 +59,7 @@ public class PackFileChooser extends JFileChooser
 						ZipInputStream input = new ZipInputStream(new FileInputStream(pack));
 						for(ZipEntry entry; (entry = input.getNextEntry()) != null;)
 						{
-							File file = new File(".\\" + entry.getName());
+							File file = new File(FileManager.CURRENT_DIRECTORY, entry.getName());
 							if(!file.getParentFile().exists())
 								file.getParentFile().mkdirs();
 							if(!entry.isDirectory())
@@ -75,7 +75,7 @@ public class PackFileChooser extends JFileChooser
 						input.close();
 					}catch(IOException e)
 					{
-						new ErrorMessage(e);
+						new ErrorMessage("importing pack", e);
 					}finally
 					{
 						progress.dispose();
@@ -106,12 +106,12 @@ public class PackFileChooser extends JFileChooser
 						if(!pack.getName().endsWith(".zip"))
 							pack = new File(pack.getPath() + ".zip");
 						ZipOutputStream output = new ZipOutputStream(new FileOutputStream(pack));
-						addToZIP(PackManager.METADATA_FILE, output, new File("."));
-						addToZIP(PackManager.ASSETS_FOLDER, output, new File("."));
+						addToZIP(FileManager.METADATA_FILE, output, FileManager.CURRENT_DIRECTORY);
+						addToZIP(FileManager.ASSETS_DIRECTORY, output, FileManager.CURRENT_DIRECTORY);
 						output.close();
 					}catch(IOException e)
 					{
-						new ErrorMessage(e);
+						new ErrorMessage("exporting pack", e);
 					}finally
 					{
 						progress.dispose();
@@ -130,7 +130,7 @@ public class PackFileChooser extends JFileChooser
 		String newDescription;
 		try
 		{
-			BufferedReader load = new BufferedReader(new InputStreamReader(new FileInputStream(PackManager.METADATA_FILE)));
+			BufferedReader load = new BufferedReader(new InputStreamReader(new FileInputStream(FileManager.METADATA_FILE)));
 			String content = load.readLine();
 			for(String line = ""; (line = load.readLine()) != null;)
 				content += "\n" + line;
@@ -139,7 +139,7 @@ public class PackFileChooser extends JFileChooser
 			oldDescription = json.get("pack").getAsJsonObject().get("description").getAsString();
 		}catch(Exception e)
 		{
-			new ErrorMessage("Exception while reading metadata:", e);
+			new ErrorMessage("reading metadata", e);
 			return;
 		}
 		newDescription = (String)JOptionPane.showInputDialog(parent, "New description:", "Edit pack description", JOptionPane.QUESTION_MESSAGE, null, null, oldDescription);
@@ -152,13 +152,13 @@ public class PackFileChooser extends JFileChooser
 				json.get("pack").getAsJsonObject().remove("description");
 				json.get("pack").getAsJsonObject().addProperty("description", newDescription);
 				
-				PrintWriter save = new PrintWriter(new OutputStreamWriter(new FileOutputStream(PackManager.METADATA_FILE)));
+				PrintWriter save = new PrintWriter(new OutputStreamWriter(new FileOutputStream(FileManager.METADATA_FILE)));
 				for(String line : gson.toJson(json).split("\n"))
 					save.println(line);
 				save.close();
 			}catch(Exception e)
 			{
-				new ErrorMessage("Exception while saving metadata:", e);
+				new ErrorMessage("saving metadata", e);
 			}
 		}
 	}
@@ -187,11 +187,11 @@ public class PackFileChooser extends JFileChooser
 				{
 					try
 					{
-						delete(PackManager.METADATA_FILE);
-						delete(PackManager.ASSETS_FOLDER);
+						delete(FileManager.METADATA_FILE);
+						delete(FileManager.ASSETS_DIRECTORY);
 					}catch(Exception e)
 					{
-						new ErrorMessage(e);
+						new ErrorMessage("clearing pack", e);
 					}finally
 					{
 						progress.dispose();

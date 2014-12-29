@@ -9,16 +9,14 @@ public class VersionManager
 	public static final long BUILD = 38;
 	public static final byte PRE_RELEASE = 0;
 	
-	public static final String SIMPLE_VERSION =
-		MAJOR_VERSION
+	public static final String SIMPLE_VERSION = MAJOR_VERSION
 		+ "." + MINOR_VERSION
 		+ (PATCH > 0 ? "." + PATCH : "")
-		+ (PRE_RELEASE > 0 ? "pre" + PRE_RELEASE : "" );
+		+ (PRE_RELEASE > 0 ? "pre" + PRE_RELEASE : "");
 	
-	public static final String FULL_VERSION =
-		MAJOR_VERSION
+	public static final String FULL_VERSION = MAJOR_VERSION
 		+ "." + MINOR_VERSION
 		+ "." + PATCH
-		+ (PRE_RELEASE > 0 ? "pre" + PRE_RELEASE : "" )
+		+ (PRE_RELEASE > 0 ? "pre" + PRE_RELEASE : "")
 		+ "_" + BUILD;
 }

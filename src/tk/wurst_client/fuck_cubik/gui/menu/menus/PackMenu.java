@@ -8,8 +8,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 
 import tk.wurst_client.fuck_cubik.Main;
+import tk.wurst_client.fuck_cubik.files.FileManager;
 import tk.wurst_client.fuck_cubik.gui.filechoosers.PackFileChooser;
-import tk.wurst_client.fuck_cubik.pack.PackManager;
 
 public class PackMenu extends JMenu
 {
@@ -69,6 +69,6 @@ public class PackMenu extends JMenu
 	
 	public void updateExportButton()
 	{
-		exportPack.setEnabled(PackManager.ASSETS_FOLDER.exists() && PackManager.METADATA_FILE.exists());
+		exportPack.setEnabled(FileManager.ASSETS_DIRECTORY.exists() && FileManager.METADATA_FILE.exists());
 	}
 }

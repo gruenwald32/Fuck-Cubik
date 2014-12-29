@@ -45,7 +45,7 @@ public class Main
 			System.exit(0);
 		}catch(Exception e)
 		{
-			new ErrorMessage(e);
+			new ErrorMessage("running Fuck Cubik", e);
 			System.exit(-1);
 		}finally
 		{
