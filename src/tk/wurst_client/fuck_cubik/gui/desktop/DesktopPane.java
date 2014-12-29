@@ -14,7 +14,7 @@ public class DesktopPane extends JDesktopPane
 	public Preview preview;
 	public Editor editor;
 	public TextureViewer textureViewer;
-
+	
 	public DesktopPane()
 	{
 		super();

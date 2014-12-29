@@ -11,7 +11,7 @@ public class MenuBar extends JMenuBar
 	public PackMenu packMenu;
 	public ModelMenu modelMenu;
 	public HelpMenu helpMenu;
-
+	
 	public MenuBar()
 	{
 		super();

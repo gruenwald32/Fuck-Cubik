@@ -25,7 +25,7 @@ public class ObjectRenderer
 			{
 				String textureLink = "__missing";
 				Texture texture = TextureLoader.getTexture("PNG", this.getClass().getClassLoader().getResourceAsStream("resources/missing.png"));
-				textureMap.put(textureLink , texture );
+				textureMap.put(textureLink, texture);
 			}catch(IOException e1)
 			{
 				e1.printStackTrace();
@@ -39,7 +39,7 @@ public class ObjectRenderer
 				{
 					texture = TextureLoader.getTexture("PNG", new FileInputStream(textureFile));
 				}catch(NullPointerException | IOException e)
-				{
+				{	
 					
 				}
 				textureMap.put(textureLink, texture);
@@ -147,7 +147,7 @@ public class ObjectRenderer
 			GL11.glEnd();
 		}
 	}
-
+	
 	public void clearTextureMap()
 	{
 		this.textureMap.clear();

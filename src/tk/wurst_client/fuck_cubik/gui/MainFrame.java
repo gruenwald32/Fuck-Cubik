@@ -13,7 +13,7 @@ public class MainFrame extends JFrame
 {
 	public MenuBar menuBar;
 	public DesktopPane desktop;
-
+	
 	public MainFrame() throws HeadlessException
 	{
 		super("Fuck Cubik v" + VersionManager.SIMPLE_VERSION);

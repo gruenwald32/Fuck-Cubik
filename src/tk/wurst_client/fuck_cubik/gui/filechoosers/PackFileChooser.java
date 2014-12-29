@@ -32,7 +32,7 @@ import com.google.gson.JsonParser;
 public class PackFileChooser extends JFileChooser
 {
 	private UnknownProgressDialog progress;
-
+	
 	public PackFileChooser()
 	{
 		super(FileManager.CURRENT_DIRECTORY);
@@ -162,7 +162,7 @@ public class PackFileChooser extends JFileChooser
 			}
 		}
 	}
-
+	
 	public int showDeleteDialog(Component parent)
 	{
 		int action = JOptionPane.showOptionDialog
@@ -202,7 +202,7 @@ public class PackFileChooser extends JFileChooser
 		}
 		return action;
 	}
-
+	
 	private void addToZIP(File file, ZipOutputStream output, final File root) throws IOException
 	{
 		String entryPath = file.getAbsolutePath().substring(root.getAbsolutePath().length() + 1).replace("\\", "/");

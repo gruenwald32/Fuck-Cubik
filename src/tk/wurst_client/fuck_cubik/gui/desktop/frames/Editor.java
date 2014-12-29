@@ -45,13 +45,13 @@ public class Editor extends AbstractFrame
 		{
 			@Override
 			public void keyTyped(KeyEvent e)
-			{
+			{	
 				
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e)
-			{
+			{	
 				
 			}
 			
@@ -79,7 +79,7 @@ public class Editor extends AbstractFrame
 							Main.frame.menuBar.modelMenu.open.doClick();
 						}
 					}catch(CannotUndoException | CannotRedoException e1)
-					{
+					{	
 						
 					}
 				}else if(e.getKeyCode() == KeyEvent.VK_F5)
@@ -93,7 +93,7 @@ public class Editor extends AbstractFrame
 		this.setSize(600, 800);
 		this.setLocation(600, 0);
 	}
-
+	
 	public void updateTitle(boolean fileChanged)
 	{
 		if(this.fileChanged != fileChanged)
@@ -102,12 +102,12 @@ public class Editor extends AbstractFrame
 			this.fileChanged = fileChanged;
 		}
 	}
-
+	
 	public File getFile()
 	{
 		return file;
 	}
-
+	
 	public void setFile(File file)
 	{
 		this.file = file;

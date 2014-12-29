@@ -1,6 +1,5 @@
 package tk.wurst_client.fuck_cubik.preview.render;
 
-
 public class RenderObjectFace
 {
 	public final Side side;

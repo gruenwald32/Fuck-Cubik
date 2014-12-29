@@ -46,7 +46,7 @@ public class PreviewToolBar extends JToolBar
 						{
 							Main.renderer.refresh();
 						}catch(Exception e)
-						{
+						{	
 							
 						}
 						return null;

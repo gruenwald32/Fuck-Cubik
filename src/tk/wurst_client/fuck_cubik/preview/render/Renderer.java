@@ -29,7 +29,7 @@ public class Renderer
 		this.objectRenderer = new ObjectRenderer();
 		this.guiRenderer = new GUIRenderer();
 	}
-
+	
 	public ObjectRenderer objectRenderer;
 	public GUIRenderer guiRenderer;
 	public ArrayList<RenderObject> elementsList = new ArrayList<RenderObject>();
@@ -82,7 +82,7 @@ public class Renderer
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
 		GL11.glLoadIdentity();
-
+		
 		GL11.glTranslatef(0, 0, zoom);
 		GL11.glRotatef(Math.min(Math.max(rotX, -90F), 90F), 1, 0, 0);
 		GL11.glRotatef(rotY, 0, 1, 0);
@@ -105,7 +105,7 @@ public class Renderer
 		
 		GL11.glTranslatef(-(int)(posX * 16F) / 16F, -(int)(posY * 16F) / 16F, -(int)(posZ * 16F) / 16F);
 	}
-
+	
 	public void refresh()
 	{
 		String code = "";

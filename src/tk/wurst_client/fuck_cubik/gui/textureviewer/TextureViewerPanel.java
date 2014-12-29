@@ -35,7 +35,7 @@ public class TextureViewerPanel extends JPanel
 			{
 				texture = ImageIO.read(file);
 			}catch(Exception e1)
-			{
+			{	
 				
 			}
 		}
@@ -52,7 +52,7 @@ public class TextureViewerPanel extends JPanel
 			g.setFont(new Font("Monospaced", Font.PLAIN, 12));
 			for(int i = 0; i <= 128; i += 8)
 			{
-				g.drawLine(i + 4, 4, i + 4, showNumbers ?i % 64 == 0 ? 140 : i % 32 == 0 ? 136 : 132 : 132);
+				g.drawLine(i + 4, 4, i + 4, showNumbers ? i % 64 == 0 ? 140 : i % 32 == 0 ? 136 : 132 : 132);
 				g.drawLine(4, i + 4, showNumbers ? i % 64 == 0 ? 140 : i % 32 == 0 ? 136 : 132 : 132, i + 4);
 				if(i % 32 == 0 && showNumbers)
 				{

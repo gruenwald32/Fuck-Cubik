@@ -18,7 +18,7 @@ public class ModelMenu extends JMenu
 	public JMenuItem open;
 	public JMenuItem save;
 	public JMenuItem saveAs;
-
+	
 	public ModelMenu()
 	{
 		super("Model");

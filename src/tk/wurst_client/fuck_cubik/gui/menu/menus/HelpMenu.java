@@ -22,7 +22,7 @@ public class HelpMenu extends JMenu
 	public JMenuItem about;
 	public JMenuItem license;
 	public JMenuItem website;
-
+	
 	public HelpMenu()
 	{
 		super("Help");
@@ -37,7 +37,7 @@ public class HelpMenu extends JMenu
 					BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("resources/ABOUT")));
 					String message = reader.readLine();
 					for(String line = ""; (line = reader.readLine()) != null;)
-						message  += line;
+						message += line;
 					reader.close();
 					message = message
 						.replace("<simple version>", VersionManager.SIMPLE_VERSION)

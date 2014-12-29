@@ -73,7 +73,7 @@ public class ModelFileChooser extends JFileChooser
 		}
 		return action;
 	}
-
+	
 	public void save(File file) throws BadLocationException, FileNotFoundException
 	{
 		if(!file.getName().endsWith(".json"))

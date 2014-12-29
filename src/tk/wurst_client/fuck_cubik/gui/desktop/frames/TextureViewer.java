@@ -17,7 +17,7 @@ public class TextureViewer extends AbstractFrame
 	private JButton changeButton;
 	public JCheckBox gridBox;
 	public JCheckBox numbersBox;
-
+	
 	public TextureViewer()
 	{
 		super("Texture Viewer", true, false, false);

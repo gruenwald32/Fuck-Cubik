@@ -16,7 +16,7 @@ import com.google.gson.JsonParser;
 public class EditorToolBar extends JToolBar
 {
 	public JButton formatButton;
-
+	
 	public EditorToolBar()
 	{
 		formatButton = new JButton("Format code");

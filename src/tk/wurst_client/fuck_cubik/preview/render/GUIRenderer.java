@@ -48,7 +48,7 @@ public class GUIRenderer
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glBegin(GL11.GL_LINES);
 		{
-			float size = 1/16F;
+			float size = 1 / 16F;
 			GL11.glColor3f(1F, 1F, 0F);
 			GL11.glVertex3f(size, -size, -size);
 			GL11.glVertex3f(-size, -size, -size);

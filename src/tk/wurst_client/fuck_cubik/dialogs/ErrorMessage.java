@@ -14,10 +14,10 @@ public class ErrorMessage
 			+ "<p>Exception while " + action + ":</p>"
 			+ "<p align=\"center\">"
 			+ e.getClass().getPackage().getName()
-			+ ".<u>" + e.getClass().getSimpleName()+ "</u>"
+			+ ".<u>" + e.getClass().getSimpleName() + "</u>"
 			+ "</p>";
-		if(e.getLocalizedMessage()!= null && !e.getLocalizedMessage().isEmpty())
+		if(e.getLocalizedMessage() != null && !e.getLocalizedMessage().isEmpty())
 			message += "<p>" + e.getLocalizedMessage().replace("\n", "<br>").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;") + "</p>";
-		JOptionPane.showMessageDialog(Main.frame, message , "Error", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(Main.frame, message, "Error", JOptionPane.ERROR_MESSAGE);
 	}
 }
