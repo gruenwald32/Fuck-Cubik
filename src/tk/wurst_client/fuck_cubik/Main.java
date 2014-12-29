@@ -9,9 +9,11 @@ import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.gui.MainFrame;
 import tk.wurst_client.fuck_cubik.preview.InputListener;
 import tk.wurst_client.fuck_cubik.preview.render.Renderer;
+import tk.wurst_client.fuck_cubik.updater.Updater;
 
 public class Main
 {
+	public static Updater updater;
 	public static MainFrame frame;
 	public static Renderer renderer;
 	public static InputListener inputListener;
@@ -21,6 +23,8 @@ public class Main
 		try
 		{
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			updater = new Updater();
+			updater.checkForUpdate();
 			frame = new MainFrame();
 			renderer = new Renderer();
 			inputListener = new InputListener();
