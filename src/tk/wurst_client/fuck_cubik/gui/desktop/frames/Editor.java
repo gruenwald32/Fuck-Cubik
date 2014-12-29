@@ -14,9 +14,11 @@ import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
 import tk.wurst_client.fuck_cubik.Main;
+import tk.wurst_client.fuck_cubik.editor.EditorToolBar;
 
 public class Editor extends AbstractFrame
 {
+	public EditorToolBar toolbar;
 	public JTextArea textarea;
 	public JScrollPane scrollpane;
 	public UndoManager undoManager;
@@ -26,6 +28,8 @@ public class Editor extends AbstractFrame
 	public Editor()
 	{
 		super("Editor", true, false, true);
+		toolbar = new EditorToolBar();
+		this.add(toolbar, BorderLayout.NORTH);
 		textarea = new JTextArea();
 		undoManager = new UndoManager();
 		textarea.getDocument().addUndoableEditListener(undoManager);

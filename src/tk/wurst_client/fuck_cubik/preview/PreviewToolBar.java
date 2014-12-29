@@ -19,7 +19,6 @@ public class PreviewToolBar extends JToolBar
 	
 	public PreviewToolBar()
 	{
-		super();
 		resetButton = new JButton("Reset camera");
 		resetButton.addActionListener(new ActionListener()
 		{
