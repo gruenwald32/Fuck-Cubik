@@ -1,12 +1,12 @@
 /******************************************************************************
- *  Copyright (c) 2011 GitHub Inc.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *
- *  Contributors:
- *    Kevin Sawicki (GitHub Inc.) - initial API and implementation
+ * Copyright (c) 2011 GitHub Inc.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Kevin Sawicki (GitHub Inc.) - initial API and implementation
  *****************************************************************************/
 package org.eclipse.egit.github.core;
 
@@ -19,151 +19,168 @@ import org.eclipse.egit.github.core.util.DateUtils;
 /**
  * Repository hook model class
  */
-public class RepositoryHook implements Serializable {
-
+public class RepositoryHook implements Serializable
+{
+	
 	/** serialVersionUID */
 	private static final long serialVersionUID = -9023469643749604324L;
-
+	
 	private boolean active;
-
+	
 	private Date createdAt;
-
+	
 	private Date updatedAt;
-
+	
 	private long id;
-
+	
 	private RepositoryHookResponse lastResponse;
-
+	
 	private String name;
-
+	
 	private String url;
-
+	
 	private Map<String, String> config;
-
+	
 	/**
 	 * @return active
 	 */
-	public boolean isActive() {
+	public boolean isActive()
+	{
 		return active;
 	}
-
+	
 	/**
 	 * @param active
 	 * @return this hook
 	 */
-	public RepositoryHook setActive(boolean active) {
+	public RepositoryHook setActive(boolean active)
+	{
 		this.active = active;
 		return this;
 	}
-
+	
 	/**
 	 * @return createdAt
 	 */
-	public Date getCreatedAt() {
+	public Date getCreatedAt()
+	{
 		return DateUtils.clone(createdAt);
 	}
-
+	
 	/**
 	 * @param createdAt
 	 * @return this hook
 	 */
-	public RepositoryHook setCreatedAt(Date createdAt) {
+	public RepositoryHook setCreatedAt(Date createdAt)
+	{
 		this.createdAt = DateUtils.clone(createdAt);
 		return this;
 	}
-
+	
 	/**
 	 * @return updatedAt
 	 */
-	public Date getUpdatedAt() {
+	public Date getUpdatedAt()
+	{
 		return DateUtils.clone(updatedAt);
 	}
-
+	
 	/**
 	 * @param updatedAt
 	 * @return this hook
 	 */
-	public RepositoryHook setUpdatedAt(Date updatedAt) {
+	public RepositoryHook setUpdatedAt(Date updatedAt)
+	{
 		this.updatedAt = DateUtils.clone(updatedAt);
 		return this;
 	}
-
+	
 	/**
 	 * @return id
 	 */
-	public long getId() {
+	public long getId()
+	{
 		return id;
 	}
-
+	
 	/**
 	 * @param id
 	 * @return this hook
 	 */
-	public RepositoryHook setId(long id) {
+	public RepositoryHook setId(long id)
+	{
 		this.id = id;
 		return this;
 	}
-
+	
 	/**
 	 * @return lastResponse
 	 */
-	public RepositoryHookResponse getLastResponse() {
+	public RepositoryHookResponse getLastResponse()
+	{
 		return lastResponse;
 	}
-
+	
 	/**
 	 * @param lastResponse
 	 * @return this hook
 	 */
-	public RepositoryHook setLastResponse(RepositoryHookResponse lastResponse) {
+	public RepositoryHook setLastResponse(RepositoryHookResponse lastResponse)
+	{
 		this.lastResponse = lastResponse;
 		return this;
 	}
-
+	
 	/**
 	 * @return name
 	 */
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
-
+	
 	/**
 	 * @param name
 	 * @return this hook
 	 */
-	public RepositoryHook setName(String name) {
+	public RepositoryHook setName(String name)
+	{
 		this.name = name;
 		return this;
 	}
-
+	
 	/**
 	 * @return url
 	 */
-	public String getUrl() {
+	public String getUrl()
+	{
 		return url;
 	}
-
+	
 	/**
 	 * @param url
 	 * @return this hook
 	 */
-	public RepositoryHook setUrl(String url) {
+	public RepositoryHook setUrl(String url)
+	{
 		this.url = url;
 		return this;
 	}
-
+	
 	/**
 	 * @return config
 	 */
-	public Map<String, String> getConfig() {
+	public Map<String, String> getConfig()
+	{
 		return config;
 	}
-
+	
 	/**
 	 * @param config
 	 * @return this hook
 	 */
-	public RepositoryHook setConfig(Map<String, String> config) {
+	public RepositoryHook setConfig(Map<String, String> config)
+	{
 		this.config = config;
 		return this;
 	}

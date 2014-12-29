@@ -1,12 +1,12 @@
 /******************************************************************************
- *  Copyright (c) 2012 GitHub Inc.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *
- *  Contributors:
- *    Kevin Sawicki (GitHub Inc.) - initial API and implementation
+ * Copyright (c) 2012 GitHub Inc.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Kevin Sawicki (GitHub Inc.) - initial API and implementation
  *****************************************************************************/
 package org.eclipse.egit.github.core;
 
@@ -18,170 +18,187 @@ import org.eclipse.egit.github.core.util.DateUtils;
 /**
  * Status of a commit in a repository
  */
-public class CommitStatus implements Serializable {
-
+public class CommitStatus implements Serializable
+{
+	
 	private static final long serialVersionUID = -7701789812780758070L;
-
+	
 	/**
 	 * Error state
 	 */
 	public static final String STATE_ERROR = "error"; //$NON-NLS-1$
-
+	
 	/**
 	 * Failure state
 	 */
 	public static final String STATE_FAILURE = "failure"; //$NON-NLS-1$
-
+	
 	/**
 	 * Pending state
 	 */
 	public static final String STATE_PENDING = "pending"; //$NON-NLS-1$
-
+	
 	/**
 	 * Success state
 	 */
 	public static final String STATE_SUCCESS = "success"; //$NON-NLS-1$
-
+	
 	private Date createdAt;
-
+	
 	private Date updatedAt;
-
+	
 	private long id;
-
+	
 	private String description;
-
+	
 	private String state;
-
+	
 	private String targetUrl;
-
+	
 	private String url;
-
+	
 	private User creator;
-
+	
 	/**
 	 * @return createdAt
 	 */
-	public Date getCreatedAt() {
+	public Date getCreatedAt()
+	{
 		return DateUtils.clone(createdAt);
 	}
-
+	
 	/**
 	 * @param createdAt
 	 * @return this status
 	 */
-	public CommitStatus setCreatedAt(final Date createdAt) {
+	public CommitStatus setCreatedAt(final Date createdAt)
+	{
 		this.createdAt = DateUtils.clone(createdAt);
 		return this;
 	}
-
+	
 	/**
 	 * @return updatedAt
 	 */
-	public Date getUpdatedAt() {
+	public Date getUpdatedAt()
+	{
 		return DateUtils.clone(updatedAt);
 	}
-
+	
 	/**
 	 * @param updatedAt
 	 * @return this status
 	 */
-	public CommitStatus setUpdatedAt(final Date updatedAt) {
+	public CommitStatus setUpdatedAt(final Date updatedAt)
+	{
 		this.updatedAt = DateUtils.clone(updatedAt);
 		return this;
 	}
-
+	
 	/**
 	 * @return id
 	 */
-	public long getId() {
+	public long getId()
+	{
 		return id;
 	}
-
+	
 	/**
 	 * @param id
 	 * @return this status
 	 */
-	public CommitStatus setId(final long id) {
+	public CommitStatus setId(final long id)
+	{
 		this.id = id;
 		return this;
 	}
-
+	
 	/**
 	 * @return description
 	 */
-	public String getDescription() {
+	public String getDescription()
+	{
 		return description;
 	}
-
+	
 	/**
 	 * @param description
 	 * @return this status
 	 */
-	public CommitStatus setDescription(final String description) {
+	public CommitStatus setDescription(final String description)
+	{
 		this.description = description;
 		return this;
 	}
-
+	
 	/**
 	 * @return state
 	 */
-	public String getState() {
+	public String getState()
+	{
 		return state;
 	}
-
+	
 	/**
 	 * @param state
 	 * @return this status
 	 */
-	public CommitStatus setState(final String state) {
+	public CommitStatus setState(final String state)
+	{
 		this.state = state;
 		return this;
 	}
-
+	
 	/**
 	 * @return targetUrl
 	 */
-	public String getTargetUrl() {
+	public String getTargetUrl()
+	{
 		return targetUrl;
 	}
-
+	
 	/**
 	 * @param targetUrl
 	 * @return this status
 	 */
-	public CommitStatus setTargetUrl(final String targetUrl) {
+	public CommitStatus setTargetUrl(final String targetUrl)
+	{
 		this.targetUrl = targetUrl;
 		return this;
 	}
-
+	
 	/**
 	 * @return url
 	 */
-	public String getUrl() {
+	public String getUrl()
+	{
 		return url;
 	}
-
+	
 	/**
 	 * @param url
 	 * @return this status
 	 */
-	public CommitStatus setUrl(final String url) {
+	public CommitStatus setUrl(final String url)
+	{
 		this.url = url;
 		return this;
 	}
-
+	
 	/**
 	 * @return creator
 	 */
-	public User getCreator() {
+	public User getCreator()
+	{
 		return creator;
 	}
-
+	
 	/**
 	 * @param creator
 	 * @return this status
 	 */
-	public CommitStatus setCreator(final User creator) {
+	public CommitStatus setCreator(final User creator)
+	{
 		this.creator = creator;
 		return this;
 	}

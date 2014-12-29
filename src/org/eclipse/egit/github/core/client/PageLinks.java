@@ -1,12 +1,12 @@
 /*******************************************************************************
- *  Copyright (c) 2011 GitHub Inc.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *
- *  Contributors:
- *    Kevin Sawicki (GitHub Inc.) - initial API and implementation
+ * Copyright (c) 2011 GitHub Inc.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Kevin Sawicki (GitHub Inc.) - initial API and implementation
  *******************************************************************************/
 package org.eclipse.egit.github.core.client;
 
@@ -24,86 +24,96 @@ import static org.eclipse.egit.github.core.client.IGitHubConstants.META_REL;
  * responses encoded in the current response. These will be present if the
  * result set size exceeds the per page limit.
  */
-public class PageLinks {
-
+public class PageLinks
+{
+	
 	private static final String DELIM_LINKS = ","; //$NON-NLS-1$
-
+	
 	private static final String DELIM_LINK_PARAM = ";"; //$NON-NLS-1$
-
+	
 	private String first;
 	private String last;
 	private String next;
 	private String prev;
-
+	
 	/**
 	 * Parse links from executed method
-	 *
+	 * 
 	 * @param response
 	 */
-	public PageLinks(GitHubResponse response) {
+	public PageLinks(GitHubResponse response)
+	{
 		String linkHeader = response.getHeader(HEADER_LINK);
-		if (linkHeader != null) {
+		if(linkHeader != null)
+		{
 			String[] links = linkHeader.split(DELIM_LINKS);
-			for (String link : links) {
+			for(String link : links)
+			{
 				String[] segments = link.split(DELIM_LINK_PARAM);
-				if (segments.length < 2)
+				if(segments.length < 2)
 					continue;
-
+				
 				String linkPart = segments[0].trim();
-				if (!linkPart.startsWith("<") || !linkPart.endsWith(">")) //$NON-NLS-1$ //$NON-NLS-2$
+				if(!linkPart.startsWith("<") || !linkPart.endsWith(">")) //$NON-NLS-1$ //$NON-NLS-2$
 					continue;
 				linkPart = linkPart.substring(1, linkPart.length() - 1);
-
-				for (int i = 1; i < segments.length; i++) {
+				
+				for(int i = 1; i < segments.length; i++)
+				{
 					String[] rel = segments[i].trim().split("="); //$NON-NLS-1$
-					if (rel.length < 2 || !META_REL.equals(rel[0]))
+					if(rel.length < 2 || !META_REL.equals(rel[0]))
 						continue;
-
+					
 					String relValue = rel[1];
-					if (relValue.startsWith("\"") && relValue.endsWith("\"")) //$NON-NLS-1$ //$NON-NLS-2$
+					if(relValue.startsWith("\"") && relValue.endsWith("\"")) //$NON-NLS-1$ //$NON-NLS-2$
 						relValue = relValue.substring(1, relValue.length() - 1);
-
-					if (META_FIRST.equals(relValue))
+					
+					if(META_FIRST.equals(relValue))
 						first = linkPart;
-					else if (META_LAST.equals(relValue))
+					else if(META_LAST.equals(relValue))
 						last = linkPart;
-					else if (META_NEXT.equals(relValue))
+					else if(META_NEXT.equals(relValue))
 						next = linkPart;
-					else if (META_PREV.equals(relValue))
+					else if(META_PREV.equals(relValue))
 						prev = linkPart;
 				}
 			}
-		} else {
+		}else
+		{
 			next = response.getHeader(HEADER_NEXT);
 			last = response.getHeader(HEADER_LAST);
 		}
 	}
-
+	
 	/**
 	 * @return first
 	 */
-	public String getFirst() {
+	public String getFirst()
+	{
 		return first;
 	}
-
+	
 	/**
 	 * @return last
 	 */
-	public String getLast() {
+	public String getLast()
+	{
 		return last;
 	}
-
+	
 	/**
 	 * @return next
 	 */
-	public String getNext() {
+	public String getNext()
+	{
 		return next;
 	}
-
+	
 	/**
 	 * @return prev
 	 */
-	public String getPrev() {
+	public String getPrev()
+	{
 		return prev;
 	}
 }
