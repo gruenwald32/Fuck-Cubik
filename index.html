@@ -63,7 +63,14 @@
 			<h1>Get it now!</h1>
 			<font size="7">
 				<div class="hac">
-					<a href="https://github.com/Fuck-Cubik/Fuck-Cubik/releases/latest" target="_blank" class="button primary"><icon class="arrow-down-white"></icon> Download</a>
+					<a id="download-latest" href="https://github.com/Fuck-Cubik/Fuck-Cubik/releases/latest" target="_blank" class="button primary"><icon class="arrow-down-white"></icon> Download</a>
+					<script>
+						$(document).ready(function(){
+							§("#download-latest").click(function(){
+								ga('send', 'event', 'button', 'click', 'download-latest');
+							});
+						});
+					</script>
 				</div>
 			</font>
 		</div>
