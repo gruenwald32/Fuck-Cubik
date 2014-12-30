@@ -49,6 +49,7 @@ public class ObjectRenderer
 	
 	public void renderElement(RenderObject element)
 	{
+		TextureImpl.bindNone();
 		float x1 = 1F / 16F * (float)element.from[0] - 0.5F;
 		float y1 = 1F / 16F * (float)element.from[1];
 		float z1 = 1F / 16F * (float)element.from[2] - 0.5F;
@@ -62,7 +63,6 @@ public class ObjectRenderer
 			float u2 = 1F / 16F * face.uv[2];
 			float v1 = 1F / 16F * face.uv[1];
 			float v2 = 1F / 16F * face.uv[3];
-			new TextureImpl(null, 0, 0).bind();
 			if(textureMap.get(face.textureLink) != null)
 			{
 				GL11.glColor3f(1F, 1F, 1F);

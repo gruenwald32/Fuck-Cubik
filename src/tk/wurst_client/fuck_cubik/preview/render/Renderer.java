@@ -75,6 +75,7 @@ public class Renderer
 		
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST);
+		guiRenderer.init();
 	}
 	
 	public void render()
@@ -95,6 +96,8 @@ public class Renderer
 		{
 			if(Main.frame.desktop.preview.showGrid)
 				guiRenderer.renderGrid();
+			if(Main.frame.desktop.preview.showCompass)
+				guiRenderer.renderCompass();
 			objectRenderer.checkTextureMap();
 			for(RenderObject object : elementsList)
 				objectRenderer.renderElement(object);

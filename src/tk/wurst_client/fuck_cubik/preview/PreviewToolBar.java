@@ -16,6 +16,7 @@ public class PreviewToolBar extends JToolBar
 	public JButton refreshButton;
 	public JCheckBox gridBox;
 	public JCheckBox focusBox;
+	public JCheckBox compassBox;
 	
 	public PreviewToolBar()
 	{
@@ -75,5 +76,15 @@ public class PreviewToolBar extends JToolBar
 			}
 		});
 		this.add(focusBox);
+		compassBox = new JCheckBox("Show compass", true);
+		compassBox.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				Main.frame.desktop.preview.showCompass = compassBox.isSelected();
+			}
+		});
+		this.add(compassBox);
 	}
 }

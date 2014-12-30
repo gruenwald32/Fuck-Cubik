@@ -12,6 +12,7 @@ import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 public class EditorToolBar extends JToolBar
 {
@@ -30,6 +31,8 @@ public class EditorToolBar extends JToolBar
 					Gson gson = new GsonBuilder().setPrettyPrinting().create();
 					String oldCode = Main.frame.desktop.editor.textarea.getDocument().getText(0, Main.frame.desktop.editor.textarea.getDocument().getLength());
 					String newCode = gson.toJson(new JsonParser().parse(oldCode));
+					if(newCode.equals("null"))
+						throw new JsonSyntaxException("No code found.");
 					Main.frame.desktop.editor.textarea.setText(newCode);
 				}catch(Exception e1)
 				{

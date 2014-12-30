@@ -11,6 +11,7 @@ public class Preview extends AbstractFrame
 	public PreviewToolBar toolbar;
 	public boolean showGrid = true;
 	public boolean showFocus = true;
+	public boolean showCompass = true;
 	
 	public Preview()
 	{
