@@ -13,7 +13,11 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 import tk.wurst_client.fuck_cubik.Main;
+import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.editor.EditorToolBar;
 
 public class Editor extends AbstractFrame
@@ -113,5 +117,22 @@ public class Editor extends AbstractFrame
 		this.file = file;
 		Main.frame.menuBar.modelMenu.save.setEnabled(file != null);
 		updateTitle(false);
+	}
+	
+	public JsonElement getCode()
+	{
+		try
+		{
+			return new JsonParser().parse(Main.frame.desktop.editor.textarea.getDocument().getText(0, Main.frame.desktop.editor.textarea.getDocument().getLength()));
+		}catch(Exception e)
+		{
+			new ErrorMessage("reading code", e);
+		}
+		return null;
+	}
+	
+	public void setCode(String code)
+	{
+		Main.frame.desktop.editor.textarea.setText(code);
 	}
 }

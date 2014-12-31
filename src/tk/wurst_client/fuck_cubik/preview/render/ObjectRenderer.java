@@ -48,7 +48,7 @@ public class ObjectRenderer
 		}
 	}
 	
-	public void renderElement(RenderObject element)
+	public void renderElement(RenderObject element, boolean marked)
 	{
 		TextureImpl.bindNone();
 		float x1 = 1F / 16F * (float)element.from[0] - 0.5F;
@@ -66,19 +66,28 @@ public class ObjectRenderer
 			float v2 = 1F / 16F * face.uv[3];
 			if(textureMap.get(face.textureLink) != null)
 			{
-				GL11.glColor3f(1F, 1F, 1F);
+				if(marked)
+					GL11.glColor3f(1F, 1F, 0F);
+				else
+					GL11.glColor3f(1F, 1F, 1F);
 				textureMap.get(face.textureLink).bind();
 				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
 				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 			}else if(textureMap.get("__missing") != null)
 			{
-				GL11.glColor3f(1F, 1F, 1F);
+				if(marked)
+					GL11.glColor3f(1F, 1F, 0F);
+				else
+					GL11.glColor3f(1F, 1F, 1F);
 				textureMap.get("__missing").bind();
 				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
 				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 			}else
 			{
-				GL11.glColor3f(1F, 0F, 0.5F);
+				if(marked)
+					GL11.glColor3f(1F, 1F, 0F);
+				else
+					GL11.glColor3f(1F, 0F, 0.5F);
 				GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
 			}
 			GL11.glBegin(GL11.GL_QUADS);

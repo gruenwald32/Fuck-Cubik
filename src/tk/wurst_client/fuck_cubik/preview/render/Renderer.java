@@ -6,21 +6,17 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import javax.swing.text.BadLocationException;
-
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.files.FileManager;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class Renderer
 {
@@ -34,6 +30,7 @@ public class Renderer
 	public GUIRenderer guiRenderer;
 	public ArrayList<RenderObject> elementsList = new ArrayList<RenderObject>();
 	public HashMap<String, File> textureLinkMap = new HashMap<String, File>();
+	public int markedElement = -1;
 	
 	public float posX = 0F;
 	public float posY = 0F;
@@ -97,8 +94,8 @@ public class Renderer
 			if(Main.frame.desktop.preview.showGrid)
 				guiRenderer.renderGrid();
 			objectRenderer.checkTextureMap();
-			for(RenderObject object : elementsList)
-				objectRenderer.renderElement(object);
+			for(int i = 0; i < elementsList.size(); i++)
+				objectRenderer.renderElement(elementsList.get(i), i == markedElement);
 			if(Main.frame.desktop.preview.showCompass)
 				guiRenderer.renderCompass();
 		}catch(Exception e)
@@ -111,19 +108,11 @@ public class Renderer
 	
 	public void refresh()
 	{
-		String code = "";
+		markedElement = -1;
 		elementsList.clear();
 		textureLinkMap.clear();
-		try
-		{
-			code = Main.frame.desktop.editor.textarea.getDocument().getText(0, Main.frame.desktop.editor.textarea.getDocument().getLength());
-		}catch(BadLocationException e)
-		{
-			new ErrorMessage("reading code from the editor", e);
-			return;
-		}
 		Gson gson = new Gson();
-		JsonObject mainObject = new JsonParser().parse(code).getAsJsonObject();
+		JsonObject mainObject = Main.frame.desktop.editor.getCode().getAsJsonObject();
 		JsonObject texturesJSON = mainObject.get("textures").getAsJsonObject();
 		Iterator<Entry<String, JsonElement>> texturesItr = texturesJSON.entrySet().iterator();
 		while(texturesItr.hasNext())
