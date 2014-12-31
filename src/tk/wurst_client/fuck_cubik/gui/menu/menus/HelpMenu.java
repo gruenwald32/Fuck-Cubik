@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.VersionManager;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.files.ResourceManager;
 
 public class HelpMenu extends JMenu
 {
@@ -34,7 +35,7 @@ public class HelpMenu extends JMenu
 			{
 				try
 				{
-					BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("resources/ABOUT")));
+					BufferedReader reader = new BufferedReader(new InputStreamReader(ResourceManager.getStream(ResourceManager.ABOUT_FILE)));
 					String message = reader.readLine();
 					for(String line = ""; (line = reader.readLine()) != null;)
 						message += line;
@@ -58,7 +59,7 @@ public class HelpMenu extends JMenu
 			{
 				try
 				{
-					BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("resources/LICENSE")));
+					BufferedReader reader = new BufferedReader(new InputStreamReader(ResourceManager.getStream(ResourceManager.LICENSE_FILE)));
 					String message = reader.readLine();
 					for(String line = ""; (line = reader.readLine()) != null;)
 						message += "\n" + line;

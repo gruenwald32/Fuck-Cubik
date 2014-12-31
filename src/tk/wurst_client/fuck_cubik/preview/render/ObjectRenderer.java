@@ -12,6 +12,7 @@ import org.newdawn.slick.opengl.TextureImpl;
 import org.newdawn.slick.opengl.TextureLoader;
 
 import tk.wurst_client.fuck_cubik.Main;
+import tk.wurst_client.fuck_cubik.files.ResourceManager;
 
 public class ObjectRenderer
 {
@@ -24,7 +25,7 @@ public class ObjectRenderer
 			try
 			{
 				String textureLink = "__missing";
-				Texture texture = TextureLoader.getTexture("PNG", this.getClass().getClassLoader().getResourceAsStream("resources/missing.png"));
+				Texture texture = TextureLoader.getTexture("PNG", ResourceManager.getStream(ResourceManager.MISSING_TEXTURE));
 				textureMap.put(textureLink, texture);
 			}catch(IOException e1)
 			{

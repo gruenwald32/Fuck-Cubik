@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.files.ResourceManager;
 
 public class TextureViewerPanel extends JPanel
 {
@@ -42,7 +43,7 @@ public class TextureViewerPanel extends JPanel
 			{	
 				try
 				{
-					texture = ImageIO.read(this.getClass().getClassLoader().getResourceAsStream("resources/missing.png"));
+					texture = ImageIO.read(ResourceManager.getStream(ResourceManager.MISSING_TEXTURE));
 				}catch(Exception e1)
 				{
 					
