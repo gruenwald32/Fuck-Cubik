@@ -96,11 +96,11 @@ public class Renderer
 		{
 			if(Main.frame.desktop.preview.showGrid)
 				guiRenderer.renderGrid();
-			if(Main.frame.desktop.preview.showCompass)
-				guiRenderer.renderCompass();
 			objectRenderer.checkTextureMap();
 			for(RenderObject object : elementsList)
 				objectRenderer.renderElement(object);
+			if(Main.frame.desktop.preview.showCompass)
+				guiRenderer.renderCompass();
 		}catch(Exception e)
 		{
 			e.printStackTrace();

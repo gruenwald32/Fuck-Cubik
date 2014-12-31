@@ -17,6 +17,7 @@ import com.google.gson.JsonSyntaxException;
 public class EditorToolBar extends JToolBar
 {
 	public JButton formatButton;
+	public JButton newElementButton;
 	
 	public EditorToolBar()
 	{
@@ -41,5 +42,15 @@ public class EditorToolBar extends JToolBar
 			}
 		});
 		this.add(formatButton);
+		newElementButton = new JButton("New element");
+		newElementButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				
+			}
+		});
+		this.add(newElementButton);
 	}
 }

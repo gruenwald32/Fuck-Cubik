@@ -6,7 +6,7 @@ public class VersionManager
 	public static final byte MAJOR_VERSION = 1;
 	public static final byte MINOR_VERSION = 3;
 	public static final byte PATCH = 0;
-	public static final long BUILD = 51;
+	public static final long BUILD = 52;
 	public static final byte PRE_RELEASE = 0;
 	
 	public static final String SIMPLE_VERSION = MAJOR_VERSION
