@@ -158,5 +158,6 @@ public class Renderer
 			elementsList.add(renderObject);
 		}
 		objectRenderer.clearTextureMap();
+		Main.frame.desktop.textureViewer.options.reloadTextures();
 	}
 }

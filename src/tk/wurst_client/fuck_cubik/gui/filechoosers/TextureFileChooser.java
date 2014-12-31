@@ -25,9 +25,8 @@ public class TextureFileChooser extends JFileChooser
 		int action = super.showOpenDialog(parent);
 		if(action == APPROVE_OPTION)
 		{
-			Main.frame.desktop.textureViewer.viewer.file = this.getSelectedFile();
-			Main.frame.desktop.textureViewer.viewer.texture = null;
-			Main.frame.desktop.textureViewer.viewer.repaint();
+			Main.frame.desktop.textureViewer.options.textureCombo.setSelectedIndex(-1);
+			Main.frame.desktop.textureViewer.viewer.setInput(this.getSelectedFile());
 		}
 		return action;
 	}

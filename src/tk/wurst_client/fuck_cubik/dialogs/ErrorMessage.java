@@ -12,7 +12,7 @@ public class ErrorMessage
 		String message = "<html>"
 			+ "<body width=\"256px\">"
 			+ "<p>Exception while " + action + ":</p>"
-			+ "<p align=\"center\">"
+			+ "<p>"
 			+ e.getClass().getPackage().getName()
 			+ ".<u>" + e.getClass().getSimpleName() + "</u>"
 			+ "</p>";
