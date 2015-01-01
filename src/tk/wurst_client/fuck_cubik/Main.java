@@ -1,5 +1,7 @@
 package tk.wurst_client.fuck_cubik;
 
+import java.awt.Toolkit;
+
 import javax.swing.UIManager;
 
 import org.lwjgl.opengl.Display;
@@ -17,12 +19,14 @@ public class Main
 	public static MainFrame frame;
 	public static Renderer renderer;
 	public static InputListener inputListener;
+	public static boolean isSmallScreen;
 	
 	public static void main(String[] args)
 	{
 		try
 		{
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			isSmallScreen = Toolkit.getDefaultToolkit().getScreenSize().height < 860 || Toolkit.getDefaultToolkit().getScreenSize().width < 1216;
 			updater = new Updater();
 			updater.checkForUpdate();
 			frame = new MainFrame();
@@ -30,7 +34,7 @@ public class Main
 			inputListener = new InputListener();
 			Display.setParent(frame.desktop.preview.canvas);
 			Display.setVSyncEnabled(true);
-			Display.setDisplayMode(new DisplayMode(600, 600));
+			Display.setDisplayMode(isSmallScreen ? new DisplayMode(400, 400) : new DisplayMode(600, 600));
 			Display.setInitialBackground(240, 240, 240);
 			Display.create();
 			renderer.init();

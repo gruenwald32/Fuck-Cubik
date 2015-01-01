@@ -87,8 +87,15 @@ public class Editor extends AbstractFrame
 		});
 		scrollpane = new JScrollPane(textarea);
 		this.add(scrollpane, BorderLayout.CENTER);
-		this.setSize(600, 800);
-		this.setLocation(600, 0);
+		if(Main.isSmallScreen)
+		{
+			this.setSize(400, 600);
+			this.setLocation(400, 0);
+		}else
+		{
+			this.setSize(600, 800);
+			this.setLocation(600, 0);
+		}
 	}
 	
 	public void updateTitle(boolean fileChanged)

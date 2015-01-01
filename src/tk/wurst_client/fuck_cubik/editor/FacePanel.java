@@ -51,7 +51,7 @@ public class FacePanel extends JPanel
 		{	
 			
 		}
-		setBorder(BorderFactory.createTitledBorder(faceName));
+		setBorder(BorderFactory.createTitledBorder(faceName.substring(0, 1).toUpperCase() + faceName.substring(1)));
 		enabled = new JCheckBox("enabled", face != null);
 		enabled.addActionListener(new ActionListener()
 		{

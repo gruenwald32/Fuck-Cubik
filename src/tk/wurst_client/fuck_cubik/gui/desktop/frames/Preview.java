@@ -3,6 +3,7 @@ package tk.wurst_client.fuck_cubik.gui.desktop.frames;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 
+import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.preview.PreviewToolBar;
 
 public class Preview extends AbstractFrame
@@ -24,7 +25,10 @@ public class Preview extends AbstractFrame
 		toolbar = new PreviewToolBar();
 		this.add(toolbar, BorderLayout.NORTH);
 		this.add(canvas, BorderLayout.CENTER);
-		this.setSize(600, 600);
+		if(Main.isSmallScreen)
+			this.setSize(400, 400);
+		else
+			this.setSize(600, 600);
 		this.setLocation(0, 0);
 	}
 }

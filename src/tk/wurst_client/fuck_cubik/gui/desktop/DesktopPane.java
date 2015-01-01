@@ -5,6 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.JDesktopPane;
 
+import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.gui.desktop.frames.Editor;
 import tk.wurst_client.fuck_cubik.gui.desktop.frames.Preview;
 import tk.wurst_client.fuck_cubik.gui.desktop.frames.TextureViewer;
@@ -25,6 +26,9 @@ public class DesktopPane extends JDesktopPane
 		this.add(preview);
 		this.add(editor);
 		this.add(textureViewer);
-		setPreferredSize(new Dimension(1200, 800));
+		if(Main.isSmallScreen)
+			setPreferredSize(new Dimension(800, 600));
+		else
+			setPreferredSize(new Dimension(1200, 800));
 	}
 }

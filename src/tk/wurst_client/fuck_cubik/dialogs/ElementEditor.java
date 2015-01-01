@@ -101,6 +101,8 @@ public class ElementEditor extends JDialog
 				}
 			});
 			pack();
+			if(Main.isSmallScreen)
+				setSize(getSize().width, 660);
 			setLocationRelativeTo(Main.frame);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			setAlwaysOnTop(true);

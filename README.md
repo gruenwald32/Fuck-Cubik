@@ -20,5 +20,5 @@ Fuck Cubik is an editor for the JSON encoded 3D models used in <a href="http://m
 <td>1.7.0 or higher
 <tr>
 <td>Screen resolution:
-<td>1216 x 860 or higher
+<td>816 x 660 or higher
 </table>
