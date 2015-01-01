@@ -87,8 +87,20 @@ icon {
 	vertical-align: middle;
 }
 
-icon.fuck-cubik:before {
-	content: url("/icons/logo.png");
+icon.fuck-cubik16:before {
+	content: url("/icons/logo16.png");
+}
+
+icon.fuck-cubik32:before {
+	content: url("/icons/logo32.png");
+}
+
+icon.fuck-cubik64:before {
+	content: url("/icons/logo64.png");
+}
+
+icon.fuck-cubik96:before {
+	content: url("/icons/logo96.png");
 }
 
 icon.arrow-down-white:before {
