@@ -2,10 +2,12 @@ package tk.wurst_client.fuck_cubik.gui;
 
 import java.awt.BorderLayout;
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
 import tk.wurst_client.fuck_cubik.VersionManager;
+import tk.wurst_client.fuck_cubik.files.ResourceManager;
 import tk.wurst_client.fuck_cubik.gui.desktop.DesktopPane;
 import tk.wurst_client.fuck_cubik.gui.menu.MenuBar;
 
@@ -27,6 +29,7 @@ public class MainFrame extends JFrame
 		pack();
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/" + ResourceManager.ICON_IMAGE)));
 		setVisible(true);
 	}
 }
