@@ -26,9 +26,9 @@ public class ModelFileChooser extends JFileChooser
 	public ModelFileChooser()
 	{
 		super(FileManager.MODELS_DIRECTORY);
-		this.setAcceptAllFileFilterUsed(false);
-		this.addChoosableFileFilter(new FileNameExtensionFilter("JSON 3D models", "json"));
-		this.setFileSelectionMode(FILES_ONLY);
+		setAcceptAllFileFilterUsed(false);
+		addChoosableFileFilter(new FileNameExtensionFilter("JSON 3D models", "json"));
+		setFileSelectionMode(FILES_ONLY);
 	}
 	
 	@Override
@@ -36,7 +36,6 @@ public class ModelFileChooser extends JFileChooser
 	{
 		int action = super.showOpenDialog(parent);
 		if(action == APPROVE_OPTION)
-		{
 			try
 			{
 				File file = getSelectedFile();
@@ -52,7 +51,6 @@ public class ModelFileChooser extends JFileChooser
 			{
 				new ErrorMessage("loading model", e);
 			}
-		}
 		return action;
 	}
 	
@@ -61,7 +59,6 @@ public class ModelFileChooser extends JFileChooser
 	{
 		int action = super.showSaveDialog(parent);
 		if(action == APPROVE_OPTION)
-		{
 			try
 			{
 				File file = getSelectedFile();
@@ -70,7 +67,6 @@ public class ModelFileChooser extends JFileChooser
 			{
 				new ErrorMessage("saving model", e);
 			}
-		}
 		return action;
 	}
 	

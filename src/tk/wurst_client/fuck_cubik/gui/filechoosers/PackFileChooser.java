@@ -36,9 +36,9 @@ public class PackFileChooser extends JFileChooser
 	public PackFileChooser()
 	{
 		super(FileManager.CURRENT_DIRECTORY);
-		this.setAcceptAllFileFilterUsed(false);
-		this.addChoosableFileFilter(new FileNameExtensionFilter("ResourcePacks", "zip"));
-		this.setFileSelectionMode(FILES_ONLY);
+		setAcceptAllFileFilterUsed(false);
+		addChoosableFileFilter(new FileNameExtensionFilter("ResourcePacks", "zip"));
+		setFileSelectionMode(FILES_ONLY);
 	}
 	
 	@Override
@@ -144,7 +144,6 @@ public class PackFileChooser extends JFileChooser
 		}
 		newDescription = (String)JOptionPane.showInputDialog(parent, "New description:", "Edit pack description", JOptionPane.QUESTION_MESSAGE, null, null, oldDescription);
 		if(newDescription != null)
-		{
 			try
 			{
 				Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -160,7 +159,6 @@ public class PackFileChooser extends JFileChooser
 			{
 				new ErrorMessage("saving metadata", e);
 			}
-		}
 	}
 	
 	public int showDeleteDialog(Component parent)
@@ -219,19 +217,15 @@ public class PackFileChooser extends JFileChooser
 		}
 		output.closeEntry();
 		if(file.isDirectory())
-		{
 			for(File subfile : file.listFiles())
 				addToZIP(subfile, output, root);
-		}
 	}
 	
 	private void delete(File file)
 	{
 		if(file.isDirectory())
-		{
 			for(File subfile : file.listFiles())
 				delete(subfile);
-		}
 		file.delete();
 	}
 }

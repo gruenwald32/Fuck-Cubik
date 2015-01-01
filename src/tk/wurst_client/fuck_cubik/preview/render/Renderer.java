@@ -22,8 +22,8 @@ public class Renderer
 {
 	public Renderer()
 	{
-		this.objectRenderer = new ObjectRenderer();
-		this.guiRenderer = new GUIRenderer();
+		objectRenderer = new ObjectRenderer();
+		guiRenderer = new GUIRenderer();
 	}
 	
 	public ObjectRenderer objectRenderer;
@@ -42,18 +42,18 @@ public class Renderer
 	
 	public void reset()
 	{
-		this.posX = 0F;
-		this.posY = -0.5F;
-		this.posZ = 0F;
-		this.rotX = 35F;
-		this.rotY = 45F;
-		this.rotZ = 0F;
-		this.zoom = -3F;
+		posX = 0F;
+		posY = -0.5F;
+		posZ = 0F;
+		rotX = 35F;
+		rotY = 45F;
+		rotZ = 0F;
+		zoom = -3F;
 	}
 	
 	public void init()
 	{
-		this.reset();
+		reset();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_CULL_FACE);
@@ -119,7 +119,7 @@ public class Renderer
 			Iterator<Entry<String, JsonElement>> texturesItr = texturesJSON.entrySet().iterator();
 			while(texturesItr.hasNext())
 			{
-				Entry<String, JsonElement> textureEntry = (Entry<String, JsonElement>)texturesItr.next();
+				Entry<String, JsonElement> textureEntry = texturesItr.next();
 				File textureFile = new File(FileManager.TEXTURES_DIRECTORY, textureEntry.getValue().getAsString() + ".png");
 				textureLinkMap.put(textureEntry.getKey(), textureFile);
 			}

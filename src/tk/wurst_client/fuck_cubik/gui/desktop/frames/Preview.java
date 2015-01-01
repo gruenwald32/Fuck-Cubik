@@ -16,12 +16,12 @@ public class Preview extends AbstractFrame
 	public Preview()
 	{
 		super("Preview", false, false, false);
-		this.canvas = new Canvas();
+		canvas = new Canvas();
 		canvas.setSize(600, 600);
 		canvas.setMinimumSize(canvas.getSize());
 		canvas.setMaximumSize(canvas.getSize());
 		canvas.setPreferredSize(canvas.getSize());
-		this.toolbar = new PreviewToolBar();
+		toolbar = new PreviewToolBar();
 		this.add(toolbar, BorderLayout.NORTH);
 		this.add(canvas, BorderLayout.CENTER);
 		this.setSize(600, 600);

@@ -14,9 +14,9 @@ public class UnknownProgressDialog extends JDialog
 		progress.setIndeterminate(true);
 		this.add(progress);
 		this.setSize(256, 64);
-		this.setLocationRelativeTo(Main.frame);
-		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		this.setAlwaysOnTop(true);
-		this.setVisible(true);
+		setLocationRelativeTo(Main.frame);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setAlwaysOnTop(true);
+		setVisible(true);
 	}
 }

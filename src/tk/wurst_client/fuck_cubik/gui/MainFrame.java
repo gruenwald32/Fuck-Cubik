@@ -17,16 +17,16 @@ public class MainFrame extends JFrame
 	public MainFrame() throws HeadlessException
 	{
 		super("Fuck Cubik v" + VersionManager.SIMPLE_VERSION);
-		this.menuBar = new MenuBar();
-		this.desktop = new DesktopPane();
-		this.setLayout(new BorderLayout());
+		menuBar = new MenuBar();
+		desktop = new DesktopPane();
+		setLayout(new BorderLayout());
 		
 		this.add(menuBar, BorderLayout.NORTH);
 		this.add(desktop, BorderLayout.CENTER);
 		
-		this.pack();
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setVisible(true);
+		pack();
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 }

@@ -57,9 +57,8 @@ public class ObjectRenderer
 		float x2 = 1F / 16F * (float)element.to[0] - 0.5F;
 		float y2 = 1F / 16F * (float)element.to[1];
 		float z2 = 1F / 16F * (float)element.to[2] - 0.5F;
-		for(int i = 0; i < element.faces.length; i++)
+		for(RenderObjectFace face : element.faces)
 		{
-			RenderObjectFace face = element.faces[i];
 			float u1 = 1F / 16F * face.uv[0];
 			float u2 = 1F / 16F * face.uv[2];
 			float v1 = 1F / 16F * face.uv[1];
@@ -160,6 +159,6 @@ public class ObjectRenderer
 	
 	public void clearTextureMap()
 	{
-		this.textureMap.clear();
+		textureMap.clear();
 	}
 }

@@ -6,8 +6,8 @@ import java.awt.Dimension;
 import javax.swing.JDesktopPane;
 
 import tk.wurst_client.fuck_cubik.gui.desktop.frames.Editor;
-import tk.wurst_client.fuck_cubik.gui.desktop.frames.TextureViewer;
 import tk.wurst_client.fuck_cubik.gui.desktop.frames.Preview;
+import tk.wurst_client.fuck_cubik.gui.desktop.frames.TextureViewer;
 
 public class DesktopPane extends JDesktopPane
 {
@@ -18,13 +18,13 @@ public class DesktopPane extends JDesktopPane
 	public DesktopPane()
 	{
 		super();
-		this.preview = new Preview();
-		this.editor = new Editor();
-		this.textureViewer = new TextureViewer();
-		this.setBackground(new Color(240, 240, 240));
+		preview = new Preview();
+		editor = new Editor();
+		textureViewer = new TextureViewer();
+		setBackground(new Color(240, 240, 240));
 		this.add(preview);
 		this.add(editor);
 		this.add(textureViewer);
-		this.setPreferredSize(new Dimension(1200, 800));
+		setPreferredSize(new Dimension(1200, 800));
 	}
 }

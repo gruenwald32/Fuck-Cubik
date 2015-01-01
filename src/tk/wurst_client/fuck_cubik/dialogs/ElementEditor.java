@@ -10,8 +10,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import tk.wurst_client.fuck_cubik.Main;
+import tk.wurst_client.fuck_cubik.editor.FacePanel;
 import tk.wurst_client.fuck_cubik.editor.FromToSpinner;
 
 import com.google.gson.GsonBuilder;
@@ -23,7 +25,7 @@ public class ElementEditor extends JDialog
 	public JsonObject element;
 	public int selection;
 	public JPanel faces;
-
+	
 	public ElementEditor(JsonObject element, int selection)
 	{
 		super(Main.frame, "Edit this element");
@@ -31,13 +33,13 @@ public class ElementEditor extends JDialog
 		this.selection = selection;
 		try
 		{
-			this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+			setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 			fromto = new JPanel(new GridLayout(3, 4));
 			fromto.setBorder(BorderFactory.createTitledBorder("Coordinates"));
 			fromto.add(Box.createGlue());
-			fromto.add(new JLabel("X"));
-			fromto.add(new JLabel("Y"));
-			fromto.add(new JLabel("Z"));
+			fromto.add(new JLabel("X", SwingConstants.CENTER));
+			fromto.add(new JLabel("Y", SwingConstants.CENTER));
+			fromto.add(new JLabel("Z", SwingConstants.CENTER));
 			fromto.add(new JLabel("From:"));
 			fromto.add(new FromToSpinner(element.get("from").getAsJsonArray(), 0, this));
 			fromto.add(new FromToSpinner(element.get("from").getAsJsonArray(), 1, this));
@@ -48,32 +50,35 @@ public class ElementEditor extends JDialog
 			fromto.add(new FromToSpinner(element.get("to").getAsJsonArray(), 2, this));
 			this.add(fromto);
 			faces = new JPanel();
+			faces.setLayout(new BoxLayout(faces, BoxLayout.Y_AXIS));
 			faces.setBorder(BorderFactory.createTitledBorder("Faces"));
-			faces.add(new JLabel("Coming soon!"));
+			String[] faceNames = new String[]{"up", "down", "north", "south", "west", "east"};
+			for(String faceName : faceNames)
+				faces.add(new FacePanel(element, faceName, this));
 			this.add(faces);
-			this.addWindowListener(new WindowListener()
+			addWindowListener(new WindowListener()
 			{
 				@Override
 				public void windowOpened(WindowEvent e)
-				{
+				{	
 					
 				}
 				
 				@Override
 				public void windowIconified(WindowEvent e)
-				{
+				{	
 					
 				}
 				
 				@Override
 				public void windowDeiconified(WindowEvent e)
-				{
+				{	
 					
 				}
 				
 				@Override
 				public void windowDeactivated(WindowEvent e)
-				{
+				{	
 					
 				}
 				
@@ -85,21 +90,21 @@ public class ElementEditor extends JDialog
 				
 				@Override
 				public void windowClosed(WindowEvent e)
-				{
+				{	
 					
 				}
 				
 				@Override
 				public void windowActivated(WindowEvent e)
-				{
+				{	
 					
 				}
 			});
-			this.pack();
-			this.setLocationRelativeTo(Main.frame);
-			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			this.setAlwaysOnTop(true);
-			this.setVisible(true);
+			pack();
+			setLocationRelativeTo(Main.frame);
+			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+			setAlwaysOnTop(true);
+			setVisible(true);
 		}catch(Exception e)
 		{
 			new ErrorMessage("editing element", e);

@@ -35,8 +35,8 @@ public abstract class AbstractFrame extends JInternalFrame
 	public AbstractFrame(String title, boolean resizable, boolean closable, boolean maximizable, boolean iconifiable)
 	{
 		super(title, resizable, closable, maximizable, iconifiable);
-		this.setBackground(new Color(240, 240, 240));
-		this.setLayout(new BorderLayout());
+		setBackground(new Color(240, 240, 240));
+		setLayout(new BorderLayout());
 		this.show();
 	}
 }

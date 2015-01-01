@@ -23,7 +23,7 @@ public class TextureViewerOptionsPanel extends JPanel
 	
 	public TextureViewerOptionsPanel()
 	{
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		textureCombo = new JComboBox<String>();
 		textureCombo.setAlignmentX(CENTER_ALIGNMENT);
 		reloadTextures();
@@ -82,12 +82,8 @@ public class TextureViewerOptionsPanel extends JPanel
 		textureCombo.removeAllItems();
 		textureCombo.addItem("__missing");
 		if(Main.renderer != null)
-		{
 			for(Entry<String, File> entry : Main.renderer.textureLinkMap.entrySet())
-			{
 				textureCombo.addItem(entry.getKey());
-			}
-		}
 		textureCombo.setSelectedIndex(-1);
 	}
 }

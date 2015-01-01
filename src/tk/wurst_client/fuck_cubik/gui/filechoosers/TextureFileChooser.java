@@ -14,9 +14,9 @@ public class TextureFileChooser extends JFileChooser
 	public TextureFileChooser()
 	{
 		super(FileManager.TEXTURES_DIRECTORY);
-		this.setAcceptAllFileFilterUsed(false);
-		this.addChoosableFileFilter(new FileNameExtensionFilter("PNG textures", "png"));
-		this.setFileSelectionMode(FILES_ONLY);
+		setAcceptAllFileFilterUsed(false);
+		addChoosableFileFilter(new FileNameExtensionFilter("PNG textures", "png"));
+		setFileSelectionMode(FILES_ONLY);
 	}
 	
 	@Override
@@ -26,7 +26,7 @@ public class TextureFileChooser extends JFileChooser
 		if(action == APPROVE_OPTION)
 		{
 			Main.frame.desktop.textureViewer.options.textureCombo.setSelectedIndex(-1);
-			Main.frame.desktop.textureViewer.viewer.setInput(this.getSelectedFile());
+			Main.frame.desktop.textureViewer.viewer.setInput(getSelectedFile());
 		}
 		return action;
 	}

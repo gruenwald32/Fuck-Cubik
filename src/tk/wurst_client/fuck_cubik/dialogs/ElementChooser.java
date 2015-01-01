@@ -12,16 +12,16 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 
+import tk.wurst_client.fuck_cubik.Main;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-
-import tk.wurst_client.fuck_cubik.Main;
 
 public class ElementChooser extends JDialog
 {
 	public JComboBox<String> elementsCombo;
 	public JButton okButton;
-
+	
 	public ElementChooser()
 	{
 		super(Main.frame, "Choose an element");
@@ -29,7 +29,7 @@ public class ElementChooser extends JDialog
 		{
 			if(Main.frame.desktop.editor.getCode().isJsonNull())
 				throw new JsonSyntaxException("No code found.");
-			this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+			setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 			this.add(Box.createVerticalGlue());
 			elementsCombo = new JComboBox<String>();
 			elementsCombo.setAlignmentX(CENTER_ALIGNMENT);
@@ -37,16 +37,14 @@ public class ElementChooser extends JDialog
 			if(!json.has("elements"))
 				throw new JsonSyntaxException("No elements found.");
 			for(int i = 0; i < json.get("elements").getAsJsonArray().size(); i++)
-			{
 				elementsCombo.addItem("Element #" + (i + 1));
-			}
 			elementsCombo.setSelectedIndex(-1);
 			Main.renderer.markedElement = -1;
 			elementsCombo.addActionListener(new ActionListener()
 			{
 				@Override
 				public void actionPerformed(ActionEvent e)
-				{	
+				{
 					Main.renderer.markedElement = elementsCombo.getSelectedIndex();
 				}
 			});
@@ -69,29 +67,29 @@ public class ElementChooser extends JDialog
 			okButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 24));
 			this.add(okButton);
 			this.add(Box.createVerticalGlue());
-			this.addWindowListener(new WindowListener()
+			addWindowListener(new WindowListener()
 			{
 				@Override
 				public void windowOpened(WindowEvent e)
-				{
+				{	
 					
 				}
 				
 				@Override
 				public void windowIconified(WindowEvent e)
-				{
+				{	
 					
 				}
 				
 				@Override
 				public void windowDeiconified(WindowEvent e)
-				{
+				{	
 					
 				}
 				
 				@Override
 				public void windowDeactivated(WindowEvent e)
-				{
+				{	
 					
 				}
 				
@@ -103,21 +101,21 @@ public class ElementChooser extends JDialog
 				
 				@Override
 				public void windowClosed(WindowEvent e)
-				{
+				{	
 					
 				}
 				
 				@Override
 				public void windowActivated(WindowEvent e)
-				{
+				{	
 					
 				}
 			});
 			this.setSize(256, 128);
-			this.setLocationRelativeTo(Main.frame);
-			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			this.setAlwaysOnTop(true);
-			this.setVisible(true);
+			setLocationRelativeTo(Main.frame);
+			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+			setAlwaysOnTop(true);
+			setVisible(true);
 		}catch(Exception e)
 		{
 			new ErrorMessage("loading elements", e);

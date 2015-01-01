@@ -15,7 +15,7 @@ public class GUIRenderer
 	{
 		font = new TrueTypeFont(new Font("Monospaced", Font.PLAIN, 16), false);
 	}
-
+	
 	public void renderGrid()
 	{
 		GL11.glDisable(GL11.GL_TEXTURE_2D);

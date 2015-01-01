@@ -13,12 +13,12 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-
 import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.editor.EditorToolBar;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 public class Editor extends AbstractFrame
 {
@@ -63,33 +63,26 @@ public class Editor extends AbstractFrame
 			public void keyPressed(KeyEvent e)
 			{
 				if(e.isControlDown())
-				{
 					try
 					{
 						if(e.getKeyCode() == KeyEvent.VK_Z)
-						{
 							undoManager.undo();
-						}else if(e.getKeyCode() == KeyEvent.VK_Y)
-						{
+						else if(e.getKeyCode() == KeyEvent.VK_Y)
 							undoManager.redo();
-						}else if(e.getKeyCode() == KeyEvent.VK_S)
+						else if(e.getKeyCode() == KeyEvent.VK_S)
 						{
 							if(Main.frame.menuBar.modelMenu.save.isEnabled())
 								Main.frame.menuBar.modelMenu.save.doClick();
 							else
 								Main.frame.menuBar.modelMenu.saveAs.doClick();
 						}else if(e.getKeyCode() == KeyEvent.VK_O)
-						{
 							Main.frame.menuBar.modelMenu.open.doClick();
-						}
 					}catch(CannotUndoException | CannotRedoException e1)
 					{	
 						
 					}
-				}else if(e.getKeyCode() == KeyEvent.VK_F5)
-				{
+				else if(e.getKeyCode() == KeyEvent.VK_F5)
 					Main.frame.desktop.preview.toolbar.refreshButton.doClick();
-				}
 			}
 		});
 		scrollpane = new JScrollPane(textarea);
@@ -102,7 +95,7 @@ public class Editor extends AbstractFrame
 	{
 		if(this.fileChanged != fileChanged)
 		{
-			this.setTitle((file == null ? "Editor" : (fileChanged ? "* " : "") + "Editor - " + file.getName()));
+			setTitle(file == null ? "Editor" : (fileChanged ? "* " : "") + "Editor - " + file.getName());
 			this.fileChanged = fileChanged;
 		}
 	}

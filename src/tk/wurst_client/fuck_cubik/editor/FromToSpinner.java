@@ -22,7 +22,7 @@ public class FromToSpinner extends JSpinner
 		this.array = array;
 		this.index = index;
 		this.elementEditor = elementEditor;
-		this.addChangeListener(new ChangeListener()
+		addChangeListener(new ChangeListener()
 		{
 			@Override
 			public void stateChanged(ChangeEvent e)

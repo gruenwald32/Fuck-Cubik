@@ -13,7 +13,7 @@ public class TextureViewer extends AbstractFrame
 	public TextureViewer()
 	{
 		super("Texture Viewer", true, false, false);
-		this.setLayout(new FlowLayout(FlowLayout.CENTER));
+		setLayout(new FlowLayout(FlowLayout.CENTER));
 		viewer = new TextureViewerPanel();
 		this.add(viewer);
 		options = new TextureViewerOptionsPanel();

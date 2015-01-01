@@ -41,13 +41,11 @@ public class Updater
 			json = new JsonParser().parse(content).getAsJsonArray();
 			latestRelease = new JsonObject();
 			for(JsonElement release : json)
-			{
 				if(!release.getAsJsonObject().get("prerelease").getAsBoolean() || VersionManager.PRE_RELEASE > 0)
 				{
 					latestRelease = release.getAsJsonObject();
 					break;
 				}
-			}
 			latestVersion = latestRelease.get("tag_name").getAsString();
 			outdated = false;
 			try
@@ -89,27 +87,18 @@ public class Updater
 			return true;
 		else if(latestMajor < VersionManager.MAJOR_VERSION)
 			return false;
+		else if(latestMinor > VersionManager.MINOR_VERSION)
+			return true;
+		else if(latestMajor < VersionManager.MINOR_VERSION)
+			return false;
+		else if(latestPatch > VersionManager.PATCH)
+			return true;
+		else if(latestMajor < VersionManager.PATCH)
+			return false;
+		else if(latestPreRelease > VersionManager.PRE_RELEASE)
+			return true;
 		else
-		{
-			if(latestMinor > VersionManager.MINOR_VERSION)
-				return true;
-			else if(latestMajor < VersionManager.MINOR_VERSION)
-				return false;
-			else
-			{
-				if(latestPatch > VersionManager.PATCH)
-					return true;
-				else if(latestMajor < VersionManager.PATCH)
-					return false;
-				else
-				{
-					if(latestPreRelease > VersionManager.PRE_RELEASE)
-						return true;
-					else
-						return false;
-				}
-			}
-		}
+			return false;
 	}
 	
 	@SuppressWarnings("unused")
