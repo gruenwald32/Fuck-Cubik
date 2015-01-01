@@ -16,7 +16,7 @@ public class UVSpinner extends JSpinner
 	
 	public UVSpinner(int index, FacePanel facePanel)
 	{
-		super(new SpinnerNumberModel(0, Integer.MIN_VALUE, Integer.MAX_VALUE, 1));
+		super(new SpinnerNumberModel(0, 0, 16, 1));
 		this.index = index;
 		this.facePanel = facePanel;
 		addChangeListener(new ChangeListener()
