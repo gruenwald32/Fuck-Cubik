@@ -73,6 +73,7 @@ public class EditorToolBar extends JToolBar
 						json.add("elements", new JsonArray());
 					json.get("elements").getAsJsonArray().add(element);
 					Main.frame.desktop.editor.setCode(gson.toJson(json));
+					Main.frame.desktop.preview.toolbar.refreshButton.doClick();
 				}catch(Exception e1)
 				{
 					new ErrorMessage("adding new element", e1);
