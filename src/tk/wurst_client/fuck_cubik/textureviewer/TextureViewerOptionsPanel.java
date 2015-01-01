@@ -79,11 +79,13 @@ public class TextureViewerOptionsPanel extends JPanel
 	
 	public void reloadTextures()
 	{
+		int lastCount = textureCombo.getItemCount();
 		textureCombo.removeAllItems();
 		textureCombo.addItem("__missing");
 		if(Main.renderer != null)
 			for(Entry<String, File> entry : Main.renderer.textureLinkMap.entrySet())
 				textureCombo.addItem(entry.getKey());
-		textureCombo.setSelectedIndex(-1);
+		if(textureCombo.getItemCount() != lastCount)
+			textureCombo.setSelectedIndex(-1);
 	}
 }
