@@ -64,6 +64,7 @@ public class FacePanel extends JPanel
 					face = new JsonObject();
 					face.add("uv", gson.toJsonTree(new int[]{0, 0, 16, 16}));
 					face.add("texture", gson.toJsonTree("#"));
+					texture.setText("#");
 					FacePanel.this.element.get("faces").getAsJsonObject().add(FacePanel.this.faceName, face);
 				}else
 				{
@@ -91,10 +92,13 @@ public class FacePanel extends JPanel
 			@Override
 			public void undoableEditHappened(UndoableEditEvent e)
 			{
-				Gson gson = new GsonBuilder().setPrettyPrinting().create();
-				face.remove("texture");
-				face.add("texture", gson.toJsonTree(texture.getText()));
-				FacePanel.this.elementEditor.updateCode();
+				if(texture.isEnabled())
+				{
+					Gson gson = new GsonBuilder().setPrettyPrinting().create();
+					face.remove("texture");
+					face.add("texture", gson.toJsonTree(texture.getText()));
+					FacePanel.this.elementEditor.updateCode();
+				}
 			}
 		});
 		this.add(texture);
