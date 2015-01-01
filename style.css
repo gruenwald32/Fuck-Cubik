@@ -88,7 +88,7 @@ icon {
 }
 
 icon.fuck-cubik:before {
-	content: url("/icons/logo.svg");
+	content: url("/icons/logo.png");
 }
 
 icon.arrow-down-white:before {
