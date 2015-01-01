@@ -87,6 +87,10 @@ icon {
 	vertical-align: middle;
 }
 
+icon.fuck-cubik:before {
+	content: url("/icons/logo.svg");
+}
+
 icon.arrow-down-white:before {
 	content: url("/icons/arrow_down_white.svg");
 }
