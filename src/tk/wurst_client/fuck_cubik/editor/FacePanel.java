@@ -9,7 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
 
 import tk.wurst_client.fuck_cubik.dialogs.ElementEditor;
 
@@ -31,6 +34,7 @@ public class FacePanel extends JPanel
 	public UVSpinner x2;
 	public UVSpinner y1;
 	public UVSpinner y2;
+	public JTextField texture;
 	public JButton autoUV;
 	
 	public FacePanel(JsonObject element, String faceName, ElementEditor elementEditor)
@@ -74,7 +78,26 @@ public class FacePanel extends JPanel
 		this.add(new JLabel("UV ", JLabel.RIGHT));
 		this.add(new JLabel("X", SwingConstants.CENTER));
 		this.add(new JLabel("Y", SwingConstants.CENTER));
-		this.add(new JLabel("Texture"));
+		texture = new JTextField();
+		try
+		{
+			texture.setText(face.get("texture").getAsString());
+		}catch(Exception e)
+		{
+			
+		}
+		texture.getDocument().addUndoableEditListener(new UndoableEditListener()
+		{
+			@Override
+			public void undoableEditHappened(UndoableEditEvent e)
+			{
+				Gson gson = new GsonBuilder().setPrettyPrinting().create();
+				face.remove("texture");
+				face.add("texture", gson.toJsonTree(texture.getText()));
+				FacePanel.this.elementEditor.updateCode();
+			}
+		});
+		this.add(texture);
 		this.add(new JLabel("From: ", JLabel.RIGHT));
 		x1 = new UVSpinner(0, this);
 		this.add(x1);
@@ -172,6 +195,7 @@ public class FacePanel extends JPanel
 		else
 			y2.setValue(0);
 		
+		texture.setEnabled(uvArray != null);
 		autoUV.setEnabled(uvArray != null);
 	}
 }
