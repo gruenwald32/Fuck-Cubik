@@ -39,7 +39,6 @@ public class PreviewToolBar extends JToolBar
 			{
 				new SwingWorker<Object, Object>()
 				{
-					
 					@Override
 					protected Object doInBackground() throws Exception
 					{

@@ -22,7 +22,7 @@ public class EditorToolBar extends JToolBar
 	
 	public JButton formatButton;
 	public JButton newElementButton;
-	public JButton easyEditorButton;
+	public JButton elementEditorButton;
 	
 	public EditorToolBar()
 	{
@@ -35,9 +35,9 @@ public class EditorToolBar extends JToolBar
 			{
 				try
 				{
-					String newCode = gson.toJson(Main.frame.desktop.editor.getCode());
-					if(newCode.equals("null"))
+					if(Main.frame.desktop.editor.getCode().isJsonNull())
 						throw new JsonSyntaxException("No code found.");
+					String newCode = gson.toJson(Main.frame.desktop.editor.getCode());
 					Main.frame.desktop.editor.setCode(newCode);
 				}catch(Exception e1)
 				{
@@ -54,6 +54,8 @@ public class EditorToolBar extends JToolBar
 			{
 				try
 				{
+					if(Main.frame.desktop.editor.getCode().isJsonNull())
+						Main.frame.desktop.editor.setCode(gson.toJson(new JsonObject()));
 					JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
 					JsonObject element = new JsonObject();
 					element.add("from", gson.toJsonTree(new int[]{0, 0, 0}));
@@ -78,8 +80,8 @@ public class EditorToolBar extends JToolBar
 			}
 		});
 		this.add(newElementButton);
-		easyEditorButton = new JButton("Easy editor");
-		easyEditorButton.addActionListener(new ActionListener()
+		elementEditorButton = new JButton("Element editor");
+		elementEditorButton.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
@@ -87,6 +89,6 @@ public class EditorToolBar extends JToolBar
 				new ElementChooser();
 			}
 		});
-		this.add(easyEditorButton);
+		this.add(elementEditorButton);
 	}
 }

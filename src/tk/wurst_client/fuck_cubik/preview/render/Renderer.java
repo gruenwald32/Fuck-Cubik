@@ -113,21 +113,24 @@ public class Renderer
 		textureLinkMap.clear();
 		Gson gson = new Gson();
 		JsonObject mainObject = Main.frame.desktop.editor.getCode().getAsJsonObject();
-		JsonObject texturesJSON = mainObject.get("textures").getAsJsonObject();
-		Iterator<Entry<String, JsonElement>> texturesItr = texturesJSON.entrySet().iterator();
-		while(texturesItr.hasNext())
+		if(mainObject.has("textures"))
 		{
-			Entry<String, JsonElement> textureEntry = (Entry<String, JsonElement>)texturesItr.next();
-			File textureFile = new File(FileManager.TEXTURES_DIRECTORY, textureEntry.getValue().getAsString() + ".png");
-			textureLinkMap.put(textureEntry.getKey(), textureFile);
+			JsonObject texturesJSON = mainObject.get("textures").getAsJsonObject();
+			Iterator<Entry<String, JsonElement>> texturesItr = texturesJSON.entrySet().iterator();
+			while(texturesItr.hasNext())
+			{
+				Entry<String, JsonElement> textureEntry = (Entry<String, JsonElement>)texturesItr.next();
+				File textureFile = new File(FileManager.TEXTURES_DIRECTORY, textureEntry.getValue().getAsString() + ".png");
+				textureLinkMap.put(textureEntry.getKey(), textureFile);
+			}
 		}
 		JsonArray elementsJSON = mainObject.get("elements").getAsJsonArray();
 		Iterator<JsonElement> elementsItr = elementsJSON.iterator();
 		while(elementsItr.hasNext())
 		{
 			JsonObject element = elementsItr.next().getAsJsonObject();
-			int[] from = gson.fromJson(element.get("from"), int[].class);
-			int[] to = gson.fromJson(element.get("to"), int[].class);
+			double[] from = gson.fromJson(element.get("from"), double[].class);
+			double[] to = gson.fromJson(element.get("to"), double[].class);
 			ArrayList<RenderObjectFace> facesList = new ArrayList<RenderObjectFace>();
 			JsonObject facesJSON = element.get("faces").getAsJsonObject();
 			Iterator<Entry<String, JsonElement>> facesItr = facesJSON.entrySet().iterator();

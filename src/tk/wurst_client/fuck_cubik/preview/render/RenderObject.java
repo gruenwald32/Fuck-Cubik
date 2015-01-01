@@ -2,11 +2,11 @@ package tk.wurst_client.fuck_cubik.preview.render;
 
 public class RenderObject
 {
-	public final int[] from;
-	public final int[] to;
+	public final double[] from;
+	public final double[] to;
 	public final RenderObjectFace[] faces;
 	
-	public RenderObject(int[] from, int[] to, RenderObjectFace[] faces)
+	public RenderObject(double[] from, double[] to, RenderObjectFace[] faces)
 	{
 		this.from = from;
 		this.to = to;
