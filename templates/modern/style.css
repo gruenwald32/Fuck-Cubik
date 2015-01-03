@@ -1,6 +1,27 @@
 #header {
 	position: fixed;
-	width: 100%;
+	width: 1000px;
+	max-width: 100%;
+}
+
+.nav-left {
+	display: inline-block;
+	float: left;
+}
+
+.nav-right {
+	display: inline-block;
+	float: right;
+}
+
+.nav-right ul {
+	list-style-type: none;
+	margin: 0;
+}
+
+.nav-right ul li {
+	display: inline-block;
+	margin: 0;
 }
 
 .fullscreen {
