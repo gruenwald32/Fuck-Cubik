@@ -92,22 +92,18 @@ icon {
 
 icon.fuck-cubik16:before {
 	content: url("/icons/logo16.png");
-	width: auto;
 }
 
 icon.fuck-cubik32:before {
 	content: url("/icons/logo32.png");
-	width: auto;
 }
 
 icon.fuck-cubik64:before {
 	content: url("/icons/logo64.png");
-	width: auto;
 }
 
 icon.fuck-cubik96:before {
 	content: url("/icons/logo96.png");
-	width: auto;
 }
 
 icon.arrow-down-white:before {
@@ -210,6 +206,10 @@ ul.bbc16 li:before {
 	padding: 2em;
 }
 
+.wa {
+	width: auto;
+}
+
 .w20 {
 	width: 20%;
 }
@@ -248,6 +248,10 @@ ul.bbc16 li:before {
 
 .w100 {
 	width: 100%;
+}
+
+.ha {
+	height: auto;
 }
 
 .h20 {
