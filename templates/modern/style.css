@@ -1,25 +1,35 @@
-#header {
-	position: fixed;
-	width: 1000px;
-	max-width: 100%;
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Audiowide";
 }
 
-.nav-left {
+#header {
+	position: fixed;
+	width: 100%;
+}
+
+#nav {
+	width: 1000px;
+	max-width: 100%;
+	margin: auto;
+	color: #eee;
+}
+
+#nav-left {
 	display: inline-block;
 	float: left;
 }
 
-.nav-right {
+#nav-right {
 	display: inline-block;
 	float: right;
 }
 
-.nav-right ul {
+#nav-right ul {
 	list-style-type: none;
 	margin: 0;
 }
 
-.nav-right ul li {
+#nav-right ul li {
 	display: inline-block;
 	margin: 0;
 }
