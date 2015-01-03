@@ -92,18 +92,22 @@ icon {
 
 icon.fuck-cubik16:before {
 	content: url("/icons/logo16.png");
+	width: auto;
 }
 
 icon.fuck-cubik32:before {
 	content: url("/icons/logo32.png");
+	width: auto;
 }
 
 icon.fuck-cubik64:before {
 	content: url("/icons/logo64.png");
+	width: auto;
 }
 
 icon.fuck-cubik96:before {
 	content: url("/icons/logo96.png");
+	width: auto;
 }
 
 icon.arrow-down-white:before {
