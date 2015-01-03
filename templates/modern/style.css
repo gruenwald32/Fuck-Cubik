@@ -35,25 +35,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .fullscreen {
-  display: table;
-  width: 100%;
-  height: 100%;
-}
-
-.fullscreen-body {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-}
-
-.background {
-	position: relative;
-	top: 0;
+	display: table;
 	width: 100%;
 	height: 100%;
-	z-index: -1;
 	background-image: url("/images/missing.svg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+.fullscreen-body {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
 }
