@@ -23,6 +23,7 @@ p {
 	max-width: 95%;
 	margin: 2em auto;
 	color: #eee;
+	padding: 0 1em;
 	transition: 0.25s;
 }
 
@@ -42,10 +43,6 @@ p {
 #nav-left {
 	display: inline-block;
 	float: left;
-}
-
-#nav-left a {
-	padding: 0 0.5em;
 }
 
 #nav-left h1 {
