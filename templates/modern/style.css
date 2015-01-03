@@ -34,7 +34,7 @@ p {
 	transition: 0.25s;
 }
 
-#nav a:hover, #nav-right a:active, #nav-right a:focus {
+#nav a:hover, #nava:active, #nav a:focus {
 	background-color: #aaa;
 	background-color: rgba(255, 255, 255, 0.25);
 }
@@ -45,7 +45,6 @@ p {
 }
 
 #nav-left a {
-	font-size: 1.25em;
 	padding: 0 0.5em;
 }
 
