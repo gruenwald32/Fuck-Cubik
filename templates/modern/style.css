@@ -26,9 +26,27 @@ p {
 	transition: 0.25s;
 }
 
+#nav a {
+	display: inline-block;
+	float: left;
+	text-decoration: none;
+	color: inherit;
+	transition: 0.25s;
+}
+
+#nav a:hover, #nav-right a:active, #nav-right a:focus {
+	background-color: #aaa;
+	background-color: rgba(255, 255, 255, 0.25);
+}
+
 #nav-left {
 	display: inline-block;
 	float: left;
+}
+
+#nav-left a {
+	font-size: 1.25em;
+	padding: 0 0.5em;
 }
 
 #nav-left h1 {
@@ -43,18 +61,8 @@ p {
 }
 
 #nav-right a {
-	display: inline-block;
-	float: left;
-	text-decoration: none;
-	color: inherit;
 	font-size: 1.25em;
 	padding: 1em;
-	transition: 0.25s;
-}
-
-#nav-right a:hover, #nav-right a:active, #nav-right a:focus {
-	background-color: #aaa;
-	background-color: rgba(255, 255, 255, 0.25);
 }
 
 .fullscreen {
