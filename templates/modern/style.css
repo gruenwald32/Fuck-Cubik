@@ -23,7 +23,6 @@ p {
 	max-width: 95%;
 	margin: 2em auto;
 	color: #eee;
-	padding: 0 1em;
 	transition: 0.25s;
 }
 
@@ -32,6 +31,7 @@ p {
 	float: left;
 	text-decoration: none;
 	color: inherit;
+	padding: 0 1em;
 	transition: 0.25s;
 }
 
