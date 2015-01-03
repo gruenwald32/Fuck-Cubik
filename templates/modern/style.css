@@ -35,7 +35,7 @@ p {
 	transition: 0.25s;
 }
 
-#nav a:hover, #nava:active, #nav a:focus {
+#nav a:hover, #nava:active {
 	background-color: #aaa;
 	background-color: rgba(255, 255, 255, 0.25);
 }
