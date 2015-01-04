@@ -35,8 +35,6 @@ header {
 header.collapse {
 	margin: 0;
 	background: #222;
-	background: -webkit-linear-gradient(#333, #111);
-	background: linear-gradient(#333, #111);
 }
 
 #nav {
