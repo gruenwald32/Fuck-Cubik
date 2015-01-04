@@ -9,21 +9,41 @@ body {
 	background-color: #222;
 }
 
+h1 {
+	font-size: 4em;
+}
+
+h2 {
+	font-size: 3em;
+}
+
+h3 {
+	font-size: 2em;
+}
+
 p {
 	font-size: 1.5em;
 }
 
-#header {
+header {
 	position: fixed;
 	width: 100%;
+	margin: 2em 0;
+	transition: 0.25s;
+}
+
+header.collapse {
+	margin: 0;
+	background: #222;
+	background: -webkit-linear-gradient(#333, #111);
+	background: linear-gradient(#333, #111);
 }
 
 #nav {
 	width: 1000px;
 	max-width: 95%;
-	margin: 2em auto;
+	margin: auto;
 	color: #eee;
-	transition: 0.25s;
 }
 
 #nav a {
@@ -72,12 +92,13 @@ p {
 	color: #eee;
 }
 
-.fullscreen h1 {
-	font-size: 4em;
-}
-
 .fullscreen-body {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
+}
+
+.fullscreen-content {
+	width: 1000px;
+	max-width: 95%;
 }
