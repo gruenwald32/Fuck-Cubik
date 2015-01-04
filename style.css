@@ -14,7 +14,6 @@ body {
 .button {
 	display: inline-block;
 	padding: 0.5em 0.75em;
-	font-size: 1em;
 	color: #000;
 	text-shadow: 0 1px 0 #fff;
 	text-decoration: none;
@@ -136,6 +135,10 @@ ul.nl , ol.nl{
 
 ul.bbc16 li:before {
 	content: url("/icons/ballot_box_check_green16.svg") " ";
+}
+
+.db {
+	display: block;
 }
 
 .dib {
