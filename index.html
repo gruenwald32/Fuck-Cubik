@@ -19,60 +19,56 @@
 
 </script>
 	<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
-	<script src="/templates/page/layout.js"></script>
+	<script src="/templates/modern/layout.js"></script>
+	<script src="/templates/modern/scrolling.js"></script>
 	<link href="/style.css" rel="stylesheet">
-	<link href="/templates/page/style.css" rel="stylesheet">
+	<link href="/templates/modern/style.css" rel="stylesheet">
 </head>
 <body>
-	<header></header>
-	<div id="content" class="page-box">
-		<div class="wrapper">
-			<h1>Fuck Cubik</h1>
-			<font size="5">
-				<div class="w100" style="height: 400px">
-					<div class="dt w33 h100">
-						<div class="dtc">
-							<p class="hal faw">An editor for 3D models in Minecraft ResourcePacks</p>
+	<header>
+		<div id="nav">
+			<div id="nav-left">
+				<a href="#"><h1><icon class="fuck-cubik64 wa h100"></icon> Fuck Cubik</h1></a>
+			</div>
+			<div id="nav-right">
+				<a href="#about">About</a>
+				<a href="#download">Download</a>
+			</div>
+		</div>
+	</header>
+	<div class="section h100" style="background-image: url('/images/room_with_tnt.jpg')">
+		<div class="section-body">
+			<div class="section-content">
+				<h1>Custom 3D models</h1>
+				<p>for Minecraft ResourcePacks</p>
+				<a href="#download" class="button primary">Download</a>
+				<a href="#about" class="button">More info</a>
+			</div>
+		</div>
+	</div>
+	<div id="about" class="section h100">
+		<div class="section-body">
+			<div class="section-content">
+				<h1>About</h1>
+				<div style="height: 512px">
+					<div class="dt fl w40 h100">
+						<div class="dtc hal">
+							<p>Fuck Cubik allows you to make custom 3D models for ResourcePacks very easily. But unlike Cubik, Fuck Cubik has no ads, no limits and doesn't cost you a cent!</p>
+							<p>Your 3D models can be as complex as you want. For example, the TNT block on the right was made out of 63 elements.</p>
 						</div>
 					</div>
-					<div class="dib w67 h100 img" style="background-image: url('/images/Fuck-Cubik_mushroom_red.jpg')"></div>
-				</div>
-			</font>
-		</div>
-		<hr>
-		<div class="wrapper">
-			<h1>Better than Cubik</h1>
-			<font size="5">
-				<div style="height: 400px">
-					<div class="dib w67 h100 img" style="background-image: url('/images/Fuck-Cubik_tnt.jpg')"></div>
-					<div class="dt w33 h100">
-						<div class="dtc w100">
-							<ul class="nl bbc16 hal faw">
-								<li>No ads!</li>
-								<li>No costs!</li>
-								<li>No limits!</li>
-								<li>Open source!</li>
-							</ul>
-						</div>
+					<div class="dib fr img w50 h100" style="background-image: url('/images/Fuck-Cubik_tnt.jpg')">
 					</div>
 				</div>
-			</font>
+			</div>
 		</div>
-		<hr>
-		<div class="wrapper">
-			<h1>Get it now!</h1>
-			<font size="7">
-				<div class="hac">
-					<a id="download-latest" href="https://github.com/Fuck-Cubik/Fuck-Cubik/releases/latest" target="_blank" class="button primary"><icon class="arrow-down-white"></icon> Download</a>
-					<script>
-						$(document).ready(function(){
-							$("#download-latest").click(function(){
-								ga('send', 'event', 'button', 'click', 'download-latest');
-							});
-						});
-					</script>
-				</div>
-			</font>
+	</div>
+	<div id="download" class="section" style="background-image: url('/images/cave_with_mushrooms.jpg')">
+		<div class="section-body">
+			<div class="section-content">
+				<h1>Download</h1>
+				<a href="https://github.com/Fuck-Cubik/Fuck-Cubik/releases/latest" target="_blank" class="button primary m2"><icon class="arrow-down-white"></icon> Get the latest version</a>
+			</div>
 		</div>
 	</div>
 	<footer></footer>
