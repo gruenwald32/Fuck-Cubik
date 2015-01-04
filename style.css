@@ -140,18 +140,28 @@ ul.bbc16 li:before {
 
 .dib {
 	display: inline-block;
-	float: left;
 }
 
 .dt {
 	display: table;
-	float: left;
 }
 
 .dtc {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.fn {
+	float: none;
 }
 
 .hal {

@@ -1,3 +1,3 @@
 ﻿$(document).ready(function(){
-	$("header").load("/templates/modern/header.html");
+	$("footer").load("/templates/modern/footer.html");
 });
