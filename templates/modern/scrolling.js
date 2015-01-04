@@ -24,7 +24,6 @@
 					scrollTop: target.offset().top
 				}, 1500);
 			}
-			return false;
 		}
 	});
 	$('a[href=#]').click(function()
@@ -35,7 +34,6 @@
 			{
 				scrollTop: 0
 			}, 1500);
-			return false;
 		}
 	});
 });
