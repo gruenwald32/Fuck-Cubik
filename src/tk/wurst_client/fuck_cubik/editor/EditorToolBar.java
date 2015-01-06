@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JToolBar;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.dialogs.ElementChooser;
+import tk.wurst_client.fuck_cubik.dialogs.ElementManager;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 
 import com.google.gson.Gson;
@@ -23,6 +23,7 @@ public class EditorToolBar extends JToolBar
 	public JButton formatButton;
 	public JButton newElementButton;
 	public JButton elementEditorButton;
+	public JButton elementManagerButton;
 	
 	public EditorToolBar()
 	{
@@ -80,16 +81,26 @@ public class EditorToolBar extends JToolBar
 				}
 			}
 		});
-		this.add(newElementButton);
+		//this.add(newElementButton);
 		elementEditorButton = new JButton("Element editor");
 		elementEditorButton.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				new ElementChooser();
+				new ElementManager();
 			}
 		});
-		this.add(elementEditorButton);
+		//this.add(elementEditorButton);
+		elementManagerButton = new JButton("Element manager");
+		elementManagerButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				new ElementManager();
+			}
+		});
+		this.add(elementManagerButton);
 	}
 }

@@ -1,4 +1,4 @@
-package tk.wurst_client.fuck_cubik.gui.menu.menus;
+package tk.wurst_client.fuck_cubik.gui.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
