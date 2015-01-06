@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.Box;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -33,6 +34,8 @@ public class ElementManager extends JDialog
 	public JButton newButton;
 	public JList<String> elements;
 	public JScrollPane scrollbar;
+	public JButton editButton;
+	public JButton removeButton;
 	
 	public ElementManager()
 	{
@@ -43,6 +46,7 @@ public class ElementManager extends JDialog
 			gson = new GsonBuilder().setPrettyPrinting().create();
 			
 			menu = new JMenuBar();
+			menu.add(Box.createHorizontalGlue());
 			newButton = new JButton("New");
 			newButton.addActionListener(new ActionListener()
 			{
@@ -79,6 +83,27 @@ public class ElementManager extends JDialog
 				}
 			});
 			menu.add(newButton);
+			editButton = new JButton("Edit");
+			editButton.addActionListener(new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent e)
+				{
+					
+				}
+			});
+			menu.add(editButton);
+			removeButton = new JButton("Remove");
+			removeButton.addActionListener(new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent e)
+				{
+					
+				}
+			});
+			menu.add(removeButton);
+			menu.add(Box.createHorizontalGlue());
 			add(menu, BorderLayout.NORTH);
 			elements = new JList<String>(new DefaultListModel<String>());
 			updateList();

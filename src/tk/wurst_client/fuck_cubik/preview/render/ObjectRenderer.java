@@ -66,7 +66,7 @@ public class ObjectRenderer
 			if(textureMap.get(face.textureLink) != null)
 			{
 				if(marked)
-					GL11.glColor3f(1F, 1F, 0F);
+					setGLColorToMarked();
 				else
 					GL11.glColor3f(1F, 1F, 1F);
 				textureMap.get(face.textureLink).bind();
@@ -75,7 +75,7 @@ public class ObjectRenderer
 			}else if(textureMap.get("__missing") != null)
 			{
 				if(marked)
-					GL11.glColor3f(1F, 1F, 0F);
+					setGLColorToMarked();
 				else
 					GL11.glColor3f(1F, 1F, 1F);
 				textureMap.get("__missing").bind();
@@ -84,7 +84,7 @@ public class ObjectRenderer
 			}else
 			{
 				if(marked)
-					GL11.glColor3f(1F, 1F, 0F);
+					setGLColorToMarked();
 				else
 					GL11.glColor3f(1F, 0F, 0.5F);
 				GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
@@ -157,6 +157,14 @@ public class ObjectRenderer
 		}
 	}
 	
+	private void setGLColorToMarked()
+	{
+		float red = (1F - (float)Math.sin((float)(System.currentTimeMillis() % 1000L) / 1000L * Math.PI * 2)) / 2F;
+		float green = (1F - (float)Math.sin((float)((System.currentTimeMillis() + 333L) % 1000L) / 1000L * Math.PI * 2)) / 2F;
+		float blue = (1F - (float)Math.sin((float)((System.currentTimeMillis() + 666L) % 1000L) / 1000L * Math.PI * 2)) / 2F;
+		GL11.glColor3f(red, green, blue);
+	}
+
 	public void clearTextureMap()
 	{
 		textureMap.clear();
