@@ -4,9 +4,9 @@ package tk.wurst_client.fuck_cubik;
 public class VersionManager
 {
 	public static final byte MAJOR_VERSION = 1;
-	public static final byte MINOR_VERSION = 3;
+	public static final byte MINOR_VERSION = 4;
 	public static final byte PATCH = 0;
-	public static final long BUILD = 65;
+	public static final long BUILD = 68;
 	public static final byte PRE_RELEASE = 0;
 	
 	public static final String SIMPLE_VERSION = MAJOR_VERSION
