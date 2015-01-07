@@ -28,7 +28,7 @@ public class ElementEditor extends JDialog
 	
 	public ElementEditor(JsonObject element, int selection)
 	{
-		super(Main.frame, "Edit this element");
+		super(Main.frame, "Element #" + (selection + 1));
 		this.element = element;
 		this.selection = selection;
 		try
@@ -103,7 +103,7 @@ public class ElementEditor extends JDialog
 			pack();
 			if(Main.isSmallScreen)
 				setSize(getSize().width, 660);
-			setLocationRelativeTo(Main.frame);
+			setLocationRelativeTo(Main.frame.desktop.editor);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			setAlwaysOnTop(true);
 			setVisible(true);

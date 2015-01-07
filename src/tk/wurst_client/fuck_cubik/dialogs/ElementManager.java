@@ -13,7 +13,9 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -76,6 +78,8 @@ public class ElementManager extends JDialog
 						Main.frame.desktop.editor.setCode(gson.toJson(json));
 						Main.frame.desktop.preview.toolbar.refreshButton.doClick();
 						updateList();
+						int newElement = elements.getModel().getSize() - 1;
+						new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("elements").getAsJsonArray().get(newElement).getAsJsonObject(), newElement);
 					}catch(Exception e1)
 					{
 						new ErrorMessage("adding new element", e1);
@@ -84,28 +88,41 @@ public class ElementManager extends JDialog
 			});
 			menu.add(newButton);
 			editButton = new JButton("Edit");
+			editButton.setEnabled(false);
 			editButton.addActionListener(new ActionListener()
 			{
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					
+					int selection = elements.getSelectedIndex();
+					new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("elements").getAsJsonArray().get(selection).getAsJsonObject(), selection);
 				}
 			});
 			menu.add(editButton);
 			removeButton = new JButton("Remove");
+			removeButton.setEnabled(false);
 			removeButton.addActionListener(new ActionListener()
 			{
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					
+					int selection = elements.getSelectedIndex();
+					int action = JOptionPane.showConfirmDialog(ElementManager.this, "Are you sure you want to delete Element #" + (selection + 1) + "?", "Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+					if(action == JOptionPane.YES_OPTION)
+					{
+						JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
+						json.get("elements").getAsJsonArray().remove(selection);
+						Main.frame.desktop.editor.setCode(gson.toJson(json));
+						Main.frame.desktop.preview.toolbar.refreshButton.doClick();
+						updateList();
+					}
 				}
 			});
 			menu.add(removeButton);
 			menu.add(Box.createHorizontalGlue());
 			add(menu, BorderLayout.NORTH);
 			elements = new JList<String>(new DefaultListModel<String>());
+			elements.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			updateList();
 			elements.setSelectedIndex(-1);
 			Main.renderer.markedElement = -1;
@@ -114,52 +131,13 @@ public class ElementManager extends JDialog
 				@Override
 				public void valueChanged(ListSelectionEvent e)
 				{
-					Main.renderer.markedElement = e.getFirstIndex();
+					Main.renderer.markedElement = elements.getSelectedIndex();
+					editButton.setEnabled(elements.getSelectedIndex() != -1);
+					removeButton.setEnabled(elements.getSelectedIndex() != -1);
 				}
 			});
 			scrollbar = new JScrollPane(elements);
 			add(scrollbar, BorderLayout.CENTER);
-			
-			/*if(Main.frame.desktop.editor.getCode().isJsonNull())
-				throw new JsonSyntaxException("No code found.");
-			setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-			this.add(Box.createVerticalGlue());
-			elementsCombo = new JComboBox<String>();
-			elementsCombo.setAlignmentX(CENTER_ALIGNMENT);
-			JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
-			if(!json.has("elements"))
-				throw new JsonSyntaxException("No elements found.");
-			for(int i = 0; i < json.get("elements").getAsJsonArray().size(); i++)
-				elementsCombo.addItem("Element #" + (i + 1));
-			elementsCombo.setSelectedIndex(-1);
-			Main.renderer.markedElement = -1;
-			elementsCombo.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent e)
-				{
-					Main.renderer.markedElement = elementsCombo.getSelectedIndex();
-				}
-			});
-			elementsCombo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 24));
-			this.add(elementsCombo);
-			this.add(Box.createVerticalGlue());
-			okButton = new JButton("OK");
-			okButton.setAlignmentX(CENTER_ALIGNMENT);
-			okButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent e)
-				{
-					int selection = elementsCombo.getSelectedIndex();
-					ElementManager.this.dispose();
-					Main.renderer.markedElement = selection;
-					new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("elements").getAsJsonArray().get(selection).getAsJsonObject(), selection);
-				}
-			});
-			okButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 24));
-			this.add(okButton);
-			this.add(Box.createVerticalGlue());*/
 			addWindowListener(new WindowListener()
 			{
 				@Override
