@@ -1,11 +1,9 @@
-package tk.wurst_client.fuck_cubik.editor;
+package tk.wurst_client.fuck_cubik.editor.elementmanager;
 
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import tk.wurst_client.fuck_cubik.dialogs.ElementEditor;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

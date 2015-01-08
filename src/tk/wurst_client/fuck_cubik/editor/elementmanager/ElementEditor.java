@@ -1,8 +1,6 @@
-package tk.wurst_client.fuck_cubik.dialogs;
+package tk.wurst_client.fuck_cubik.editor.elementmanager;
 
 import java.awt.GridLayout;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -13,8 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.editor.FacePanel;
-import tk.wurst_client.fuck_cubik.editor.FromToSpinner;
+import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -56,50 +53,6 @@ public class ElementEditor extends JDialog
 			for(String faceName : faceNames)
 				faces.add(new FacePanel(element, faceName, this));
 			this.add(faces);
-			addWindowListener(new WindowListener()
-			{
-				@Override
-				public void windowOpened(WindowEvent e)
-				{	
-					
-				}
-				
-				@Override
-				public void windowIconified(WindowEvent e)
-				{	
-					
-				}
-				
-				@Override
-				public void windowDeiconified(WindowEvent e)
-				{	
-					
-				}
-				
-				@Override
-				public void windowDeactivated(WindowEvent e)
-				{	
-					
-				}
-				
-				@Override
-				public void windowClosing(WindowEvent e)
-				{
-					Main.renderer.markedElement = -1;
-				}
-				
-				@Override
-				public void windowClosed(WindowEvent e)
-				{	
-					
-				}
-				
-				@Override
-				public void windowActivated(WindowEvent e)
-				{	
-					
-				}
-			});
 			pack();
 			if(Main.isSmallScreen)
 				setSize(getSize().width, 660);

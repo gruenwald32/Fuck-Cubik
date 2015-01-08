@@ -1,4 +1,4 @@
-package tk.wurst_client.fuck_cubik.editor;
+package tk.wurst_client.fuck_cubik.editor.elementmanager;
 
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;

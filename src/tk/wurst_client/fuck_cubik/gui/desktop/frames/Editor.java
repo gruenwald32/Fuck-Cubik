@@ -123,7 +123,7 @@ public class Editor extends AbstractFrame
 	{
 		try
 		{
-			return new JsonParser().parse(Main.frame.desktop.editor.textarea.getDocument().getText(0, Main.frame.desktop.editor.textarea.getDocument().getLength()));
+			return new JsonParser().parse(textarea.getDocument().getText(0, Main.frame.desktop.editor.textarea.getDocument().getLength()));
 		}catch(Exception e)
 		{
 			new ErrorMessage("reading code", e);
@@ -133,6 +133,6 @@ public class Editor extends AbstractFrame
 	
 	public void setCode(String code)
 	{
-		Main.frame.desktop.editor.textarea.setText(code);
+		textarea.setText(code);
 	}
 }

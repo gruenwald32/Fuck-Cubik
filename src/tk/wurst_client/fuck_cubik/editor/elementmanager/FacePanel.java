@@ -1,4 +1,4 @@
-package tk.wurst_client.fuck_cubik.editor;
+package tk.wurst_client.fuck_cubik.editor.elementmanager;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -13,8 +13,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
-
-import tk.wurst_client.fuck_cubik.dialogs.ElementEditor;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

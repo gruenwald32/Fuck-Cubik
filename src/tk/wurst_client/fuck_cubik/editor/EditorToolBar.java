@@ -7,8 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JToolBar;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.dialogs.ElementManager;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.editor.elementmanager.ElementManager;
+import tk.wurst_client.fuck_cubik.editor.texturemanager.TextureManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,6 +21,7 @@ public class EditorToolBar extends JToolBar
 	
 	public JButton formatButton;
 	public JButton elementManagerButton;
+	public JButton textureManagerButton;
 	
 	public EditorToolBar()
 	{
@@ -53,5 +55,15 @@ public class EditorToolBar extends JToolBar
 			}
 		});
 		this.add(elementManagerButton);
+		textureManagerButton = new JButton("Texture manager");
+		textureManagerButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				new TextureManager();
+			}
+		});
+		this.add(textureManagerButton);
 	}
 }
