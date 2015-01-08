@@ -3,6 +3,7 @@ package tk.wurst_client.fuck_cubik.editor.texturemanager;
 import java.awt.BorderLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Map.Entry;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
@@ -15,12 +16,13 @@ import javax.swing.event.ListSelectionListener;
 import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class TextureManager extends JDialog
 {
 	public TextureManagerToolBar toolbar;
-	public JList<String> elements;
+	public JList<String> textures;
 	public JScrollPane scrollbar;
 	
 	public TextureManager()
@@ -31,22 +33,20 @@ public class TextureManager extends JDialog
 			setLayout(new BorderLayout());
 			toolbar = new TextureManagerToolBar(this);
 			add(toolbar, BorderLayout.NORTH);
-			elements = new JList<String>(new DefaultListModel<String>());
-			elements.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			textures = new JList<String>(new DefaultListModel<String>());
+			textures.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			updateList();
-			elements.setSelectedIndex(-1);
-			Main.renderer.markedElement = -1;
-			elements.addListSelectionListener(new ListSelectionListener()
+			textures.setSelectedIndex(-1);
+			textures.addListSelectionListener(new ListSelectionListener()
 			{
 				@Override
 				public void valueChanged(ListSelectionEvent e)
 				{
-					Main.renderer.markedElement = elements.getSelectedIndex();
-					toolbar.editButton.setEnabled(elements.getSelectedIndex() != -1);
-					toolbar.removeButton.setEnabled(elements.getSelectedIndex() != -1);
+					toolbar.editButton.setEnabled(textures.getSelectedIndex() != -1);
+					toolbar.removeButton.setEnabled(textures.getSelectedIndex() != -1);
 				}
 			});
-			scrollbar = new JScrollPane(elements);
+			scrollbar = new JScrollPane(textures);
 			add(scrollbar, BorderLayout.CENTER);
 			addWindowListener(new WindowListener()
 			{
@@ -99,18 +99,18 @@ public class TextureManager extends JDialog
 			setVisible(true);
 		}catch(Exception e)
 		{
-			new ErrorMessage("loading elements", e);
+			new ErrorMessage("loading textures", e);
 		}
 	}
 	
 	public void updateList()
 	{
-		((DefaultListModel<String>)elements.getModel()).clear();
+		((DefaultListModel<String>)textures.getModel()).clear();
 		try
 		{
 			JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
-			for(int i = 0; i < json.get("elements").getAsJsonArray().size(); i++)
-				((DefaultListModel<String>)elements.getModel()).addElement("Element #" + (i + 1));
+			for(Entry<String, JsonElement> entry : json.get("textures").getAsJsonObject().entrySet())
+				((DefaultListModel<String>)textures.getModel()).addElement("#" + entry.getKey());
 		}catch(Exception e)
 		{
 			

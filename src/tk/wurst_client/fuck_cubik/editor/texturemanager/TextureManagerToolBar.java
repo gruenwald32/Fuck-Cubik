@@ -9,11 +9,9 @@ import javax.swing.JToolBar;
 
 import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
-import tk.wurst_client.fuck_cubik.editor.elementmanager.ElementEditor;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 public class TextureManagerToolBar extends JToolBar
@@ -38,29 +36,17 @@ public class TextureManagerToolBar extends JToolBar
 					if(Main.frame.desktop.editor.getCode().isJsonNull())
 						Main.frame.desktop.editor.setCode(gson.toJson(new JsonObject()));
 					JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
-					JsonObject element = new JsonObject();
-					element.add("from", gson.toJsonTree(new int[]{0, 0, 0}));
-					element.add("to", gson.toJsonTree(new int[]{16, 16, 16}));
-					element.add("faces", new JsonObject());
-					String[] faceNames = new String[]{"up", "down", "north", "south", "west", "east"};
-					for(int i = 0; i < 6; i++)
-					{
-						JsonObject face = new JsonObject();
-						face.add("uv", gson.toJsonTree(new int[]{0, 0, 16, 16}));
-						face.add("texture", gson.toJsonTree("#"));
-						element.get("faces").getAsJsonObject().add(faceNames[i], face);
-					}
-					if(!json.has("elements"))
-						json.add("elements", new JsonArray());
-					json.get("elements").getAsJsonArray().add(element);
+					if(!json.has("textures"))
+						json.add("textures", new JsonObject());
+					json.get("textures").getAsJsonObject().addProperty("unnamed" + (int)(Math.random() * 1000), "");
 					Main.frame.desktop.editor.setCode(gson.toJson(json));
 					Main.frame.desktop.preview.toolbar.refreshButton.doClick();
 					textureManager.updateList();
-					int newElement = textureManager.elements.getModel().getSize() - 1;
-					new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("elements").getAsJsonArray().get(newElement).getAsJsonObject(), newElement);
+					int newTexture = textureManager.textures.getModel().getSize() - 1;
+					//FIXME:new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("textures").getAsJsonArray().get(newTexture).getAsJsonObject(), newTexture);
 				}catch(Exception e1)
 				{
-					new ErrorMessage("adding new element", e1);
+					new ErrorMessage("adding new texture", e1);
 				}
 			}
 		});
@@ -72,8 +58,8 @@ public class TextureManagerToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				int selection = textureManager.elements.getSelectedIndex();
-				new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("elements").getAsJsonArray().get(selection).getAsJsonObject(), selection);
+				int selection = textureManager.textures.getSelectedIndex();
+				//FIXME:new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("textures").getAsJsonArray().get(selection).getAsJsonObject(), selection);
 			}
 		});
 		add(editButton);
@@ -84,12 +70,12 @@ public class TextureManagerToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				int selection = textureManager.elements.getSelectedIndex();
-				int action = JOptionPane.showConfirmDialog(TextureManagerToolBar.this, "Are you sure you want to delete Element #" + (selection + 1) + "?", "Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				String selection = textureManager.textures.getSelectedValue();
+				int action = JOptionPane.showConfirmDialog(TextureManagerToolBar.this, "Are you sure you want to delete the texture \"" + selection + "\"?", "Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if(action == JOptionPane.YES_OPTION)
 				{
 					JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
-					json.get("elements").getAsJsonArray().remove(selection);
+					json.get("textures").getAsJsonObject().remove(selection.substring(1));
 					Main.frame.desktop.editor.setCode(gson.toJson(json));
 					Main.frame.desktop.preview.toolbar.refreshButton.doClick();
 					textureManager.updateList();

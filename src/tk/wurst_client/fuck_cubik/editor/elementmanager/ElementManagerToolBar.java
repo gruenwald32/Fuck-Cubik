@@ -84,7 +84,7 @@ public class ElementManagerToolBar extends JToolBar
 			public void actionPerformed(ActionEvent e)
 			{
 				int selection = elementManager.elements.getSelectedIndex();
-				int action = JOptionPane.showConfirmDialog(ElementManagerToolBar.this, "Are you sure you want to delete Element #" + (selection + 1) + "?", "Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				int action = JOptionPane.showConfirmDialog(ElementManagerToolBar.this, "Are you sure you want to delete element #" + (selection + 1) + "?", "Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if(action == JOptionPane.YES_OPTION)
 				{
 					JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
