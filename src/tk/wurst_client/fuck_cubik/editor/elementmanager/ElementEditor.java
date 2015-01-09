@@ -38,20 +38,20 @@ public class ElementEditor extends JDialog
 			fromto.add(new JLabel("Y", SwingConstants.CENTER));
 			fromto.add(new JLabel("Z", SwingConstants.CENTER));
 			fromto.add(new JLabel("From: ", JLabel.RIGHT));
-			fromto.add(new FromToSpinner(element.get("from").getAsJsonArray(), 0, this));
-			fromto.add(new FromToSpinner(element.get("from").getAsJsonArray(), 1, this));
-			fromto.add(new FromToSpinner(element.get("from").getAsJsonArray(), 2, this));
+			fromto.add(new ElementFromToSpinner(element.get("from").getAsJsonArray(), 0, this));
+			fromto.add(new ElementFromToSpinner(element.get("from").getAsJsonArray(), 1, this));
+			fromto.add(new ElementFromToSpinner(element.get("from").getAsJsonArray(), 2, this));
 			fromto.add(new JLabel("To: ", JLabel.RIGHT));
-			fromto.add(new FromToSpinner(element.get("to").getAsJsonArray(), 0, this));
-			fromto.add(new FromToSpinner(element.get("to").getAsJsonArray(), 1, this));
-			fromto.add(new FromToSpinner(element.get("to").getAsJsonArray(), 2, this));
+			fromto.add(new ElementFromToSpinner(element.get("to").getAsJsonArray(), 0, this));
+			fromto.add(new ElementFromToSpinner(element.get("to").getAsJsonArray(), 1, this));
+			fromto.add(new ElementFromToSpinner(element.get("to").getAsJsonArray(), 2, this));
 			this.add(fromto);
 			faces = new JPanel();
 			faces.setLayout(new BoxLayout(faces, BoxLayout.Y_AXIS));
 			faces.setBorder(BorderFactory.createTitledBorder("Faces"));
 			String[] faceNames = new String[]{"up", "down", "north", "south", "west", "east"};
 			for(String faceName : faceNames)
-				faces.add(new FacePanel(element, faceName, this));
+				faces.add(new ElementFacePanel(element, faceName, this));
 			this.add(faces);
 			pack();
 			if(Main.isSmallScreen)

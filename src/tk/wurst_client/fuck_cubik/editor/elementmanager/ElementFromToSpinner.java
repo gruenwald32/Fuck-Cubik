@@ -8,13 +8,13 @@ import javax.swing.event.ChangeListener;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
-public class FromToSpinner extends JSpinner
+public class ElementFromToSpinner extends JSpinner
 {
 	private JsonArray array;
 	private int index;
 	private ElementEditor elementEditor;
 	
-	public FromToSpinner(JsonArray array, int index, ElementEditor elementEditor)
+	public ElementFromToSpinner(JsonArray array, int index, ElementEditor elementEditor)
 	{
 		super(new SpinnerNumberModel(array.get(index).getAsDouble(), -16D, 32D, 0.1D));
 		this.array = array;
@@ -25,8 +25,8 @@ public class FromToSpinner extends JSpinner
 			@Override
 			public void stateChanged(ChangeEvent e)
 			{
-				FromToSpinner.this.array.set(FromToSpinner.this.index, new Gson().toJsonTree((double)FromToSpinner.this.getValue()));
-				FromToSpinner.this.elementEditor.updateCode();
+				ElementFromToSpinner.this.array.set(ElementFromToSpinner.this.index, new Gson().toJsonTree((double)ElementFromToSpinner.this.getValue()));
+				ElementFromToSpinner.this.elementEditor.updateCode();
 			}
 		});
 	}

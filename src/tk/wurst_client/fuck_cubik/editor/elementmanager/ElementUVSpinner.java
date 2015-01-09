@@ -8,13 +8,13 @@ import javax.swing.event.ChangeListener;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
-public class UVSpinner extends JSpinner
+public class ElementUVSpinner extends JSpinner
 {
 	public JsonArray array;
 	public int index;
-	public FacePanel facePanel;
+	public ElementFacePanel facePanel;
 	
-	public UVSpinner(int index, FacePanel facePanel)
+	public ElementUVSpinner(int index, ElementFacePanel facePanel)
 	{
 		super(new SpinnerNumberModel(0, 0, 16, 1));
 		this.index = index;
@@ -24,10 +24,10 @@ public class UVSpinner extends JSpinner
 			@Override
 			public void stateChanged(ChangeEvent e)
 			{
-				if(UVSpinner.this.array != null)
+				if(ElementUVSpinner.this.array != null)
 				{
-					UVSpinner.this.array.set(UVSpinner.this.index, new Gson().toJsonTree((int)UVSpinner.this.getValue()));
-					UVSpinner.this.facePanel.elementEditor.updateCode();
+					ElementUVSpinner.this.array.set(ElementUVSpinner.this.index, new Gson().toJsonTree((int)ElementUVSpinner.this.getValue()));
+					ElementUVSpinner.this.facePanel.elementEditor.updateCode();
 				}
 			}
 		});

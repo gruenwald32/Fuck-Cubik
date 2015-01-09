@@ -19,7 +19,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-public class FacePanel extends JPanel
+public class ElementFacePanel extends JPanel
 {
 	public JsonObject element;
 	public String faceName;
@@ -28,14 +28,14 @@ public class FacePanel extends JPanel
 	public JsonObject face;
 	public JCheckBox enabled;
 	public JsonArray uvArray;
-	public UVSpinner x1;
-	public UVSpinner x2;
-	public UVSpinner y1;
-	public UVSpinner y2;
+	public ElementUVSpinner x1;
+	public ElementUVSpinner x2;
+	public ElementUVSpinner y1;
+	public ElementUVSpinner y2;
 	public JTextField texture;
 	public JButton autoUV;
 	
-	public FacePanel(JsonObject element, String faceName, ElementEditor elementEditor)
+	public ElementFacePanel(JsonObject element, String faceName, ElementEditor elementEditor)
 	{
 		super(new GridLayout(3, 4));
 		this.element = element;
@@ -63,13 +63,13 @@ public class FacePanel extends JPanel
 					face.add("uv", gson.toJsonTree(new int[]{0, 0, 16, 16}));
 					face.add("texture", gson.toJsonTree("#"));
 					texture.setText("#");
-					FacePanel.this.element.get("faces").getAsJsonObject().add(FacePanel.this.faceName, face);
+					ElementFacePanel.this.element.get("faces").getAsJsonObject().add(ElementFacePanel.this.faceName, face);
 				}else
 				{
 					face = null;
-					FacePanel.this.element.get("faces").getAsJsonObject().remove(FacePanel.this.faceName);
+					ElementFacePanel.this.element.get("faces").getAsJsonObject().remove(ElementFacePanel.this.faceName);
 				}
-				FacePanel.this.elementEditor.updateCode();
+				ElementFacePanel.this.elementEditor.updateCode();
 				updateSpinners();
 			}
 		});
@@ -95,15 +95,15 @@ public class FacePanel extends JPanel
 					Gson gson = new GsonBuilder().setPrettyPrinting().create();
 					face.remove("texture");
 					face.add("texture", gson.toJsonTree(texture.getText()));
-					FacePanel.this.elementEditor.updateCode();
+					ElementFacePanel.this.elementEditor.updateCode();
 				}
 			}
 		});
 		this.add(texture);
 		this.add(new JLabel("From: ", JLabel.RIGHT));
-		x1 = new UVSpinner(0, this);
+		x1 = new ElementUVSpinner(0, this);
 		this.add(x1);
-		x2 = new UVSpinner(1, this);
+		x2 = new ElementUVSpinner(1, this);
 		this.add(x2);
 		autoUV = new JButton("Automatic UV mapping");
 		autoUV.addActionListener(new ActionListener()
@@ -112,48 +112,48 @@ public class FacePanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				Gson gson = new GsonBuilder().setPrettyPrinting().create();
-				JsonArray from = FacePanel.this.element.get("from").getAsJsonArray();
-				JsonArray to = FacePanel.this.element.get("to").getAsJsonArray();
-				if(FacePanel.this.faceName.equals("up") || FacePanel.this.faceName.equals("down"))
+				JsonArray from = ElementFacePanel.this.element.get("from").getAsJsonArray();
+				JsonArray to = ElementFacePanel.this.element.get("to").getAsJsonArray();
+				if(ElementFacePanel.this.faceName.equals("up") || ElementFacePanel.this.faceName.equals("down"))
 				{
 					uvArray.set(0, gson.toJsonTree(from.get(0).getAsInt()));
 					uvArray.set(1, gson.toJsonTree(from.get(2).getAsInt()));
 					uvArray.set(2, gson.toJsonTree(to.get(0).getAsInt()));
 					uvArray.set(3, gson.toJsonTree(to.get(2).getAsInt()));
-				}else if(FacePanel.this.faceName.equals("north"))
+				}else if(ElementFacePanel.this.faceName.equals("north"))
 				{
 					uvArray.set(0, gson.toJsonTree(16 - to.get(0).getAsInt()));
 					uvArray.set(1, gson.toJsonTree(16 - to.get(1).getAsInt()));
 					uvArray.set(2, gson.toJsonTree(16 - from.get(0).getAsInt()));
 					uvArray.set(3, gson.toJsonTree(16 - from.get(1).getAsInt()));
-				}else if(FacePanel.this.faceName.equals("south"))
+				}else if(ElementFacePanel.this.faceName.equals("south"))
 				{
 					uvArray.set(0, gson.toJsonTree(from.get(0).getAsInt()));
 					uvArray.set(1, gson.toJsonTree(16 - to.get(1).getAsInt()));
 					uvArray.set(2, gson.toJsonTree(to.get(0).getAsInt()));
 					uvArray.set(3, gson.toJsonTree(16 - from.get(1).getAsInt()));
-				}else if(FacePanel.this.faceName.equals("west"))
+				}else if(ElementFacePanel.this.faceName.equals("west"))
 				{
 					uvArray.set(0, gson.toJsonTree(from.get(2).getAsInt()));
 					uvArray.set(1, gson.toJsonTree(16 - to.get(1).getAsInt()));
 					uvArray.set(2, gson.toJsonTree(to.get(2).getAsInt()));
 					uvArray.set(3, gson.toJsonTree(16 - from.get(1).getAsInt()));
-				}else if(FacePanel.this.faceName.equals("east"))
+				}else if(ElementFacePanel.this.faceName.equals("east"))
 				{
 					uvArray.set(0, gson.toJsonTree(16 - to.get(2).getAsInt()));
 					uvArray.set(1, gson.toJsonTree(16 - to.get(1).getAsInt()));
 					uvArray.set(2, gson.toJsonTree(16 - from.get(2).getAsInt()));
 					uvArray.set(3, gson.toJsonTree(16 - from.get(1).getAsInt()));
 				}
-				FacePanel.this.elementEditor.updateCode();
+				ElementFacePanel.this.elementEditor.updateCode();
 				updateSpinners();
 			}
 		});
 		this.add(autoUV);
 		this.add(new JLabel("To: ", JLabel.RIGHT));
-		y1 = new UVSpinner(2, this);
+		y1 = new ElementUVSpinner(2, this);
 		this.add(y1);
-		y2 = new UVSpinner(3, this);
+		y2 = new ElementUVSpinner(3, this);
 		this.add(y2);
 		updateSpinners();
 	}
