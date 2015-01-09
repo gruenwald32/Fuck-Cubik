@@ -68,12 +68,13 @@
 			<div class="section-content">
 				<h1>Download</h1>
 				<a id="download-latest" href="https://github.com/Fuck-Cubik/Fuck-Cubik/releases/latest" target="_blank" class="button primary m2"><icon class="arrow-down-white"></icon> Get the latest version</a>
- 					<script>
- 						$(document).ready(function(){
-+							$("#download-latest").click(function(){
- 								ga('send', 'event', 'button', 'click', 'download-latest');
- 							});
- 						});
+				<script>
+					$(document).ready(function(){
+						$("#download-latest").click(function(){
+							ga('send', 'event', 'button', 'click', 'download-latest');
+						});
+					});
+				</script>
 			</div>
 		</div>
 	</div>
