@@ -38,12 +38,12 @@ public class TextureManagerToolBar extends JToolBar
 					JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
 					if(!json.has("textures"))
 						json.add("textures", new JsonObject());
-					json.get("textures").getAsJsonObject().addProperty("unnamed" + (int)(Math.random() * 1000), "");
+					String name = "unnamed" + (int)(Math.random() * 1000);
+					json.get("textures").getAsJsonObject().addProperty(name, "");
 					Main.frame.desktop.editor.setCode(gson.toJson(json));
 					Main.frame.desktop.preview.toolbar.refreshButton.doClick();
 					textureManager.updateList();
-					int newTexture = textureManager.textures.getModel().getSize() - 1;
-					//FIXME:new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("textures").getAsJsonArray().get(newTexture).getAsJsonObject(), newTexture);
+					new TextureEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("textures").getAsJsonObject(), "#" + name);
 				}catch(Exception e1)
 				{
 					new ErrorMessage("adding new texture", e1);
@@ -58,8 +58,8 @@ public class TextureManagerToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				int selection = textureManager.textures.getSelectedIndex();
-				//FIXME:new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("textures").getAsJsonArray().get(selection).getAsJsonObject(), selection);
+				String selection = textureManager.textures.getSelectedValue();
+				new TextureEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("textures").getAsJsonObject(), selection);
 			}
 		});
 		add(editButton);

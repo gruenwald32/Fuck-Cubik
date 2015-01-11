@@ -3,6 +3,7 @@ package tk.wurst_client.fuck_cubik.editor.texturemanager;
 import java.awt.GridLayout;
 
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 
 import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
@@ -13,16 +14,20 @@ import com.google.gson.JsonObject;
 public class TextureEditor extends JDialog
 {
 	public JsonObject element;
-	public int selection;
+	public String name;
 	
-	public TextureEditor(JsonObject textures, int selection)
+	public TextureEditor(JsonObject textures, String name)
 	{
-		super(Main.frame, "Element #" + (selection + 1));
+		super(Main.frame, name);
 		this.element = textures;
-		this.selection = selection;
+		this.name = name;
 		try
 		{
 			setLayout(new GridLayout(2, 2));
+			add(new JLabel("Name: "));
+			add(new JLabel("Test"));
+			add(new JLabel("Path: "));
+			add(new JLabel("Test"));
 			pack();
 			setLocationRelativeTo(Main.frame.desktop.editor);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -39,13 +44,13 @@ public class TextureEditor extends JDialog
 		try
 		{
 			JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
-			json.get("textures").getAsJsonArray().set(selection, element);
+			json.get("textures").getAsJsonObject().remove(name);
+			json.get("textures").getAsJsonObject().addProperty(name, "");
 			Main.frame.desktop.editor.setCode(new GsonBuilder().setPrettyPrinting().create().toJson(json));
 			Main.renderer.refresh();
-			Main.renderer.markedElement = selection;
 		}catch(Exception e)
 		{
-			new ErrorMessage("changing code through the element editor", e);
+			new ErrorMessage("changing code through the texture editor", e);
 		}
 	}
 }
