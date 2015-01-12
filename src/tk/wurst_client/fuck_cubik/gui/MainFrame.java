@@ -6,10 +6,10 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-import tk.wurst_client.fuck_cubik.VersionManager;
 import tk.wurst_client.fuck_cubik.files.ResourceManager;
 import tk.wurst_client.fuck_cubik.gui.desktop.DesktopPane;
 import tk.wurst_client.fuck_cubik.gui.menu.MenuBar;
+import tk.wurst_client.fuck_cubik.update.VersionManager;
 
 public class MainFrame extends JFrame
 {

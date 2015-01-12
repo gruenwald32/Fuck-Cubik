@@ -14,9 +14,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.VersionManager;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.files.ResourceManager;
+import tk.wurst_client.fuck_cubik.update.VersionManager;
 
 public class HelpMenu extends JMenu
 {

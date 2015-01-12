@@ -195,7 +195,7 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 	 */
 	@Override
 	public void resetSession()
-	{
+	{//TODO: Save & load cookies!
 		cookie1 = random.nextInt();
 		cookie2 = random.nextInt();
 	}

@@ -1,4 +1,4 @@
-package tk.wurst_client.fuck_cubik;
+package tk.wurst_client.fuck_cubik.update;
 
 @SuppressWarnings("unused")
 public class VersionManager

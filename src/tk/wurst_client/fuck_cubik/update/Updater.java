@@ -1,4 +1,4 @@
-package tk.wurst_client.fuck_cubik.updater;
+package tk.wurst_client.fuck_cubik.update;
 
 import java.awt.Desktop;
 import java.io.BufferedReader;
@@ -9,7 +9,6 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 import javax.swing.JOptionPane;
 
-import tk.wurst_client.fuck_cubik.VersionManager;
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 
 import com.google.gson.JsonArray;

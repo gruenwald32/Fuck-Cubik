@@ -20,7 +20,7 @@ public class Tracker
 	
 	public void trackPageView(String url, String title)
 	{
-		tracker.trackPageView("/" + url + "/", title, HOSTNAME);
+		tracker.trackPageView(url, title, HOSTNAME);
 	}
 	
 	public void trackPageViewFromReferrer(String url, String title, String referrerSite, String referrerPage)

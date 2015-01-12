@@ -12,7 +12,7 @@ import tk.wurst_client.fuck_cubik.gui.MainFrame;
 import tk.wurst_client.fuck_cubik.preview.InputListener;
 import tk.wurst_client.fuck_cubik.preview.render.Renderer;
 import tk.wurst_client.fuck_cubik.tracking.Tracker;
-import tk.wurst_client.fuck_cubik.updater.Updater;
+import tk.wurst_client.fuck_cubik.update.Updater;
 
 public class Main
 {
@@ -29,7 +29,7 @@ public class Main
 		{
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			tracker = new Tracker("UA-52838431-4", "fuck-cubik.wurst-client.tk");
-			tracker.trackPageView("/test/", "Test");
+			tracker.trackPageView("/start/", "Start");
 			isSmallScreen = Toolkit.getDefaultToolkit().getScreenSize().height < 860 || Toolkit.getDefaultToolkit().getScreenSize().width < 1216;
 			updater = new Updater();
 			updater.checkForUpdate();
