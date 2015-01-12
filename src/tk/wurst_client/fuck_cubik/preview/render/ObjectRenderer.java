@@ -164,7 +164,7 @@ public class ObjectRenderer
 		float blue = (1F - (float)Math.sin((float)((System.currentTimeMillis() + 666L) % 1000L) / 1000L * Math.PI * 2)) / 2F;
 		GL11.glColor3f(red, green, blue);
 	}
-
+	
 	public void clearTextureMap()
 	{
 		textureMap.clear();

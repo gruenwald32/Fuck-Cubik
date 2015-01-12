@@ -41,15 +41,6 @@ public class Main
 			frame = new MainFrame();
 			renderer = new Renderer();
 			inputListener = new InputListener();
-			Runtime.getRuntime().addShutdownHook(
-				new Thread(new Runnable()
-				{
-					@Override
-					public void run()
-					{
-						tracker.trackPageView("/stop/", "Stop");
-					}
-				}));
 			Display.setParent(frame.desktop.preview.canvas);
 			Display.setVSyncEnabled(true);
 			Display.setDisplayMode(isSmallScreen ? new DisplayMode(400, 400) : new DisplayMode(600, 600));

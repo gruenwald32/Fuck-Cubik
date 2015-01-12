@@ -4,11 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.files.FileManager;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class OptionsManager
 {
@@ -17,9 +17,7 @@ public class OptionsManager
 		if(FileManager.OPTIONS_FILE.exists() || FileManager.OPTIONS_FILE_FALLBACK.exists())
 			return load();
 		else
-		{
 			return save(new Options());
-		}
 	}
 	
 	private static Options load()

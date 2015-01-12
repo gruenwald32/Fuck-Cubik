@@ -19,7 +19,7 @@ public class TextureEditor extends JDialog
 	public TextureEditor(JsonObject textures, String name)
 	{
 		super(Main.frame, name);
-		this.element = textures;
+		element = textures;
 		this.name = name;
 		try
 		{

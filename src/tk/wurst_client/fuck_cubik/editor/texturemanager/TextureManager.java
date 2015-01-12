@@ -112,7 +112,7 @@ public class TextureManager extends JDialog
 			for(Entry<String, JsonElement> entry : json.get("textures").getAsJsonObject().entrySet())
 				((DefaultListModel<String>)textures.getModel()).addElement("#" + entry.getKey());
 		}catch(Exception e)
-		{
+		{	
 			
 		}
 	}

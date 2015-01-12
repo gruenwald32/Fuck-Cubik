@@ -112,7 +112,7 @@ public class ElementManager extends JDialog
 			for(int i = 0; i < json.get("elements").getAsJsonArray().size(); i++)
 				((DefaultListModel<String>)elements.getModel()).addElement("Element #" + (i + 1));
 		}catch(Exception e)
-		{
+		{	
 			
 		}
 	}

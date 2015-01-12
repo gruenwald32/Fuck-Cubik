@@ -74,7 +74,7 @@ public class ElementFacePanel extends JPanel
 			}
 		});
 		this.add(enabled);
-		this.add(new JLabel("UV ", JLabel.RIGHT));
+		this.add(new JLabel("UV ", SwingConstants.RIGHT));
 		this.add(new JLabel("X", SwingConstants.CENTER));
 		this.add(new JLabel("Y", SwingConstants.CENTER));
 		texture = new JTextField();
@@ -82,7 +82,7 @@ public class ElementFacePanel extends JPanel
 		{
 			texture.setText(face.get("texture").getAsString());
 		}catch(Exception e)
-		{
+		{	
 			
 		}
 		texture.getDocument().addUndoableEditListener(new UndoableEditListener()
@@ -100,7 +100,7 @@ public class ElementFacePanel extends JPanel
 			}
 		});
 		this.add(texture);
-		this.add(new JLabel("From: ", JLabel.RIGHT));
+		this.add(new JLabel("From: ", SwingConstants.RIGHT));
 		x1 = new ElementUVSpinner(0, this);
 		this.add(x1);
 		x2 = new ElementUVSpinner(1, this);
@@ -150,7 +150,7 @@ public class ElementFacePanel extends JPanel
 			}
 		});
 		this.add(autoUV);
-		this.add(new JLabel("To: ", JLabel.RIGHT));
+		this.add(new JLabel("To: ", SwingConstants.RIGHT));
 		y1 = new ElementUVSpinner(2, this);
 		this.add(y1);
 		y2 = new ElementUVSpinner(3, this);

@@ -24,9 +24,9 @@ public class ElementUVSpinner extends JSpinner
 			@Override
 			public void stateChanged(ChangeEvent e)
 			{
-				if(ElementUVSpinner.this.array != null)
+				if(array != null)
 				{
-					ElementUVSpinner.this.array.set(ElementUVSpinner.this.index, new Gson().toJsonTree((int)ElementUVSpinner.this.getValue()));
+					array.set(ElementUVSpinner.this.index, new Gson().toJsonTree((int)ElementUVSpinner.this.getValue()));
 					ElementUVSpinner.this.facePanel.elementEditor.updateCode();
 				}
 			}

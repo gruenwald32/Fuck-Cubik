@@ -9,6 +9,13 @@ public class ErrorMessage
 	public ErrorMessage(String action, Exception e)
 	{
 		e.printStackTrace();
+		if(Main.options.google_analytics.report_errors)
+		{
+			if(e.getMessage() != null && !e.getMessage().isEmpty())
+				Main.tracker.trackEvent("error", action, e.getMessage());
+			else
+				Main.tracker.trackEvent("error", action);
+		}
 		String message = "<html>"
 			+ "<body width=\"256px\">"
 			+ "<p>Exception while " + action + ":</p>"

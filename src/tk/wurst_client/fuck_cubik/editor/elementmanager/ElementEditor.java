@@ -37,11 +37,11 @@ public class ElementEditor extends JDialog
 			fromto.add(new JLabel("X", SwingConstants.CENTER));
 			fromto.add(new JLabel("Y", SwingConstants.CENTER));
 			fromto.add(new JLabel("Z", SwingConstants.CENTER));
-			fromto.add(new JLabel("From: ", JLabel.RIGHT));
+			fromto.add(new JLabel("From: ", SwingConstants.RIGHT));
 			fromto.add(new ElementFromToSpinner(element.get("from").getAsJsonArray(), 0, this));
 			fromto.add(new ElementFromToSpinner(element.get("from").getAsJsonArray(), 1, this));
 			fromto.add(new ElementFromToSpinner(element.get("from").getAsJsonArray(), 2, this));
-			fromto.add(new JLabel("To: ", JLabel.RIGHT));
+			fromto.add(new JLabel("To: ", SwingConstants.RIGHT));
 			fromto.add(new ElementFromToSpinner(element.get("to").getAsJsonArray(), 0, this));
 			fromto.add(new ElementFromToSpinner(element.get("to").getAsJsonArray(), 1, this));
 			fromto.add(new ElementFromToSpinner(element.get("to").getAsJsonArray(), 2, this));
