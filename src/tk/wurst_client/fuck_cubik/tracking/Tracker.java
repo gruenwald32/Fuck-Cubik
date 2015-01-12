@@ -32,4 +32,19 @@ public class Tracker
 	{
 		tracker.trackPageViewFromSearch(url, title, HOSTNAME, searchSite, keywords);
 	}
+	
+	public void trackEvent(String category, String action)
+	{
+		tracker.trackEvent(category, action);
+	}
+	
+	public void trackEvent(String category, String action, String label)
+	{
+		tracker.trackEvent(category, action, label);
+	}
+	
+	public void trackEvent(String category, String action, String label, int value)
+	{
+		tracker.trackEvent(category, action, label, new Integer(value));
+	}
 }

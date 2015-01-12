@@ -9,6 +9,8 @@ import org.lwjgl.opengl.DisplayMode;
 
 import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.gui.MainFrame;
+import tk.wurst_client.fuck_cubik.options.Options;
+import tk.wurst_client.fuck_cubik.options.OptionsManager;
 import tk.wurst_client.fuck_cubik.preview.InputListener;
 import tk.wurst_client.fuck_cubik.preview.render.Renderer;
 import tk.wurst_client.fuck_cubik.tracking.Tracker;
@@ -16,11 +18,13 @@ import tk.wurst_client.fuck_cubik.update.Updater;
 
 public class Main
 {
+	public static Options options;
+	public static Tracker tracker;
 	public static Updater updater;
 	public static MainFrame frame;
 	public static Renderer renderer;
 	public static InputListener inputListener;
-	public static Tracker tracker;
+	
 	public static boolean isSmallScreen;
 	
 	public static void main(String[] args)
@@ -28,6 +32,7 @@ public class Main
 		try
 		{
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			options = OptionsManager.getOptions();
 			tracker = new Tracker("UA-52838431-4", "fuck-cubik.wurst-client.tk");
 			tracker.trackPageView("/start/", "Start");
 			isSmallScreen = Toolkit.getDefaultToolkit().getScreenSize().height < 860 || Toolkit.getDefaultToolkit().getScreenSize().width < 1216;
@@ -36,6 +41,15 @@ public class Main
 			frame = new MainFrame();
 			renderer = new Renderer();
 			inputListener = new InputListener();
+			Runtime.getRuntime().addShutdownHook(
+				new Thread(new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						tracker.trackPageView("/stop/", "Stop");
+					}
+				}));
 			Display.setParent(frame.desktop.preview.canvas);
 			Display.setVSyncEnabled(true);
 			Display.setDisplayMode(isSmallScreen ? new DisplayMode(400, 400) : new DisplayMode(600, 600));
@@ -53,6 +67,7 @@ public class Main
 			System.exit(0);
 		}catch(Exception e)
 		{
+			tracker.trackPageView("/crash/", "Crash");
 			new ErrorMessage("running Fuck Cubik", e);
 			System.exit(-1);
 		}finally

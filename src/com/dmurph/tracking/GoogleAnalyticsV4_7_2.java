@@ -27,6 +27,8 @@ package com.dmurph.tracking;
 
 import java.util.Random;
 
+import tk.wurst_client.fuck_cubik.Main;
+
 /**
  * http://code.google.com/apis/analytics/docs/tracking/gaTrackingTroubleshooting
  * .html#gifParameters
@@ -40,8 +42,6 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 	
 	private AnalyticsConfigData config;
 	private Random random = new Random((long)(Math.random() * Long.MAX_VALUE));
-	private int cookie1;
-	private int cookie2;
 	
 	public GoogleAnalyticsV4_7_2(AnalyticsConfigData argConfig)
 	{
@@ -131,7 +131,7 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 		String utmcct = getURIString(argData.getUtmcct());
 		
 		// yes, this did take a while to figure out
-		sb.append("&utmcc=__utma%3D" + cookie1 + "." + cookie2 + "." + now + "." + now + "." + now + "." + "13%3B%2B__utmz%3D" + cookie1 + "." + now + ".1.1.utmcsr%3D" + utmcsr + "%7Cutmccn%3D" + utmccn + "%7utmcmd%3D" + utmcmd + (utmctr != null ? "%7Cutmctr%3D" + utmctr : "") + (utmcct != null ? "%7Cutmcct%3D" + utmcct : "") + "%3B&gaq=1");
+		sb.append("&utmcc=__utma%3D" + Main.options.google_analytics.cookie1 + "." + Main.options.google_analytics.cookie2 + "." + now + "." + now + "." + now + "." + "13%3B%2B__utmz%3D" + Main.options.google_analytics.cookie1 + "." + now + ".1.1.utmcsr%3D" + utmcsr + "%7Cutmccn%3D" + utmccn + "%7utmcmd%3D" + utmcmd + (utmctr != null ? "%7Cutmctr%3D" + utmctr : "") + (utmcct != null ? "%7Cutmcct%3D" + utmcct : "") + "%3B&gaq=1");
 		return sb.toString();
 	}
 	
@@ -195,8 +195,7 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 	 */
 	@Override
 	public void resetSession()
-	{//TODO: Save & load cookies!
-		cookie1 = random.nextInt();
-		cookie2 = random.nextInt();
+	{
+		
 	}
 }
