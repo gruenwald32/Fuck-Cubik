@@ -121,6 +121,7 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 																		// url
 			
 		sb.append("&utmac=" + config.getTrackingCode()); // tracking code
+		//TODO:sb.append("&utmc" + (argData.isNewSession() ? "n" : "r") + "=1"); // new session or repeat visit
 		
 		// cookie data
 		// utmccn=(organic)|utmcsr=google|utmctr=snotwuh |utmcmd=organic

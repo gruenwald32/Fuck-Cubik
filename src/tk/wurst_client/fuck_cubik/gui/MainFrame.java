@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.files.ResourceManager;
 import tk.wurst_client.fuck_cubik.gui.desktop.DesktopPane;
 import tk.wurst_client.fuck_cubik.gui.menu.MenuBar;
@@ -31,5 +32,22 @@ public class MainFrame extends JFrame
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/" + ResourceManager.ICON_IMAGE)));
 		setVisible(true);
+		Main.tracker.trackPageView("/", "Main frame");
+		//TODO:
+		/*new Thread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				try
+				{
+					Thread.sleep(3000);
+					Main.tracker.trackPageView("/test/", "Test");
+				}catch(InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}).start();*/
 	}
 }
