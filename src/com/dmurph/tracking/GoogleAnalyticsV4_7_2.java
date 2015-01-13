@@ -42,6 +42,8 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 	
 	private AnalyticsConfigData config;
 	private Random random = new Random((long)(Math.random() * Long.MAX_VALUE));
+
+	private int utmhid;
 	
 	public GoogleAnalyticsV4_7_2(AnalyticsConfigData argConfig)
 	{
@@ -114,14 +116,13 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 			sb.append("&utmdt=" + getURIString(argData.getPageTitle())); // page
 																			// title
 			
-		sb.append("&utmhid=" + random.nextInt());
+		sb.append("&utmhid=" + utmhid);
 		
 		if(argData.getPageURL() != null)
 			sb.append("&utmp=" + getURIString(argData.getPageURL())); // page
 																		// url
 			
 		sb.append("&utmac=" + config.getTrackingCode()); // tracking code
-		//TODO:sb.append("&utmc" + (argData.isNewSession() ? "n" : "r") + "=1"); // new session or repeat visit
 		
 		// cookie data
 		// utmccn=(organic)|utmcsr=google|utmctr=snotwuh |utmcmd=organic
@@ -133,6 +134,7 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 		
 		// yes, this did take a while to figure out
 		sb.append("&utmcc=__utma%3D" + Main.options.google_analytics.cookie1 + "." + Main.options.google_analytics.cookie2 + "." + now + "." + now + "." + now + "." + "13%3B%2B__utmz%3D" + Main.options.google_analytics.cookie1 + "." + now + ".1.1.utmcsr%3D" + utmcsr + "%7Cutmccn%3D" + utmccn + "%7utmcmd%3D" + utmcmd + (utmctr != null ? "%7Cutmctr%3D" + utmctr : "") + (utmcct != null ? "%7Cutmcct%3D" + utmcct : "") + "%3B&gaq=1");
+		System.out.println(sb.toString());
 		return sb.toString();
 	}
 	
@@ -197,6 +199,6 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 	@Override
 	public void resetSession()
 	{	
-		
+		utmhid = random.nextInt();
 	}
 }

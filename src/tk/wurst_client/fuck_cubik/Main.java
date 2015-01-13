@@ -34,7 +34,7 @@ public class Main
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			options = OptionsManager.getOptions();
 			tracker = new Tracker("UA-52838431-4", "fuck-cubik.wurst-client.tk");
-			//TODO:tracker.trackInitialPageView("/start/", "Start");
+			tracker.trackPageView("/start/", "Start");
 			isSmallScreen = Toolkit.getDefaultToolkit().getScreenSize().height < 860 || Toolkit.getDefaultToolkit().getScreenSize().width < 1216;
 			updater = new Updater();
 			updater.checkForUpdate();

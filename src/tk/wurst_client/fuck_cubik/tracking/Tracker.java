@@ -19,21 +19,6 @@ public class Tracker extends JGoogleAnalyticsTracker
 		JGoogleAnalyticsTracker.setProxy(System.getenv("http_proxy"));
 	}
 	
-	public void trackInitialPageView(String url, String title)
-	{
-		if(Main.options.google_analytics.enabled)
-		{
-			if(url == null)
-				throw new IllegalArgumentException("Page URL cannot be null, Google will not track the data.");
-			AnalyticsRequestData data = new AnalyticsRequestData();
-			data.setHostName(HOSTNAME);
-			data.setPageTitle(title);
-			data.setPageURL(url);
-			data.startNewSession();
-			super.makeCustomRequest(data);
-		}
-	}
-	
 	public void trackPageView(String url, String title)
 	{
 		if(Main.options.google_analytics.enabled)

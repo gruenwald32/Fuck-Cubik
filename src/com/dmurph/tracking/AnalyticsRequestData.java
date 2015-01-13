@@ -72,7 +72,6 @@ public class AnalyticsRequestData
 	private String utmctr = null;
 	private String utmcmd = "(none)";
 	private String utmcct = null;
-	private boolean utmcn = false;
 	
 	public void setReferrer(String argSite, String argPage)
 	{
@@ -270,15 +269,5 @@ public class AnalyticsRequestData
 	public void setPageURL(String argPageURL)
 	{
 		pageURL = argPageURL;
-	}
-
-	public boolean isNewSession()
-	{
-		return utmcn;
-	}
-
-	public void startNewSession()
-	{
-		this.utmcn = true;
 	}
 }

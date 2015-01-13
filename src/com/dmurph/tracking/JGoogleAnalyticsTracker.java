@@ -335,7 +335,13 @@ public class JGoogleAnalyticsTracker
 	 */
 	public void trackPageView(String argPageURL, String argPageTitle, String argHostName)
 	{
-		trackPageViewFromReferrer(argPageURL, argPageTitle, argHostName, null, null);
+		if(argPageURL == null)
+			throw new IllegalArgumentException("Page URL cannot be null, Google will not track the data.");
+		AnalyticsRequestData data = new AnalyticsRequestData();
+		data.setHostName(argHostName);
+		data.setPageTitle(argPageTitle);
+		data.setPageURL(argPageURL);
+		makeCustomRequest(data);
 	}
 	
 	/**
@@ -520,6 +526,7 @@ public class JGoogleAnalyticsTracker
 				logger.severe("JGoogleAnalyticsTracker: Error requesting url '" + argURL + "', received response code " + responseCode);
 			else
 				logger.config("JGoogleAnalyticsTracker: Tracking success for url '" + argURL + "'");
+			connection.disconnect();
 		}catch(Exception e)
 		{
 			logger.log(Level.SEVERE, "Error making tracking request", e);
