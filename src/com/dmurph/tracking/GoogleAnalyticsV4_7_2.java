@@ -27,8 +27,6 @@ package com.dmurph.tracking;
 
 import java.util.Random;
 
-import tk.wurst_client.fuck_cubik.Main;
-
 /**
  * http://code.google.com/apis/analytics/docs/tracking/gaTrackingTroubleshooting
  * .html#gifParameters
@@ -42,13 +40,10 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 	
 	private AnalyticsConfigData config;
 	private Random random = new Random((long)(Math.random() * Long.MAX_VALUE));
-
-	private int utmhid;
 	
 	public GoogleAnalyticsV4_7_2(AnalyticsConfigData argConfig)
 	{
 		config = argConfig;
-		resetSession();
 	}
 	
 	/**
@@ -69,7 +64,7 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 		StringBuilder sb = new StringBuilder();
 		sb.append(URL_PREFIX);
 		
-		long now = System.currentTimeMillis();
+		System.currentTimeMillis();
 		
 		sb.append("?utmwv=" + getGoogleAnalyticsVersion()); // version
 		sb.append("&utmn=" + random.nextInt()); // random int so no caching
@@ -116,7 +111,7 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 			sb.append("&utmdt=" + getURIString(argData.getPageTitle())); // page
 																			// title
 			
-		sb.append("&utmhid=" + utmhid);
+		sb.append("&utmhid=" + random.nextInt());
 		
 		if(argData.getPageURL() != null)
 			sb.append("&utmp=" + getURIString(argData.getPageURL())); // page
@@ -133,8 +128,14 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 		String utmcct = getURIString(argData.getUtmcct());
 		
 		// yes, this did take a while to figure out
-		sb.append("&utmcc=__utma%3D" + Main.options.google_analytics.cookie1 + "." + Main.options.google_analytics.cookie2 + "." + now + "." + now + "." + now + "." + "13%3B%2B__utmz%3D" + Main.options.google_analytics.cookie1 + "." + now + ".1.1.utmcsr%3D" + utmcsr + "%7Cutmccn%3D" + utmccn + "%7utmcmd%3D" + utmcmd + (utmctr != null ? "%7Cutmctr%3D" + utmctr : "") + (utmcct != null ? "%7Cutmcct%3D" + utmcct : "") + "%3B&gaq=1");
-		System.out.println(sb.toString());
+		int hostnameHash = hostnameHash(argData.getHostName());
+		int visitorId = config.getVisitorData().getVisitorId();
+		long timestampFirst = config.getVisitorData().getTimestampFirst();
+		long timestampPrevious = config.getVisitorData().getTimestampPrevious();
+		long timestampCurrent = config.getVisitorData().getTimestampCurrent();
+		int visits = config.getVisitorData().getVisits();
+		
+		sb.append("&utmcc=__utma%3D" + hostnameHash + "." + visitorId + "." + timestampFirst + "." + timestampPrevious + "." + timestampCurrent + "." + visits + "%3B%2B__utmz%3D" + hostnameHash + "." + timestampCurrent + ".1.1.utmcsr%3D" + utmcsr + "%7Cutmccn%3D" + utmccn + "%7Cutmcmd%3D" + utmcmd + (utmctr != null ? "%7Cutmctr%3D" + utmctr : "") + (utmcct != null ? "%7Cutmcct%3D" + utmcct : "") + "%3B&gaq=1");
 		return sb.toString();
 	}
 	
@@ -193,12 +194,17 @@ public class GoogleAnalyticsV4_7_2 implements IGoogleAnalyticsURLBuilder
 		return URIEncoder.encodeURI(argString);
 	}
 	
+	private int hostnameHash(String hostname)
+	{
+		return 999;
+	}
+	
 	/**
 	 * @see com.dmurph.tracking.IGoogleAnalyticsURLBuilder#resetSession()
 	 */
 	@Override
 	public void resetSession()
-	{	
-		utmhid = random.nextInt();
+	{
+		config.getVisitorData().resetSession();
 	}
 }
