@@ -266,7 +266,7 @@ public class JGoogleAnalyticsTracker
 				if(m.groupCount() >= 2)
 					proxyAddr = m.group(2);
 				
-				if(m.groupCount() >= 4 && !m.group(4).isEmpty())
+				if(m.groupCount() >= 4 && !(m.group(4).length() == 0))
 					proxyPort = Integer.parseInt(m.group(4));
 			}finally
 			{
@@ -461,7 +461,7 @@ public class JGoogleAnalyticsTracker
 	{
 		if(!enabled)
 		{
-			logger.config("Ignoring tracking request, enabled is false");
+			logger.log(Level.CONFIG, "Ignoring tracking request, enabled is false");
 			return;
 		}
 		if(argData == null)
@@ -469,6 +469,7 @@ public class JGoogleAnalyticsTracker
 		if(builder == null)
 			throw new NullPointerException("Class was not initialized");
 		final String url = builder.buildURL(argData);
+		final String userAgent = configData.getUserAgent();
 		
 		switch(mode)
 		{
@@ -484,7 +485,7 @@ public class JGoogleAnalyticsTracker
 						}
 						try
 						{
-							dispatchRequest(url);
+							dispatchRequest(url, userAgent);
 						}finally
 						{
 							synchronized(JGoogleAnalyticsTracker.class)
@@ -498,7 +499,7 @@ public class JGoogleAnalyticsTracker
 				t.start();
 				break;
 			case SYNCHRONOUS:
-				dispatchRequest(url);
+				dispatchRequest(url, userAgent);
 				break;
 			default: // in case it's null, we default to the single-thread
 				synchronized(fifo)
@@ -507,12 +508,12 @@ public class JGoogleAnalyticsTracker
 					fifo.notify();
 				}
 				if(!backgroundThreadMayRun)
-					logger.severe("A tracker request has been added to the queue but the background thread isn't running. " + url);
+					logger.log(Level.SEVERE, "A tracker request has been added to the queue but the background thread isn't running.", url);
 				break;
 		}
 	}
 	
-	private static void dispatchRequest(String argURL)
+	private static void dispatchRequest(String argURL, String userAgent)
 	{
 		try
 		{
@@ -520,13 +521,14 @@ public class JGoogleAnalyticsTracker
 			HttpURLConnection connection = (HttpURLConnection)url.openConnection(proxy);
 			connection.setRequestMethod("GET");
 			connection.setInstanceFollowRedirects(true);
+			if(userAgent != null)
+				connection.addRequestProperty("User-Agent", userAgent);
 			connection.connect();
 			int responseCode = connection.getResponseCode();
 			if(responseCode != HttpURLConnection.HTTP_OK)
-				logger.severe("JGoogleAnalyticsTracker: Error requesting url '" + argURL + "', received response code " + responseCode);
+				logger.log(Level.SEVERE, "JGoogleAnalyticsTracker: Error requesting url '" + argURL + "', received response code " + responseCode);
 			else
-				logger.config("JGoogleAnalyticsTracker: Tracking success for url '" + argURL + "'");
-			connection.disconnect();
+				logger.log(Level.CONFIG, "JGoogleAnalyticsTracker: Tracking success for url '" + argURL + "'");
 		}catch(Exception e)
 		{
 			logger.log(Level.SEVERE, "Error making tracking request", e);
@@ -549,7 +551,7 @@ public class JGoogleAnalyticsTracker
 	/**
 	 * If the background thread for 'queued' mode is not running, start it now.
 	 */
-	private synchronized static void startBackgroundThread()
+	private synchronized void startBackgroundThread()
 	{
 		if(backgroundThread == null)
 		{
@@ -559,7 +561,7 @@ public class JGoogleAnalyticsTracker
 				@Override
 				public void run()
 				{
-					logger.config("AnalyticsBackgroundThread started");
+					logger.log(Level.CONFIG, "AnalyticsBackgroundThread started");
 					while(backgroundThreadMayRun)
 						try
 						{
@@ -580,7 +582,7 @@ public class JGoogleAnalyticsTracker
 							if(url != null)
 								try
 								{
-									dispatchRequest(url);
+									dispatchRequest(url, configData.getUserAgent());
 								}finally
 								{
 									// Now that we have completed the HTTP
