@@ -1,16 +1,18 @@
 # Fuck Cubik website
 Copyright © 2014 - 2015 | Alexander01998 | All rights reserved.
 
-## About Fuck Cubik
-Fuck Cubik is an editor for the JSON encoded 3D models used in <a href="http://minecraft.net" target="_blank">Minecraft</a> <a href="http://minecraft.gamepedia.com/Resource_Pack" target="_blank">ResourcePacks</a>. It was created because of the poor quality of the <a href="http://bdcraft.net/cubik" target="_blank">BDcraft Cubik</a> editor.
+## About
+Fuck Cubik allows you to make custom 3D models for ResourcePacks very easily. But unlike Cubik, Fuck Cubik has no ads, no limits and doesn't cost you a cent!
 
-## Why it is better than Cubik
-- No ads!
-- No costs!
-- No limits!
-- Open source!
+Your 3D models can be as complex as you want. For example, this TNT block was made out of 63 elements.![complex tnt block](http://fuck-cubik.wurst-client.tk/images/Fuck-Cubik_tnt.jpg)
 
-## Requirements
+## The four goals of Fuck Cubik
+:white_check_mark: No ads!  
+:white_check_mark: No costs!  
+:white_check_mark: No limits!  
+:white_check_mark: Open source!  
+
+## System requirements
 <table>
 <tr>
 <td>Operation system:
@@ -20,5 +22,5 @@ Fuck Cubik is an editor for the JSON encoded 3D models used in <a href="http://m
 <td>1.7.0 or higher
 <tr>
 <td>Screen resolution:
-<td>1216 x 860 or higher
+<td>816 x 660 or higher
 </table>
