@@ -13,14 +13,8 @@ Your 3D models can be as complex as you want. For example, this TNT block was ma
 :white_check_mark: Open source!  
 
 ## System requirements
-<table>
-<tr>
-<td>Operation system:
-<td>Windows 7 / 8 / 8.1
-<tr>
-<td>Java version:
-<td>1.7.0 or higher
-<tr>
-<td>Screen resolution:
-<td>816 x 660 or higher
-</table>
+---
+Operation system: Windows 7 / 8 / 8.1
+Java version: 1.7.0 or higher
+Screen resolution: 816 x 660 or higher
+---
