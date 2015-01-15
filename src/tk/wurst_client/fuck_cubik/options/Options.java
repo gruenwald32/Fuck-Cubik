@@ -9,7 +9,6 @@ public class Options
 	public class GoogleAnalytics
 	{
 		public boolean enabled = true;
-		public boolean report_errors = true;
 		public int tracking_id = new SecureRandom().nextInt() & 0x7FFFFFFF;
 		public long first_launch = System.currentTimeMillis() / 1000L;
 		public long last_launch = System.currentTimeMillis() / 1000L;
