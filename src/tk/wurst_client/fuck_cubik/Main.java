@@ -51,13 +51,15 @@ public class Main
 				renderer.render();
 				Display.update();
 				inputListener.listen();
+				if(System.currentTimeMillis() > tracker.lastRequest + 300000)
+					tracker.trackPageView("/absent", "Absent");
 				Display.sync(60);
 			}
 			Display.destroy();
 			System.exit(0);
 		}catch(Exception e)
 		{
-			tracker.trackPageView("/crash/", "Crash");
+			tracker.trackPageView("/crash", "Crash");
 			new ErrorMessage("running Fuck Cubik", e);
 			System.exit(-1);
 		}finally

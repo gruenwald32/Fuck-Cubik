@@ -89,6 +89,7 @@ public class ErrorReport extends JDialog
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackEvent("error report", "send");
 				try
 				{
 					comment = commentField.getDocument().getText(0, commentField.getDocument().getLength());
@@ -128,6 +129,7 @@ public class ErrorReport extends JDialog
 					for(String line; (line = input.readLine()) != null;)
 						response += "\n" + line;
 					boolean success = response.contains(json.get("success_message").getAsString());
+					Main.tracker.trackPageView("/error/report/" + (success ? "success" : "failure"), (success ? "Success" : "Failure"));
 					int action = JOptionPane.showOptionDialog(
 						Main.frame,
 						"<html>"
@@ -165,6 +167,7 @@ public class ErrorReport extends JDialog
 		setLocationRelativeTo(Main.frame);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setAlwaysOnTop(true);
+		Main.tracker.trackPageView("/error/report", "Error report");
 		setVisible(true);
 	}
 }

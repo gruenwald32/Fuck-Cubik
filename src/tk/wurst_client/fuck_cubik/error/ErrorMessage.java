@@ -19,10 +19,7 @@ public class ErrorMessage
 	{
 		e.printStackTrace();
 		if(!Main.updater.isOutdated())
-			if(e.getMessage() != null && !e.getMessage().isEmpty())
-				Main.tracker.trackEvent("error", action, e.getMessage());
-			else
-				Main.tracker.trackEvent("error", action);
+			Main.tracker.trackPageView("/error", "Error");
 		String message = "<html>"
 			+ "<body width=\"256px\">"
 			+ "<p>Exception while " + action + ":</p>"

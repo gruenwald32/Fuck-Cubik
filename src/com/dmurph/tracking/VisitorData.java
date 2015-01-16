@@ -2,6 +2,8 @@ package com.dmurph.tracking;
 
 import java.security.SecureRandom;
 
+import tk.wurst_client.fuck_cubik.Main;
+
 public class VisitorData
 {
 	private int visitorId;
@@ -32,6 +34,9 @@ public class VisitorData
 	public static VisitorData newSession(int visitorId, long timestampfirst, long timestamplast, int visits)
 	{
 		long now = now();
+		Main.options.google_analytics.last_launch = now;
+		Main.options.google_analytics.launches = visits + 1;
+		Main.options.save();
 		return new VisitorData(visitorId, timestampfirst, timestamplast, now, visits + 1);
 	}
 	

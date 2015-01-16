@@ -9,6 +9,7 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 import javax.swing.JOptionPane;
 
+import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 
 import com.google.gson.JsonArray;
@@ -105,9 +106,11 @@ public class Updater
 	{
 		Object message = "<html>"
 			+ "<p>Version " + latestVersion + " of Fuck Cubik is available.</p>";
+		Main.tracker.trackPageView("/update", "Update available");
 		int action = JOptionPane.showOptionDialog(null, message, "Update available", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Update now", "View changelog", "Update later"}, 0);
 		if(action == 0 || action == 1)
 		{
+			Main.tracker.trackEvent("update", "accept");
 			try
 			{
 				String url;
@@ -118,10 +121,11 @@ public class Updater
 				Desktop.getDesktop().browse(new URI(url));
 			}catch(Exception e)
 			{
-				new ErrorMessage("opening link", e);
+				new ErrorMessage("opening link (update)", e);
 			}
 			System.exit(0);
-		}
+		}else
+			Main.tracker.trackEvent("update", "deny");
 	}
 	
 	public boolean isOutdated()
