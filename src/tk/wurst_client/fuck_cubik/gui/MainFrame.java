@@ -19,7 +19,7 @@ public class MainFrame extends JFrame
 	
 	public MainFrame() throws HeadlessException
 	{
-		super("Fuck Cubik v" + VersionManager.SIMPLE_VERSION);
+		super("Fuck Cubik v" + VersionManager.FORMATTED_VERSION);
 		menuBar = new MenuBar();
 		desktop = new DesktopPane();
 		setLayout(new BorderLayout());

@@ -41,8 +41,7 @@ public class HelpMenu extends JMenu
 						message += line;
 					reader.close();
 					message = message
-						.replace("<simple version>", VersionManager.SIMPLE_VERSION)
-						.replace("<full version>", VersionManager.FULL_VERSION);
+						.replace("<version>", VersionManager.FORMATTED_VERSION);
 					JOptionPane.showMessageDialog(Main.frame, message, "About Fuck Cubik", JOptionPane.INFORMATION_MESSAGE);
 				}catch(Exception e1)
 				{

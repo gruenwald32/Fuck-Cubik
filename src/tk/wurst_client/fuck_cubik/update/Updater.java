@@ -67,7 +67,7 @@ public class Updater
 			}catch(Exception e)
 			{
 				System.out.println("Latest version (\"" + latestVersion + "\") doesn't follow the semver.org syntax!");
-				outdated = !latestVersion.equals(VersionManager.SIMPLE_VERSION);
+				outdated = !latestVersion.equals(VersionManager.FORMATTED_VERSION);
 			}
 			if(outdated)
 				System.out.println("Update found: " + latestVersion);

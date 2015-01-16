@@ -1,20 +1,20 @@
 <html>
 <body width="512px">
-<h1>Fuck Cubik v<simple version></h1>
+<h1>Fuck Cubik</h1>
 <p>Copyright &#169; 2014 - 2015 | Alexander01998 | All rights reserved.</p>
-<p>Current version: <full version></p>
+<p>Current version: <version></p>
 <h2>About</h2>
-<p>Fuck Cubik is an editor for the JSON encoded 3D models 
-used in Minecraft ResourcePacks. It was created because 
-of the poor quality of the BDcraft Cubik editor.</p>
-<h2>Why it is better than Cubik</h2>
+<p>Fuck Cubik allows you to make custom 3D models for ResourcePacks very 
+easily. But unlike Cubik, Fuck Cubik has no ads, no limits and doesn't cost 
+you a cent!</p>
+<h2>The four goals of Fuck Cubik</h2>
 <ul>
 <li>No ads!
 <li>No costs!
 <li>No limits!
 <li>Open source!
 </ul>
-<h2>Requirements</h2>
+<h2>System requirements</h2>
 <table>
 <tr>
 <td>Operation system:
