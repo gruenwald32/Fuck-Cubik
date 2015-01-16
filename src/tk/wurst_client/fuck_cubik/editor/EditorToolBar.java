@@ -7,9 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JToolBar;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.editor.elementmanager.ElementManager;
 import tk.wurst_client.fuck_cubik.editor.texturemanager.TextureManager;
+import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

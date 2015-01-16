@@ -18,7 +18,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 import tk.wurst_client.fuck_cubik.files.FileManager;
 
 public class ModelFileChooser extends JFileChooser

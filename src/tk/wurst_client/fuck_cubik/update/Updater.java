@@ -9,7 +9,7 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 import javax.swing.JOptionPane;
 
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

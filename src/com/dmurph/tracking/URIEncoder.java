@@ -39,7 +39,6 @@ public class URIEncoder
 		
 		char[] chars = argString.toCharArray();
 		for(char c : chars)
-		{
 			if(c >= '0' && c <= '9' || c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || mark.indexOf(c) != -1)
 				uri.append(c);
 			else
@@ -47,7 +46,6 @@ public class URIEncoder
 				uri.append("%");
 				uri.append(Integer.toHexString(c));
 			}
-		}
 		return uri.toString();
 	}
 }

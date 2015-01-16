@@ -1,4 +1,4 @@
-package tk.wurst_client.fuck_cubik.dialogs;
+package tk.wurst_client.fuck_cubik.error;
 
 import java.awt.Component;
 import java.io.PrintWriter;
@@ -19,12 +19,10 @@ public class ErrorMessage
 	{
 		e.printStackTrace();
 		if(!Main.updater.isOutdated())
-		{
 			if(e.getMessage() != null && !e.getMessage().isEmpty())
 				Main.tracker.trackEvent("error", action, e.getMessage());
 			else
 				Main.tracker.trackEvent("error", action);
-		}
 		String message = "<html>"
 			+ "<body width=\"256px\">"
 			+ "<p>Exception while " + action + ":</p>"
@@ -41,7 +39,6 @@ public class ErrorMessage
 			e.printStackTrace(new PrintWriter(stacktraceWriter));
 			String stacktrace = stacktraceWriter.toString();
 			if(Main.updater.isOutdated())
-			{
 				JOptionPane.showMessageDialog(
 					Main.frame,
 					"<html><body width=\"256px\">"
@@ -49,7 +46,7 @@ public class ErrorMessage
 						+ "<p>Error reports can only be sent from the newest verion.</p>",
 					"Outdated",
 					JOptionPane.ERROR_MESSAGE);
-			}else
+			else
 				new ErrorReport(action, stacktrace);
 		}
 	}

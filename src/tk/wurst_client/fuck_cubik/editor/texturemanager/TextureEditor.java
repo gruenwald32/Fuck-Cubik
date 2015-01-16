@@ -17,7 +17,7 @@ import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 import tk.wurst_client.fuck_cubik.gui.filechoosers.TextureFileChooser;
 
 import com.google.gson.GsonBuilder;
@@ -50,7 +50,7 @@ public class TextureEditor extends JDialog
 				{
 					String path = TextureEditor.this.textures.get(TextureEditor.this.name).getAsString();
 					TextureEditor.this.textures.remove(TextureEditor.this.name);
-					TextureEditor.this.name = TextureEditor.this.nameField.getText();
+					TextureEditor.this.name = nameField.getText();
 					TextureEditor.this.textures.addProperty(TextureEditor.this.name, path);
 					TextureEditor.this.updateCode();
 				}
@@ -69,7 +69,7 @@ public class TextureEditor extends JDialog
 						return;
 					String path = fileChooser.getSelectedFile().getPath().replace("\\", "/");
 					path = path.substring(path.indexOf("assets/minecraft/textures/") + 26, path.length() - 4);
-					TextureEditor.this.pathButton.setText(path);
+					pathButton.setText(path);
 					TextureEditor.this.textures.remove(TextureEditor.this.name);
 					TextureEditor.this.textures.addProperty(TextureEditor.this.name, path);
 					TextureEditor.this.updateCode();

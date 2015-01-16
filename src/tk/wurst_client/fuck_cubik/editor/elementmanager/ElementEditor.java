@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;

@@ -7,7 +7,7 @@ import javax.swing.UIManager;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 import tk.wurst_client.fuck_cubik.gui.MainFrame;
 import tk.wurst_client.fuck_cubik.options.Options;
 import tk.wurst_client.fuck_cubik.options.OptionsManager;

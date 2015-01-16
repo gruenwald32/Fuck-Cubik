@@ -1,4 +1,4 @@
-package tk.wurst_client.fuck_cubik.dialogs;
+package tk.wurst_client.fuck_cubik.error;
 
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 import javax.swing.text.BadLocationException;
 
 import tk.wurst_client.fuck_cubik.Main;
@@ -56,7 +57,7 @@ public class ErrorReport extends JDialog
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		JLabel label = new JLabel("<html>"
 			+ "<center>"
-			+ "<h1>Error report</h1>", JLabel.CENTER);
+			+ "<h1>Error report</h1>", SwingConstants.CENTER);
 		label.setAlignmentX(CENTER_ALIGNMENT);
 		add(label);
 		label = new JLabel("<html>"
@@ -90,10 +91,10 @@ public class ErrorReport extends JDialog
 			{
 				try
 				{
-					ErrorReport.this.comment = ErrorReport.this.commentField.getDocument().getText(0, ErrorReport.this.commentField.getDocument().getLength());
+					comment = commentField.getDocument().getText(0, commentField.getDocument().getLength());
 				}catch(BadLocationException e2)
 				{
-					ErrorReport.this.comment = "";
+					comment = "";
 				}
 				ErrorReport.this.dispose();
 				try
@@ -110,15 +111,15 @@ public class ErrorReport extends JDialog
 						+ "&entry." + json.get("params").getAsJsonObject().get("stacktrace").getAsString()
 						+ "=" + URLEncoder.encode(ErrorReport.this.stacktrace, "UTF-8")
 						+ "&entry." + json.get("params").getAsJsonObject().get("version").getAsString()
-						+ "=" + URLEncoder.encode(ErrorReport.this.version, "UTF-8")
+						+ "=" + URLEncoder.encode(version, "UTF-8")
 						+ "&entry." + json.get("params").getAsJsonObject().get("os").getAsString()
-						+ "=" + URLEncoder.encode(ErrorReport.this.os, "UTF-8")
+						+ "=" + URLEncoder.encode(os, "UTF-8")
 						+ "&entry." + json.get("params").getAsJsonObject().get("java").getAsString()
-						+ "=" + URLEncoder.encode(ErrorReport.this.java, "UTF-8")
+						+ "=" + URLEncoder.encode(java, "UTF-8")
 						+ "&entry." + json.get("params").getAsJsonObject().get("screen").getAsString()
-						+ "=" + URLEncoder.encode(ErrorReport.this.screen, "UTF-8")
+						+ "=" + URLEncoder.encode(screen, "UTF-8")
 						+ "&entry." + json.get("params").getAsJsonObject().get("comment").getAsString()
-						+ "=" + URLEncoder.encode(ErrorReport.this.comment, "UTF-8");
+						+ "=" + URLEncoder.encode(comment, "UTF-8");
 					HttpsURLConnection post = (HttpsURLConnection)new URL(formURL).openConnection();
 					post.setInstanceFollowRedirects(true);
 					post.connect();
@@ -130,13 +131,13 @@ public class ErrorReport extends JDialog
 					int action = JOptionPane.showOptionDialog(
 						Main.frame,
 						"<html>"
-						+ "<body width=\"256px\">"
-						+ "<p>Your error report "
-						+ (success ? "has been sent" : "was rejected")
-						+ ".</p>"
-						+ "<p>"
-						+ (success ? "Thank you!" : "Maybe the server doesn't accept error reports at the moment.")
-						+ "</p>",
+							+ "<body width=\"256px\">"
+							+ "<p>Your error report "
+							+ (success ? "has been sent" : "was rejected")
+							+ ".</p>"
+							+ "<p>"
+							+ (success ? "Thank you!" : "Maybe the server doesn't accept error reports at the moment.")
+							+ "</p>",
 						success ? "Success" : "Failure",
 						JOptionPane.DEFAULT_OPTION,
 						success ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE,

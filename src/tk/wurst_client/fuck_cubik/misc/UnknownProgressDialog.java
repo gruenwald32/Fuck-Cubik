@@ -1,4 +1,4 @@
-package tk.wurst_client.fuck_cubik.dialogs;
+package tk.wurst_client.fuck_cubik.misc;
 
 import javax.swing.JDialog;
 import javax.swing.JProgressBar;

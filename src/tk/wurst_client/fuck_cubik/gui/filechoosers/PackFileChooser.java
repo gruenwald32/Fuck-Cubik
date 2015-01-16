@@ -20,9 +20,9 @@ import javax.swing.SwingWorker;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
-import tk.wurst_client.fuck_cubik.dialogs.UnknownProgressDialog;
+import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 import tk.wurst_client.fuck_cubik.files.FileManager;
+import tk.wurst_client.fuck_cubik.misc.UnknownProgressDialog;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

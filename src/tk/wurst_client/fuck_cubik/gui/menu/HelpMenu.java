@@ -14,7 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 import tk.wurst_client.fuck_cubik.files.ResourceManager;
 import tk.wurst_client.fuck_cubik.update.VersionManager;
 
@@ -49,7 +49,7 @@ public class HelpMenu extends JMenu
 				}
 			}
 		});
-		this.add(about);
+		add(about);
 		license = new JMenuItem("License");
 		license.addActionListener(new ActionListener()
 		{
@@ -70,7 +70,7 @@ public class HelpMenu extends JMenu
 				}
 			}
 		});
-		this.add(license);
+		add(license);
 		website = new JMenuItem("Fuck Cubik website");
 		website.addActionListener(new ActionListener()
 		{
@@ -86,6 +86,6 @@ public class HelpMenu extends JMenu
 				}
 			}
 		});
-		this.add(website);
+		add(website);
 	}
 }

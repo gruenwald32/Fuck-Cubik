@@ -15,8 +15,8 @@ import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
 import tk.wurst_client.fuck_cubik.editor.EditorToolBar;
+import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;

@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 import javax.swing.text.BadLocationException;
 
 import tk.wurst_client.fuck_cubik.Main;
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 import tk.wurst_client.fuck_cubik.gui.filechoosers.ModelFileChooser;
 
 public class ModelMenu extends JMenu

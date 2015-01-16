@@ -11,7 +11,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import tk.wurst_client.fuck_cubik.dialogs.ErrorMessage;
+import tk.wurst_client.fuck_cubik.error.ErrorMessage;
 import tk.wurst_client.fuck_cubik.files.ResourceManager;
 
 public class TextureViewerPanel extends JPanel
