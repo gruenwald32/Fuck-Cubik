@@ -22,6 +22,7 @@ public class ElementManagerToolBar extends JToolBar
 	public JButton newButton;
 	public JButton editButton;
 	public JButton removeButton;
+	public ElementEditor elementEditor;
 	
 	public ElementManagerToolBar(final ElementManager elementManager)
 	{
@@ -53,10 +54,10 @@ public class ElementManagerToolBar extends JToolBar
 						json.add("elements", new JsonArray());
 					json.get("elements").getAsJsonArray().add(element);
 					Main.frame.desktop.editor.setCode(gson.toJson(json));
-					Main.frame.desktop.preview.toolbar.refreshButton.doClick();
+					Main.renderer.refreshLater();
 					elementManager.updateList();
 					int newElement = elementManager.elements.getModel().getSize() - 1;
-					new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("elements").getAsJsonArray().get(newElement).getAsJsonObject(), newElement);
+					elementEditor = new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("elements").getAsJsonArray().get(newElement).getAsJsonObject(), newElement);
 				}catch(Exception e1)
 				{
 					new ErrorMessage("adding new element", e1);
@@ -72,7 +73,7 @@ public class ElementManagerToolBar extends JToolBar
 			public void actionPerformed(ActionEvent e)
 			{
 				int selection = elementManager.elements.getSelectedIndex();
-				new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("elements").getAsJsonArray().get(selection).getAsJsonObject(), selection);
+				elementEditor = new ElementEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("elements").getAsJsonArray().get(selection).getAsJsonObject(), selection);
 			}
 		});
 		add(editButton);
@@ -90,7 +91,7 @@ public class ElementManagerToolBar extends JToolBar
 					JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
 					json.get("elements").getAsJsonArray().remove(selection);
 					Main.frame.desktop.editor.setCode(gson.toJson(json));
-					Main.frame.desktop.preview.toolbar.refreshButton.doClick();
+					Main.renderer.refreshLater();
 					elementManager.updateList();
 				}
 			}

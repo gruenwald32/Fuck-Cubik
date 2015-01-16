@@ -46,7 +46,7 @@ public class ModelFileChooser extends JFileChooser
 				load.close();
 				Main.frame.desktop.editor.textarea.setText(content);
 				Main.frame.desktop.editor.setFile(file);
-				Main.frame.desktop.preview.toolbar.refreshButton.doClick();
+				Main.renderer.refreshLater();
 			}catch(IOException e)
 			{
 				new ErrorMessage("loading model", e);

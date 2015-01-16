@@ -40,6 +40,9 @@ public class Renderer
 	public float rotZ = 0F;
 	public float zoom = 0F;
 	
+	public long lastRefresh;
+	private boolean refreshQueued;
+	
 	public void reset()
 	{
 		posX = 0F;
@@ -77,6 +80,26 @@ public class Renderer
 	
 	public void render()
 	{
+		if(refreshQueued && System.currentTimeMillis() > lastRefresh + 1000)
+		{
+			lastRefresh = System.currentTimeMillis();
+			refreshQueued = false;
+			new Thread(new Runnable()
+			{
+				@Override
+				public void run()
+				{
+					try
+					{
+						refresh();
+					}catch(Exception e)
+					{
+						e.printStackTrace();
+					}
+				}
+			}).start();
+		}
+		
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
 		GL11.glLoadIdentity();
@@ -106,9 +129,13 @@ public class Renderer
 		GL11.glTranslatef(-(int)(posX * 16F) / 16F, -(int)(posY * 16F) / 16F, -(int)(posZ * 16F) / 16F);
 	}
 	
+	public void refreshLater()
+	{
+		refreshQueued = true;
+	}
+	
 	public void refresh()
 	{
-		markedElement = -1;
 		elementsList.clear();
 		textureLinkMap.clear();
 		Gson gson = new Gson();
@@ -124,30 +151,33 @@ public class Renderer
 				textureLinkMap.put(textureEntry.getKey(), textureFile);
 			}
 		}
-		JsonArray elementsJSON = mainObject.get("elements").getAsJsonArray();
-		Iterator<JsonElement> elementsItr = elementsJSON.iterator();
-		while(elementsItr.hasNext())
+		if(mainObject.has("elements"))
 		{
-			JsonObject element = elementsItr.next().getAsJsonObject();
-			double[] from = gson.fromJson(element.get("from"), double[].class);
-			double[] to = gson.fromJson(element.get("to"), double[].class);
-			ArrayList<RenderObjectFace> facesList = new ArrayList<RenderObjectFace>();
-			JsonObject facesJSON = element.get("faces").getAsJsonObject();
-			Iterator<Entry<String, JsonElement>> facesItr = facesJSON.entrySet().iterator();
-			while(facesItr.hasNext())
+			JsonArray elementsJSON = mainObject.get("elements").getAsJsonArray();
+			Iterator<JsonElement> elementsItr = elementsJSON.iterator();
+			while(elementsItr.hasNext())
 			{
-				Entry<String, JsonElement> faceEntry = facesItr.next();
-				JsonObject face = faceEntry.getValue().getAsJsonObject();
-				Side side = Side.valueOf(faceEntry.getKey().toUpperCase());
-				int[] uv = gson.fromJson(face.get("uv"), int[].class);
-				String textureLink = face.get("texture").getAsString().substring(1);
-				RenderObjectFace renderFace = new RenderObjectFace(side, uv, textureLink);
-				facesList.add(renderFace);
+				JsonObject element = elementsItr.next().getAsJsonObject();
+				double[] from = gson.fromJson(element.get("from"), double[].class);
+				double[] to = gson.fromJson(element.get("to"), double[].class);
+				ArrayList<RenderObjectFace> facesList = new ArrayList<RenderObjectFace>();
+				JsonObject facesJSON = element.get("faces").getAsJsonObject();
+				Iterator<Entry<String, JsonElement>> facesItr = facesJSON.entrySet().iterator();
+				while(facesItr.hasNext())
+				{
+					Entry<String, JsonElement> faceEntry = facesItr.next();
+					JsonObject face = faceEntry.getValue().getAsJsonObject();
+					Side side = Side.valueOf(faceEntry.getKey().toUpperCase());
+					int[] uv = gson.fromJson(face.get("uv"), int[].class);
+					String textureLink = face.get("texture").getAsString().substring(1);
+					RenderObjectFace renderFace = new RenderObjectFace(side, uv, textureLink);
+					facesList.add(renderFace);
+				}
+				RenderObjectFace[] faces = new RenderObjectFace[facesList.size()];
+				faces = facesList.toArray(faces);
+				RenderObject renderObject = new RenderObject(from, to, faces);
+				elementsList.add(renderObject);
 			}
-			RenderObjectFace[] faces = new RenderObjectFace[facesList.size()];
-			faces = facesList.toArray(faces);
-			RenderObject renderObject = new RenderObject(from, to, faces);
-			elementsList.add(renderObject);
 		}
 		objectRenderer.clearTextureMap();
 		Main.frame.desktop.textureViewer.options.reloadTextures();

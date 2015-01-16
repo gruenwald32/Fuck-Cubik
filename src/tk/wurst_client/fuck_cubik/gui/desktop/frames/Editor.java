@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.event.UndoableEditEvent;
@@ -19,6 +20,7 @@ import tk.wurst_client.fuck_cubik.editor.EditorToolBar;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 public class Editor extends AbstractFrame
 {
@@ -42,7 +44,7 @@ public class Editor extends AbstractFrame
 			@Override
 			public void undoableEditHappened(UndoableEditEvent e)
 			{
-				updateTitle(true);
+				onCodeChange(true);
 			}
 		});
 		textarea.addKeyListener(new KeyListener()
@@ -98,13 +100,14 @@ public class Editor extends AbstractFrame
 		}
 	}
 	
-	public void updateTitle(boolean fileChanged)
+	public void onCodeChange(boolean fileChanged)
 	{
 		if(this.fileChanged != fileChanged)
 		{
 			setTitle(file == null ? "Editor" : (fileChanged ? "* " : "") + "Editor - " + file.getName());
 			this.fileChanged = fileChanged;
 		}
+		toolbar.formatButton.setEnabled(!textarea.getText().isEmpty());
 	}
 	
 	public File getFile()
@@ -116,7 +119,7 @@ public class Editor extends AbstractFrame
 	{
 		this.file = file;
 		Main.frame.menuBar.modelMenu.save.setEnabled(file != null);
-		updateTitle(false);
+		onCodeChange(false);
 	}
 	
 	public JsonElement getCode()
@@ -124,6 +127,9 @@ public class Editor extends AbstractFrame
 		try
 		{
 			return new JsonParser().parse(textarea.getDocument().getText(0, Main.frame.desktop.editor.textarea.getDocument().getLength()));
+		}catch(JsonSyntaxException e)
+		{
+			JOptionPane.showMessageDialog(Main.frame.desktop.editor, e.getLocalizedMessage(), "Syntax error", JOptionPane.INFORMATION_MESSAGE);
 		}catch(Exception e)
 		{
 			new ErrorMessage("reading code", e);

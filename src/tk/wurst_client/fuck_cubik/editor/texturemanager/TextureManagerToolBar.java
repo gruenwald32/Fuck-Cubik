@@ -21,6 +21,7 @@ public class TextureManagerToolBar extends JToolBar
 	public JButton newButton;
 	public JButton editButton;
 	public JButton removeButton;
+	public TextureEditor textureEditor;
 	
 	public TextureManagerToolBar(final TextureManager textureManager)
 	{
@@ -41,9 +42,9 @@ public class TextureManagerToolBar extends JToolBar
 					String name = "unnamed" + (int)(Math.random() * 1000);
 					json.get("textures").getAsJsonObject().addProperty(name, "");
 					Main.frame.desktop.editor.setCode(gson.toJson(json));
-					Main.frame.desktop.preview.toolbar.refreshButton.doClick();
+					Main.renderer.refreshLater();
 					textureManager.updateList();
-					new TextureEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("textures").getAsJsonObject(), "#" + name);
+					textureEditor = new TextureEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("textures").getAsJsonObject(), name);
 				}catch(Exception e1)
 				{
 					new ErrorMessage("adding new texture", e1);
@@ -59,7 +60,7 @@ public class TextureManagerToolBar extends JToolBar
 			public void actionPerformed(ActionEvent e)
 			{
 				String selection = textureManager.textures.getSelectedValue();
-				new TextureEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("textures").getAsJsonObject(), selection);
+				textureEditor = new TextureEditor(Main.frame.desktop.editor.getCode().getAsJsonObject().get("textures").getAsJsonObject(), selection);
 			}
 		});
 		add(editButton);
@@ -77,7 +78,7 @@ public class TextureManagerToolBar extends JToolBar
 					JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
 					json.get("textures").getAsJsonObject().remove(selection.substring(1));
 					Main.frame.desktop.editor.setCode(gson.toJson(json));
-					Main.frame.desktop.preview.toolbar.refreshButton.doClick();
+					Main.renderer.refreshLater();
 					textureManager.updateList();
 				}
 			}

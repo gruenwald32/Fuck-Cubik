@@ -1,6 +1,8 @@
 package tk.wurst_client.fuck_cubik.editor.elementmanager;
 
 import java.awt.GridLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -53,12 +55,57 @@ public class ElementEditor extends JDialog
 			for(String faceName : faceNames)
 				faces.add(new ElementFacePanel(element, faceName, this));
 			this.add(faces);
+			addWindowListener(new WindowListener()
+			{
+				@Override
+				public void windowOpened(WindowEvent e)
+				{	
+					
+				}
+				
+				@Override
+				public void windowIconified(WindowEvent e)
+				{	
+					
+				}
+				
+				@Override
+				public void windowDeiconified(WindowEvent e)
+				{	
+					
+				}
+				
+				@Override
+				public void windowDeactivated(WindowEvent e)
+				{	
+					
+				}
+				
+				@Override
+				public void windowClosing(WindowEvent e)
+				{
+					Main.frame.desktop.editor.toolbar.elementManager.setVisible(true);
+				}
+				
+				@Override
+				public void windowClosed(WindowEvent e)
+				{	
+					
+				}
+				
+				@Override
+				public void windowActivated(WindowEvent e)
+				{	
+					
+				}
+			});
 			pack();
 			if(Main.isSmallScreen)
 				setSize(getSize().width, 660);
 			setLocationRelativeTo(Main.frame.desktop.editor);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			setAlwaysOnTop(true);
+			Main.frame.desktop.editor.toolbar.elementManager.setVisible(false);
 			setVisible(true);
 		}catch(Exception e)
 		{
@@ -73,7 +120,7 @@ public class ElementEditor extends JDialog
 			JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
 			json.get("elements").getAsJsonArray().set(selection, element);
 			Main.frame.desktop.editor.setCode(new GsonBuilder().setPrettyPrinting().create().toJson(json));
-			Main.renderer.refresh();
+			Main.renderer.refreshLater();
 			Main.renderer.markedElement = selection;
 		}catch(Exception e)
 		{

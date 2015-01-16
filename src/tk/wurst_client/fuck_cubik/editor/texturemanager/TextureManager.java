@@ -92,7 +92,7 @@ public class TextureManager extends JDialog
 					
 				}
 			});
-			this.setSize(256, 320);
+			setSize(256, 320);
 			setLocationRelativeTo(Main.frame.desktop.editor);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			setAlwaysOnTop(true);
@@ -110,7 +110,7 @@ public class TextureManager extends JDialog
 		{
 			JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
 			for(Entry<String, JsonElement> entry : json.get("textures").getAsJsonObject().entrySet())
-				((DefaultListModel<String>)textures.getModel()).addElement("#" + entry.getKey());
+				((DefaultListModel<String>)textures.getModel()).addElement(entry.getKey());
 		}catch(Exception e)
 		{	
 			

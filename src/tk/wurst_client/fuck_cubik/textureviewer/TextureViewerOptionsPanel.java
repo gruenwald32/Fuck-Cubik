@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 import tk.wurst_client.fuck_cubik.Main;
@@ -71,7 +72,13 @@ public class TextureViewerOptionsPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				new TextureFileChooser().showOpenDialog(Main.frame);
+				TextureFileChooser fileChooser = new TextureFileChooser();
+				int action = fileChooser.showOpenDialog(Main.frame);
+				if(action == JFileChooser.APPROVE_OPTION)
+				{
+					Main.frame.desktop.textureViewer.options.textureCombo.setSelectedIndex(-1);
+					Main.frame.desktop.textureViewer.viewer.setInput(fileChooser.getSelectedFile());
+				}
 			}
 		});
 		this.add(loadButton);

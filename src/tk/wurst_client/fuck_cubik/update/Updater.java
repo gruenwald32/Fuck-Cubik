@@ -37,7 +37,6 @@ public class Updater
 			for(String line = ""; (line = load.readLine()) != null;)
 				content += "\n" + line;
 			load.close();
-			System.out.println(content);
 			json = new JsonParser().parse(content).getAsJsonArray();
 			latestRelease = new JsonObject();
 			for(JsonElement release : json)

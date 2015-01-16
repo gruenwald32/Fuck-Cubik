@@ -13,7 +13,6 @@ import tk.wurst_client.fuck_cubik.editor.texturemanager.TextureManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
 
 public class EditorToolBar extends JToolBar
 {
@@ -22,11 +21,14 @@ public class EditorToolBar extends JToolBar
 	public JButton formatButton;
 	public JButton elementManagerButton;
 	public JButton textureManagerButton;
+	public ElementManager elementManager;
+	public TextureManager textureManager;
 	
 	public EditorToolBar()
 	{
 		gson = new GsonBuilder().setPrettyPrinting().create();
 		formatButton = new JButton("Format code");
+		formatButton.setEnabled(false);
 		formatButton.addActionListener(new ActionListener()
 		{
 			@Override
@@ -34,13 +36,13 @@ public class EditorToolBar extends JToolBar
 			{
 				try
 				{
-					if(Main.frame.desktop.editor.getCode().isJsonNull())
-						throw new JsonSyntaxException("No code found.");
+					if(Main.frame.desktop.editor.getCode() == null)
+						return;
 					String newCode = gson.toJson(Main.frame.desktop.editor.getCode());
 					Main.frame.desktop.editor.setCode(newCode);
 				}catch(Exception e1)
 				{
-					new ErrorMessage("formatting code", e1);
+					new ErrorMessage(Main.frame.desktop.editor, "formatting code", e1);
 				}
 			}
 		});
@@ -51,7 +53,7 @@ public class EditorToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				new ElementManager();
+				elementManager = new ElementManager();
 			}
 		});
 		this.add(elementManagerButton);
@@ -61,7 +63,7 @@ public class EditorToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				new TextureManager();
+				textureManager = new TextureManager();
 			}
 		});
 		this.add(textureManagerButton);
