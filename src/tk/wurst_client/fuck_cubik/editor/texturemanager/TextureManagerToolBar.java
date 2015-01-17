@@ -40,7 +40,7 @@ public class TextureManagerToolBar extends JToolBar
 					JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
 					if(!json.has("textures"))
 						json.add("textures", new JsonObject());
-					String name = "unnamed" + (int)(Math.random() * 1000);
+					String name = "texture" + (int)(Math.random() * 1000);
 					json.get("textures").getAsJsonObject().addProperty(name, "");
 					Main.frame.desktop.editor.setCode(gson.toJson(json));
 					Main.renderer.refreshLater();

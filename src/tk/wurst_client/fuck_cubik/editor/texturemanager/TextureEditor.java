@@ -51,6 +51,7 @@ public class TextureEditor extends JDialog
 					String path = TextureEditor.this.textures.get(TextureEditor.this.name).getAsString();
 					TextureEditor.this.textures.remove(TextureEditor.this.name);
 					TextureEditor.this.name = nameField.getText();
+					TextureEditor.this.setTitle(TextureEditor.this.name);
 					TextureEditor.this.textures.addProperty(TextureEditor.this.name, path);
 					TextureEditor.this.updateCode();
 				}

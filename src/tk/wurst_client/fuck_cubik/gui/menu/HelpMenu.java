@@ -3,6 +3,7 @@ package tk.wurst_client.fuck_cubik.gui.menu;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,6 +14,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
+import javax.swing.KeyStroke;
 
 import tk.wurst_client.fuck_cubik.Main;
 import tk.wurst_client.fuck_cubik.error.ErrorMessage;
@@ -48,6 +50,7 @@ public class HelpMenu extends JMenu
 		});
 		add(gettingstarted);
 		wiki = new JMenuItem("Fuck Cubik wiki");
+		wiki.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 		wiki.addActionListener(new ActionListener()
 		{
 			@Override
