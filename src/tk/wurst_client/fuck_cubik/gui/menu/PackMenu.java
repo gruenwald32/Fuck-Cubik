@@ -29,7 +29,9 @@ public class PackMenu extends JMenu
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackPageView("/menu/pack/import", "Import pack");
 				fileChooser.showOpenDialog(Main.frame);
+				Main.tracker.trackPageView("/", "Main frame");
 			}
 		});
 		this.add(importPack);
@@ -39,7 +41,9 @@ public class PackMenu extends JMenu
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackPageView("/menu/pack/export", "Export pack");
 				fileChooser.showSaveDialog(Main.frame);
+				Main.tracker.trackPageView("/", "Main frame");
 			}
 		});
 		updateExportButton();
@@ -50,7 +54,9 @@ public class PackMenu extends JMenu
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackPageView("/menu/pack/edit-description", "Edit pack description");
 				fileChooser.showDescriptionDialog(Main.frame);
+				Main.tracker.trackPageView("/", "Main frame");
 			}
 		});
 		this.add(editDescription);
@@ -61,7 +67,9 @@ public class PackMenu extends JMenu
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackPageView("/menu/pack/clear", "Clear pack");
 				fileChooser.showDeleteDialog(Main.frame);
+				Main.tracker.trackPageView("/", "Main frame");
 			}
 		});
 		this.add(clearPack);

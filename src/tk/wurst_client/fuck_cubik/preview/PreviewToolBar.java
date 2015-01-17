@@ -26,6 +26,7 @@ public class PreviewToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackEvent("preview toolbar", "reset camera");
 				Main.renderer.reset();
 			}
 		});
@@ -37,6 +38,7 @@ public class PreviewToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackEvent("preview toolbar", "refresh");
 				new SwingWorker<Object, Object>()
 				{
 					@Override
@@ -61,6 +63,7 @@ public class PreviewToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackEvent("preview toolbar", "show grid", gridBox.isSelected() ? "enable" : "disable");
 				Main.frame.desktop.preview.showGrid = gridBox.isSelected();
 			}
 		});
@@ -71,6 +74,7 @@ public class PreviewToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackEvent("preview toolbar", "show focus", focusBox.isSelected() ? "enable" : "disable");
 				Main.frame.desktop.preview.showFocus = focusBox.isSelected();
 			}
 		});
@@ -81,6 +85,7 @@ public class PreviewToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackEvent("preview toolbar", "show compass", compassBox.isSelected() ? "enable" : "disable");
 				Main.frame.desktop.preview.showCompass = compassBox.isSelected();
 			}
 		});

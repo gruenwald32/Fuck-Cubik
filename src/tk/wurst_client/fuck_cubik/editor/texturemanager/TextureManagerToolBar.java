@@ -32,6 +32,7 @@ public class TextureManagerToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackEvent("texture manager", "new");
 				try
 				{
 					if(Main.frame.desktop.editor.getCode().isJsonNull())
@@ -71,16 +72,19 @@ public class TextureManagerToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackPageView("/editor/texture-manager/remove", "Remove texture");
 				String selection = textureManager.textures.getSelectedValue();
 				int action = JOptionPane.showConfirmDialog(TextureManagerToolBar.this, "Are you sure you want to delete the texture \"" + selection + "\"?", "Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if(action == JOptionPane.YES_OPTION)
 				{
+					Main.tracker.trackEvent("texture manager", "remove");
 					JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
 					json.get("textures").getAsJsonObject().remove(selection.substring(1));
 					Main.frame.desktop.editor.setCode(gson.toJson(json));
 					Main.renderer.refreshLater();
 					textureManager.updateList();
 				}
+				Main.tracker.trackPageView("/editor/texture-manager", "Texture manager");
 			}
 		});
 		add(removeButton);

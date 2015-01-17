@@ -36,6 +36,8 @@ public class ModelFileChooser extends JFileChooser
 	{
 		int action = super.showOpenDialog(parent);
 		if(action == APPROVE_OPTION)
+		{
+			Main.tracker.trackEvent("model", "open");
 			try
 			{
 				File file = getSelectedFile();
@@ -51,6 +53,7 @@ public class ModelFileChooser extends JFileChooser
 			{
 				new ErrorMessage("loading model", e);
 			}
+		}
 		return action;
 	}
 	
@@ -59,6 +62,7 @@ public class ModelFileChooser extends JFileChooser
 	{
 		int action = super.showSaveDialog(parent);
 		if(action == APPROVE_OPTION)
+		{
 			try
 			{
 				File file = getSelectedFile();
@@ -67,11 +71,13 @@ public class ModelFileChooser extends JFileChooser
 			{
 				new ErrorMessage("saving model", e);
 			}
+		}
 		return action;
 	}
 	
 	public void save(File file) throws BadLocationException, FileNotFoundException
 	{
+			Main.tracker.trackEvent("model", "save");
 		if(!file.getName().endsWith(".json"))
 			file = new File(file.getPath() + ".json");
 		PrintWriter save = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file)));

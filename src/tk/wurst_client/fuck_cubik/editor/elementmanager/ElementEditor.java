@@ -84,6 +84,7 @@ public class ElementEditor extends JDialog
 				@Override
 				public void windowClosing(WindowEvent e)
 				{
+					Main.tracker.trackPageView("/editor/element-manager", "Element manager");
 					Main.frame.desktop.editor.toolbar.elementManager.setVisible(true);
 				}
 				
@@ -105,6 +106,7 @@ public class ElementEditor extends JDialog
 			setLocationRelativeTo(Main.frame.desktop.editor);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			setAlwaysOnTop(true);
+			Main.tracker.trackPageView("/editor/element-manager/editor", "Element editor");
 			Main.frame.desktop.editor.toolbar.elementManager.setVisible(false);
 			setVisible(true);
 		}catch(Exception e)

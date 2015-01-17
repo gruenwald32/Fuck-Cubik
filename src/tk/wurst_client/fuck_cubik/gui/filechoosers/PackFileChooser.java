@@ -47,6 +47,7 @@ public class PackFileChooser extends JFileChooser
 		int action = super.showOpenDialog(parent);
 		if(action == APPROVE_OPTION)
 		{
+			Main.tracker.trackEvent("pack", "import");
 			progress = new UnknownProgressDialog("Importing pack...");
 			new SwingWorker()
 			{
@@ -94,6 +95,7 @@ public class PackFileChooser extends JFileChooser
 		int action = super.showSaveDialog(parent);
 		if(action == APPROVE_OPTION)
 		{
+			Main.tracker.trackEvent("pack", "export");
 			progress = new UnknownProgressDialog("Exporting pack...");
 			new SwingWorker()
 			{
@@ -144,6 +146,8 @@ public class PackFileChooser extends JFileChooser
 		}
 		newDescription = (String)JOptionPane.showInputDialog(parent, "New description:", "Edit pack description", JOptionPane.QUESTION_MESSAGE, null, null, oldDescription);
 		if(newDescription != null)
+		{
+			Main.tracker.trackEvent("pack", "edit metadata", "description");
 			try
 			{
 				Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -159,6 +163,7 @@ public class PackFileChooser extends JFileChooser
 			{
 				new ErrorMessage("saving metadata", e);
 			}
+		}
 	}
 	
 	public int showDeleteDialog(Component parent)
@@ -177,6 +182,7 @@ public class PackFileChooser extends JFileChooser
 			);
 		if(action == APPROVE_OPTION)
 		{
+			Main.tracker.trackEvent("pack", "clear");
 			progress = new UnknownProgressDialog("Clearing pack...");
 			new SwingWorker()
 			{

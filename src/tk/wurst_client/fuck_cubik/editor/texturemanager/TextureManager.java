@@ -77,6 +77,7 @@ public class TextureManager extends JDialog
 				@Override
 				public void windowClosing(WindowEvent e)
 				{
+					Main.tracker.trackPageView("/", "Main frame");
 					Main.renderer.markedElement = -1;
 				}
 				
@@ -96,6 +97,7 @@ public class TextureManager extends JDialog
 			setLocationRelativeTo(Main.frame.desktop.editor);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			setAlwaysOnTop(true);
+			Main.tracker.trackPageView("/editor/texture-manager", "Texture manager");
 			setVisible(true);
 		}catch(Exception e)
 		{

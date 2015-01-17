@@ -33,6 +33,7 @@ public class ElementManagerToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackEvent("element manager", "new");
 				try
 				{
 					if(Main.frame.desktop.editor.getCode().isJsonNull())
@@ -84,16 +85,19 @@ public class ElementManagerToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackPageView("/editor/element-manager/remove", "Remove element");
 				int selection = elementManager.elements.getSelectedIndex();
 				int action = JOptionPane.showConfirmDialog(ElementManagerToolBar.this, "Are you sure you want to delete element #" + (selection + 1) + "?", "Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if(action == JOptionPane.YES_OPTION)
 				{
+					Main.tracker.trackEvent("element manager", "remove");
 					JsonObject json = Main.frame.desktop.editor.getCode().getAsJsonObject();
 					json.get("elements").getAsJsonArray().remove(selection);
 					Main.frame.desktop.editor.setCode(gson.toJson(json));
 					Main.renderer.refreshLater();
 					elementManager.updateList();
 				}
+				Main.tracker.trackPageView("/editor/element-manager", "Element manager");
 			}
 		});
 		add(removeButton);

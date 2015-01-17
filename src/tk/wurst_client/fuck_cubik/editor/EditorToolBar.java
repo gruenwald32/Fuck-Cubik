@@ -34,6 +34,7 @@ public class EditorToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackEvent("editor toolbar", "format code");
 				try
 				{
 					if(Main.frame.desktop.editor.getCode() == null)

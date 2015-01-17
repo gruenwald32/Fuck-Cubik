@@ -106,6 +106,7 @@ public class TextureEditor extends JDialog
 				@Override
 				public void windowClosing(WindowEvent e)
 				{
+					Main.tracker.trackPageView("/editor/texture-manager", "Texture manager");
 					Main.frame.desktop.editor.toolbar.textureManager.updateList();
 					Main.frame.desktop.editor.toolbar.textureManager.setVisible(true);
 				}
@@ -126,6 +127,7 @@ public class TextureEditor extends JDialog
 			setLocationRelativeTo(Main.frame.desktop.editor);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			setAlwaysOnTop(true);
+			Main.tracker.trackPageView("/editor/texture-manager/editor", "Texture editor");
 			Main.frame.desktop.editor.toolbar.textureManager.setVisible(false);
 			setVisible(true);
 		}catch(Exception e)

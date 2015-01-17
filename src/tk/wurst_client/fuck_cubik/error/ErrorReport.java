@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -144,10 +146,11 @@ public class ErrorReport extends JDialog
 						JOptionPane.DEFAULT_OPTION,
 						success ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE,
 						null,
-						new String[]{"OK", "View error reports"},
+						success ? new String[]{"OK", "View error reports"} : new String[]{"OK"},
 						0);
 					if(action == 1)
 						Desktop.getDesktop().browse(new URI("http://fuck-cubik.wurst-client.tk/error-reports/"));
+					Main.tracker.trackPageView("/", "Main frame");
 				}catch(Exception e1)
 				{
 					e1.printStackTrace();
@@ -163,6 +166,50 @@ public class ErrorReport extends JDialog
 			}
 		});
 		add(sendButton);
+		addWindowListener(new WindowListener()
+		{
+			@Override
+			public void windowOpened(WindowEvent e)
+			{	
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e)
+			{	
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e)
+			{	
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e)
+			{	
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e)
+			{
+				Main.tracker.trackPageView("/", "Main frame");
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e)
+			{	
+				
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e)
+			{	
+				
+			}
+		});
 		pack();
 		setLocationRelativeTo(Main.frame);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

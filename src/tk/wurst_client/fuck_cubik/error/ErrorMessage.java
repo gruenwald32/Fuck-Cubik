@@ -45,6 +45,7 @@ public class ErrorMessage
 					JOptionPane.ERROR_MESSAGE);
 			else
 				new ErrorReport(action, stacktrace);
-		}
+		}else
+			Main.tracker.trackPageView("/", "Main frame");
 	}
 }

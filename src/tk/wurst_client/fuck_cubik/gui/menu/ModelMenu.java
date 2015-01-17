@@ -30,7 +30,9 @@ public class ModelMenu extends JMenu
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackPageView("/menu/model/open", "Open");
 				fileChooser.showOpenDialog(Main.frame);
+				Main.tracker.trackPageView("/", "Main frame");
 			}
 		});
 		this.add(open);
@@ -58,7 +60,9 @@ public class ModelMenu extends JMenu
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				Main.tracker.trackPageView("/menu/model/save-as", "Save as...");
 				fileChooser.showSaveDialog(Main.frame);
+				Main.tracker.trackPageView("/", "Main frame");
 			}
 		});
 		this.add(saveAs);
