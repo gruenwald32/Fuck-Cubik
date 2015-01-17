@@ -6,6 +6,7 @@ public class MenuBar extends JMenuBar
 {
 	public PackMenu packMenu;
 	public ModelMenu modelMenu;
+	public OptionsMenu optionsMenu;
 	public HelpMenu helpMenu;
 	
 	public MenuBar()
@@ -15,6 +16,8 @@ public class MenuBar extends JMenuBar
 		this.add(packMenu);
 		modelMenu = new ModelMenu();
 		this.add(modelMenu);
+		optionsMenu = new OptionsMenu();
+		this.add(optionsMenu);
 		helpMenu = new HelpMenu();
 		this.add(helpMenu);
 	}

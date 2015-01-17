@@ -33,7 +33,7 @@ public class TextureViewerOptionsPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				Main.tracker.trackEvent("textureviewer toolbar", "select texture", textureCombo.getSelectedIndex() <= 1 ? "no texture" : "texture", textureCombo.getSelectedIndex());
+				Main.tracker.trackEvent("textureviewer options", "select texture", textureCombo.getSelectedIndex() <= 1 ? "no texture" : "texture", textureCombo.getSelectedIndex());
 				if(textureCombo.getSelectedIndex() == 0)
 					Main.frame.desktop.textureViewer.viewer.setInput(null);
 				else
@@ -48,7 +48,7 @@ public class TextureViewerOptionsPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				Main.tracker.trackEvent("textureviewer toolbar", "show grid", gridBox.isSelected() ? "enable" : "disable");
+				Main.tracker.trackEvent("textureviewer options", "show grid", gridBox.isSelected() ? "enable" : "disable");
 				Main.frame.desktop.textureViewer.viewer.showGrid = gridBox.isSelected();
 				numbersBox.setEnabled(gridBox.isSelected());
 				Main.frame.desktop.textureViewer.viewer.repaint();
@@ -62,7 +62,7 @@ public class TextureViewerOptionsPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				Main.tracker.trackEvent("textureviewer toolbar", "show numbers", numbersBox.isSelected() ? "enable" : "disable");
+				Main.tracker.trackEvent("textureviewer options", "show numbers", numbersBox.isSelected() ? "enable" : "disable");
 				Main.frame.desktop.textureViewer.viewer.showNumbers = numbersBox.isSelected();
 				Main.frame.desktop.textureViewer.viewer.repaint();
 			}

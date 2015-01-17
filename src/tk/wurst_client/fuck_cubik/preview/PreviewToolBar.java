@@ -63,7 +63,7 @@ public class PreviewToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				Main.tracker.trackEvent("preview toolbar", "show grid", gridBox.isSelected() ? "enable" : "disable");
+				Main.tracker.trackEvent("preview toolbar", "toggle grid", gridBox.isSelected() ? "enable" : "disable");
 				Main.frame.desktop.preview.showGrid = gridBox.isSelected();
 			}
 		});
@@ -74,7 +74,7 @@ public class PreviewToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				Main.tracker.trackEvent("preview toolbar", "show focus", focusBox.isSelected() ? "enable" : "disable");
+				Main.tracker.trackEvent("preview toolbar", "toggle focus", focusBox.isSelected() ? "enable" : "disable");
 				Main.frame.desktop.preview.showFocus = focusBox.isSelected();
 			}
 		});
@@ -85,7 +85,7 @@ public class PreviewToolBar extends JToolBar
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				Main.tracker.trackEvent("preview toolbar", "show compass", compassBox.isSelected() ? "enable" : "disable");
+				Main.tracker.trackEvent("preview toolbar", "toggle compass", compassBox.isSelected() ? "enable" : "disable");
 				Main.frame.desktop.preview.showCompass = compassBox.isSelected();
 			}
 		});
