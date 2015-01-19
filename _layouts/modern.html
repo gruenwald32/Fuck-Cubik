@@ -1,5 +1,3 @@
----
----
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -14,7 +12,7 @@
 	<link href="/css/modern.css" rel="stylesheet">
 	{% include analytics.html %}
 </head>
-	<body{% if page.body_params %} {{ page.body_params }}{% endif %}>
+	<body{% if page.class %} class="{{ page.class }}"{% endif %}>
 		{% include header.html %}
 		{{ content }}
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
