@@ -1,0 +1,45 @@
+﻿icon {
+	display: inline-block;
+	width: 1em;
+	vertical-align: middle;
+}
+
+icon.fuck-cubik16:before {
+	content: url("/images/logo16.png");
+}
+
+icon.fuck-cubik32:before {
+	content: url("/images/logo32.png");
+}
+
+icon.fuck-cubik64:before {
+	content: url("/images/logo64.png");
+}
+
+icon.fuck-cubik96:before {
+	content: url("/images/logo96.png");
+}
+
+icon.fuck-cubik128:before {
+	content: url("/images/logo128.png");
+}
+
+icon.fuck-cubik256:before {
+	content: url("/images/logo256.png");
+}
+
+icon.arrow-down-white:before {
+	content: url("/icons/arrow_down_white.svg");
+}
+
+icon.ballot-box-e:before {
+	content: url("/icons/ballot_box_empty.svg");
+}
+
+icon.ballot-box-c:before {
+	content: url("/icons/ballot_box_check_green.svg");
+}
+
+icon.ballot-box-x:before {
+	content: url("/icons/ballot_box_x_red.svg");
+}

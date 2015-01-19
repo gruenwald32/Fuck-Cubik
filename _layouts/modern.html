@@ -1,0 +1,24 @@
+---
+---
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{% if page.title %}{{ page.title }} - {% endif %}Fuck Cubik</title>
+	{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+	<link href="/css/basic.css" rel="stylesheet">
+	<link href="/css/buttons.css" rel="stylesheet">
+	<link href="/css/icons.css" rel="stylesheet">
+	<link href="/css/modern.css" rel="stylesheet">
+	{% include analytics.html %}
+</head>
+	<body{% if page.body-params %} {{ page.body-params }}{% endif %}>
+		{% include header.html %}
+		{{ content }}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="/js/scrolling.js"></script>
+		{% include footer.html %}
+	</body>
+</html>
