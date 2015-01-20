@@ -92,12 +92,18 @@ p , a {
 }
 
 #nav-right .menu .menu-items {
-	height: 0;
-	overflow: hidden;
+	overflow: visible;
+	visibility: hidden;
+	position: absolute;
+	transition: 0.5s;
+	transform: translateY(64px);
+	opacity: 0;
 }
 
 #nav-right .menu:hover .menu-items {
-	height: initial;
+	visibility: visible;
+	transform: translateY(0);
+	opacity: 1;
 }
 
 .section {
