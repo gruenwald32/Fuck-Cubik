@@ -2,12 +2,12 @@
 {
 	$(window).scroll(function()
 	{
-		if($("header").offset().top > 50)
+		if($("#header").offset().top > 50)
 		{
-			$("header").addClass("collapse");
+			$("#header").addClass("collapse");
 		}else
 		{
-			$("header").removeClass("collapse");
+			$("#header").removeClass("collapse");
 		}
 	});
 	
