@@ -26,14 +26,14 @@ p , a {
 	font-size: 1.5em;
 }
 
-header {
+#header {
 	position: fixed;
 	width: 100%;
 	padding: 2em 0;
 	transition: 0.5s;
 }
 
-header.collapse {
+#header.collapse {
 	padding: 0;
 	background: #111;
 }
@@ -79,6 +79,25 @@ header.collapse {
 #nav-right a {
 	font-size: 1.25em;
 	padding: 1em;
+}
+
+#nav-right .menu {
+	display: inline-block;
+	float: left;
+}
+
+#nav-right .menu a {
+	display: block;
+	float: none;
+}
+
+#nav-right .menu .menu-items {
+	height: 0;
+	overflow: hidden;
+}
+
+#nav-right .menu:hover .menu-items {
+	height: initial;
 }
 
 .section {

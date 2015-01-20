@@ -13,6 +13,7 @@
 	{% include analytics.html %}
 </head>
 	<body{% if page.class %} class="{{ page.class }}"{% endif %}>
+		{% include header.html %}
 		{{ content }}
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="/js/scrolling.js"></script>
