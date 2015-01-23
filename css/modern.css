@@ -84,6 +84,7 @@ p , a {
 #nav-right .menu {
 	display: inline-block;
 	float: left;
+	height: 1em;
 }
 
 #nav-right .menu a {
@@ -92,18 +93,24 @@ p , a {
 }
 
 #nav-right .menu .menu-items {
-	overflow: visible;
 	visibility: hidden;
 	position: absolute;
 	transition: 0.5s;
-	transform: translateY(64px);
 	opacity: 0;
+	background-color: transparent;
+	transform: translateY(64px);
+}
+
+#header.collapse .menu-items {
+	background-color: #111;
+	transform: none;
+	transition: 0.25s;
 }
 
 #nav-right .menu:hover .menu-items {
 	visibility: visible;
-	transform: translateY(0);
 	opacity: 1;
+	transform: translateY(0);
 }
 
 .section {
