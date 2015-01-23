@@ -94,7 +94,7 @@ p , a {
 
 #nav-right .menu .menu-items {
 	visibility: hidden;
-	position: absolute;
+	position: relative;
 	transition: 0.5s;
 	opacity: 0;
 	background-color: transparent;
